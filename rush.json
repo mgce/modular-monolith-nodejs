@@ -450,7 +450,7 @@
     // }
     {
       "packageName": "app",
-      "projectFolder": "src/app",
+      "projectFolder": "packages/app",
       "reviewCategory": "internal"
     }
   ]
