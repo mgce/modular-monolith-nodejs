@@ -1,8 +1,11 @@
-import express from "express";
+import * as express from "express";
+import { getTestName } from "@travelhoop/my-test";
 
 const app = express();
-const port = 3000;
+const port = 3005;
 
 app.listen(port, () => {
   console.log(`Listen to port ${port}`);
+  console.log("xdsss");
+  console.log(getTestName());
 });

@@ -63,3 +63,7 @@ common/deploy/
 common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
+
+# Generated js files
+*/**/build
+*/**/node_modules

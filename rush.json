@@ -449,8 +449,18 @@
     //   "reviewCategory": "tools"
     // }
     {
-      "packageName": "app",
+      "packageName": "@travelhoop/toolchain",
+      "projectFolder": "tools/toolchain",
+      "reviewCategory": "internal"
+    },
+    {
+      "packageName": "@travelhoop/app",
       "projectFolder": "packages/app",
+      "reviewCategory": "internal"
+    },
+    {
+      "packageName": "@travelhoop/my-test",
+      "projectFolder": "packages/test",
       "reviewCategory": "internal"
     }
   ]

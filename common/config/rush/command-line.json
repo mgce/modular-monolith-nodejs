@@ -11,6 +11,14 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "name": "build:watch",
+      "commandKind": "bulk",
+      "summary": "Build projects and watch for changes",
+      "incremental": true,
+      "enableParallelism": true,
+      "watchForChanges": true
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
