@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "build:watch":"tsc -w"
+    "build": "rimraf build && tsc",
+    "build:watch":"tsc"
   },
   "author": "",
   "license": "ISC",
