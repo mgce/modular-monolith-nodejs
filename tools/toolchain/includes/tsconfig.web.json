@@ -15,6 +15,7 @@
       "typeRoots": ["../../@types", "../../../../typings"],
       "resolveJsonModule": true,
       "baseUrl": ".",
+      "allowJs": true,
       "paths": {
         "*": ["typings/*"]
       }

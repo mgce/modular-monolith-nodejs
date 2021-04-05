@@ -1,4 +1,6 @@
-{
+require("@rushstack/eslint-patch/modern-module-resolution");
+
+module.exports = {
     "extends": [
       "airbnb-typescript/base",
       "plugin:prettier/recommended"
@@ -6,10 +8,10 @@
     "env": {
       "mocha": true
     },
-    "plugins": ["prettier", "unicorn", "no-only-tests", "@typescript-eslint"],
+    "plugins": ["prettier", "unicorn", "no-only-tests"],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "./tsconfig.json"
+    "parserOptions":{
+      "project": "tools/toolchain/includes/tsconfig.web.json"
     },
     "rules": {
       "no-console": "error",
@@ -22,7 +24,6 @@
       "no-useless-constructor": "off",
       "class-methods-use-this": "off",
       "@typescript-eslint/quotes": ["error", "double"],
-      "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "never" }],
       "no-empty-interface": "off",
       "ordered-imports": "off",
       "object-literal-sort-keys": "off",
@@ -45,5 +46,5 @@
             "@typescript-eslint/no-unused-expressions": "off"
           }
       }
-    ]
+    ],
   }
