@@ -3,7 +3,7 @@ import { createLogger } from "@travelhoop/shared-infrastructure";
 import { Application } from "express";
 import * as http from "http";
 import { createApp } from "./app";
-import { AppConfig } from "./config";
+import { AppConfig } from "./config/config";
 
 interface ContainerDependencies {
   appConfig: AppConfig;

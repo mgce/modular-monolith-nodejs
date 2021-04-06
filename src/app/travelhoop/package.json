@@ -7,7 +7,8 @@
     "build": "rimraf build && tsc",
     "build:watch":"tsc",
     "lint": "eslint './**/*.ts'",
-    "lint:fix": "eslint './**/*.ts' --fix"
+    "lint:fix": "eslint './**/*.ts' --fix",
+    "start-dev": "node-dev --inspect=0.0.0.0 -r source-map-support/register ./build/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +16,10 @@
     "@travelhoop/shared-infrastructure": "1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
-    "awilix": "~4.3.3"
+    "awilix": "~4.3.3",
+    "ts-node": "~9.1.1",
+    "node-dev": "~6.6.0",
+    "dotenv": "~8.2.0"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

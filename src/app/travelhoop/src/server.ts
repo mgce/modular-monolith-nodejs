@@ -1,10 +1,14 @@
 import { Logger } from "@travelhoop/shared-infrastructure";
 import { Server } from "http";
-import { configFactory } from "./config";
+import { loadEnvs } from "./config";
+import { configFactory } from "./config/config";
 import { setupContainer } from "./container";
 
+loadEnvs();
+
 (async () => {
-  const container = await setupContainer({ appConfig: configFactory(process.env as any) });
+  const appConfig = configFactory(process.env as any);
+  const container = await setupContainer({ appConfig });
 
   process.on("uncaughtException", err => {
     container.resolve<Logger>("logger").error(`Uncaught: ${err.toString()}`, err);

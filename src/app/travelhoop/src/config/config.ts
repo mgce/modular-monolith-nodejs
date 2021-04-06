@@ -4,7 +4,7 @@ interface EnvVariables extends NodeJS.Process {
 
 export const configFactory = (env: EnvVariables) => ({
   app: {
-    port: env.SERVER_PORT,
+    port: parseInt(env.SERVER_PORT, 10),
   },
 });
 
