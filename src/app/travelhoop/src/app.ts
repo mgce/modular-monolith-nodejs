@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import { Application } from "express";
 
 export const createApp = (): Application => {

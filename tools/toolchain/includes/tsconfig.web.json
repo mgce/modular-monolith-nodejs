@@ -5,7 +5,7 @@
       "module": "commonjs",
       "declaration": true,
       "strict": true,
-      "allowSyntheticDefaultImports": false,
+      "allowSyntheticDefaultImports": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "strictPropertyInitialization": false,
@@ -16,9 +16,10 @@
       "resolveJsonModule": true,
       "baseUrl": ".",
       "allowJs": true,
+      "esModuleInterop": true,
       "paths": {
         "*": ["typings/*"]
-      }
+      },
     },
     "include": [
       "../../../../src/**/*.ts",
