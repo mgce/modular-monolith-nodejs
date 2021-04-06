@@ -67,3 +67,6 @@ common/autoinstallers/*/.npmrc
 # Generated js files
 */**/build
 */**/node_modules
+
+# .env
+.env
