@@ -2,7 +2,8 @@
   "name": "@travelhoop/user-module",
   "version": "1.0.0",
   "description": "",
-  "main":"./src/index.ts",
+  "main":"./build/index.js",
+  "typings":"./build/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build && tsc",
@@ -13,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@travelhoop/shared-infrastructure": "1.0.0",
+    "@travelhoop/infrastructure-types": "1.0.0",
+    "@travelhoop/infrastructure": "1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2"
   },

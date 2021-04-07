@@ -1,5 +1,5 @@
 import { asFunction, asValue, createContainer } from "awilix";
-import { createLogger } from "@travelhoop/shared-infrastructure";
+import { createLogger } from "@travelhoop/infrastructure";
 import { Application } from "express";
 import * as http from "http";
 import { createApp } from "./app";

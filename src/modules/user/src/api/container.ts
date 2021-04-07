@@ -1,4 +1,4 @@
-import { ContainerBuilder } from "@travelhoop/shared-infrastructure";
+import { ContainerBuilder } from "@travelhoop/infrastructure";
 import { createRouter } from "./routes/router";
 import { userRouting } from "./routes/user.router";
 

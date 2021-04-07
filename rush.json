@@ -441,9 +441,14 @@
       "reviewCategory": "production"
     },
     {
-      "packageName": "@travelhoop/shared-infrastructure",
+      "packageName": "@travelhoop/infrastructure",
       "projectFolder": "src/shared/infrastructure",
       "reviewCategory": "production"
+    },
+    {
+      "packageName": "@travelhoop/infrastructure-types",
+      "projectFolder": "src/shared/infrastructure-types",
+      "reviewCategory": "tools"
     }
   ]
 }

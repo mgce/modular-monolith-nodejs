@@ -1,4 +1,4 @@
-import { Logger } from "@travelhoop/shared-infrastructure";
+import { Logger } from "@travelhoop/infrastructure-types";
 import { Server } from "http";
 import { loadEnvs } from "./config";
 import { configFactory } from "./config/config";
