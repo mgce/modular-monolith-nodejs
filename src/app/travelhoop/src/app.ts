@@ -1,12 +1,12 @@
 import express from "express";
 import { Application } from "express";
-import { UserModule } from "@travelhoop/user-module";
+import { loadModules } from "./module.loader";
 
 export const createApp = (): Application => {
-  const userModule = new UserModule();
+  const modules = loadModules();
   const app = express();
 
-  userModule.use(app);
+  modules.forEach(m => m.use(app));
 
   app.get("/", (_req, res) => {
     res.json("test");
