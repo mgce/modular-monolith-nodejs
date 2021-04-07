@@ -8,18 +8,20 @@
     "build:watch":"swc src -d build --config-file ./node_modules/@travelhoop/toolchain/.swcrc",
     "lint": "eslint './**/*.ts'",
     "lint:fix": "eslint './**/*.ts' --fix",
-    "start-dev": "node-dev --inspect=0.0.0.0 -r source-map-support/register ./build/server.js"
+    "start-dev": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'ts-node src/server.ts'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@travelhoop/shared-infrastructure": "1.0.0",
+    "@travelhoop/user-module": "1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
     "awilix": "~4.3.3",
     "ts-node": "~9.1.1",
     "node-dev": "~6.6.0",
-    "dotenv": "~8.2.0"
+    "dotenv": "~8.2.0",
+    "nodemon": "~2.0.7"
   },
   "devDependencies": {
     "eslint": "~7.23.0",
