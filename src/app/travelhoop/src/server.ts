@@ -1,14 +1,22 @@
+import "reflect-metadata";
 import { Logger } from "@travelhoop/infrastructure-types";
 import { Server } from "http";
 import { loadEnvs } from "./config";
-import { configFactory } from "./config/config";
+import { appConfigFactory } from "./config/config";
+import { dbConfigFactory } from "./config/db-config";
 import { setupContainer } from "./container";
+import { loadModules } from "./module.loader";
 
 loadEnvs();
 
 (async () => {
-  const appConfig = configFactory(process.env as any);
-  const container = await setupContainer({ appConfig });
+  const appConfig = appConfigFactory(process.env as any);
+  const appModules = loadModules();
+  const dbConfig = dbConfigFactory(
+    process.env as any,
+    appModules.map(appModule => appModule.name),
+  );
+  const container = await setupContainer({ appConfig, dbConfig, appModules });
 
   process.on("uncaughtException", err => {
     container.resolve<Logger>("logger").error(`Uncaught: ${err.toString()}`, err);

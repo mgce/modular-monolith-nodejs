@@ -19,7 +19,10 @@
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
     "awilix": "~4.3.3",
-    "dotenv": "~8.2.0"
+    "dotenv": "~8.2.0",
+    "@mikro-orm/core": "~4.5.2",
+    "@mikro-orm/postgresql": "~4.5.2",
+    "reflect-metadata": "~0.1.13"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",

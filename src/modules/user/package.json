@@ -22,7 +22,9 @@
     "class-validator": "~0.13.1",
     "awilix": "~4.3.3",
     "awilix-express": "~4.0.0",
-    "express-async-handler": "~1.1.4"
+    "express-async-handler": "~1.1.4",
+    "@mikro-orm/core": "~4.5.2",
+    "@mikro-orm/postgresql": "~4.5.2"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

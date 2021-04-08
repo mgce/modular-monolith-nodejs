@@ -1,14 +1,13 @@
-import express from "express";
-import { Application } from "express";
-import { loadModules } from "./module.loader";
+import { AppModule } from "@travelhoop/infrastructure-types";
+import express, { Application } from "express";
 import { MiddlewareType } from "./shared/types/middleware.type";
 
 interface AppDependencies {
   errorHandler: MiddlewareType;
+  modules: AppModule[];
 }
 
-export const createApp = ({ errorHandler }: AppDependencies): Application => {
-  const modules = loadModules();
+export const createApp = ({ errorHandler, modules }: AppDependencies): Application => {
   const app = express();
 
   app.use(express.json());
