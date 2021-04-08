@@ -17,7 +17,11 @@
     "@travelhoop/infrastructure-types": "1.0.0",
     "@travelhoop/infrastructure": "1.0.0",
     "express": "~4.17.1",
-    "rimraf": "~3.0.2"
+    "rimraf": "~3.0.2",
+    "guid-typescript": "~1.0.9",
+    "class-validator": "~0.13.1",
+    "awilix": "~4.3.3",
+    "awilix-express": "~4.0.0"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

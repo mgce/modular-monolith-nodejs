@@ -6,6 +6,8 @@ export const createApp = (): Application => {
   const modules = loadModules();
   const app = express();
 
+  app.use(express.json());
+
   modules.forEach(m => m.use(app));
 
   app.get("/", (_req, res) => {

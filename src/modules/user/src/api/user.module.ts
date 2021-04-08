@@ -1,4 +1,5 @@
 import { AppModule } from "@travelhoop/infrastructure-types";
+import { scopePerRequest } from "@travelhoop/infrastructure";
 import { Application } from "express";
 import { createContainer } from "./container";
 
@@ -14,6 +15,7 @@ export class UserModule implements AppModule {
   use(app: Application) {
     const container = createContainer();
 
+    app.use(scopePerRequest(this.basePath, container.build()));
     app.use(this.path, container.router);
   }
 }

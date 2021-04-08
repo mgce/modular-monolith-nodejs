@@ -1,0 +1,14 @@
+@url = http://localhost:3010/user
+@email = user@testing.com
+
+@password = password1234
+
+### 
+POST {{url}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "email":"{{email}}",
+    "password":"{{password}}"
+}
+

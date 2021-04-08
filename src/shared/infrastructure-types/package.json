@@ -5,7 +5,7 @@
   "main":"./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf build && tsc",
+    "build": "",
     "build:watch":"swc src -d build",
     "lint": "eslint './**/*.ts'",
     "lint:fix": "eslint './**/*.ts' --fix"

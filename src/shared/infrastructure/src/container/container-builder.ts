@@ -1,4 +1,4 @@
-import { asFunction, AwilixContainer, createContainer } from "awilix";
+import { asFunction, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
 
 export class ContainerBuilder {
@@ -8,13 +8,7 @@ export class ContainerBuilder {
     this.container = createContainer();
   }
 
-  addRouting(createRouter: (params: any) => Router, routes: Record<string, (params: any) => Router>) {
-    Object.keys(routes).forEach(routeName => {
-      this.container.register({
-        [routeName]: asFunction(routes[routeName]),
-      });
-    });
-
+  addRouting(createRouter: () => Router) {
     this.container.register({
       router: asFunction(createRouter),
     });
@@ -22,8 +16,10 @@ export class ContainerBuilder {
     return this;
   }
 
-  get register() {
-    return this.container.register;
+  register(entries: Record<string, Resolver<any>>) {
+    this.container.register(entries);
+
+    return this;
   }
 
   get router(): Router {
