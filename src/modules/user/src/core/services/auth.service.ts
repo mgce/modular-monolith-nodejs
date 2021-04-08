@@ -13,8 +13,6 @@ export class AuthService {
   async register(dto: RegisterDto) {
     const id = Guid.create();
 
-    console.log("dto", dto);
-
     const user = User.create({
       id,
       email: dto.email.toLowerCase(),

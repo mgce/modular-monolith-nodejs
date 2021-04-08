@@ -21,7 +21,8 @@
     "guid-typescript": "~1.0.9",
     "class-validator": "~0.13.1",
     "awilix": "~4.3.3",
-    "awilix-express": "~4.0.0"
+    "awilix-express": "~4.0.0",
+    "express-async-handler": "~1.1.4"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

@@ -1,8 +1,13 @@
 import express from "express";
 import { Application } from "express";
 import { loadModules } from "./module.loader";
+import { MiddlewareType } from "./shared/types/middleware.type";
 
-export const createApp = (): Application => {
+interface AppDependencies {
+  errorHandler: MiddlewareType;
+}
+
+export const createApp = ({ errorHandler }: AppDependencies): Application => {
   const modules = loadModules();
   const app = express();
 
@@ -13,6 +18,8 @@ export const createApp = (): Application => {
   app.get("/", (_req, res) => {
     res.json("test");
   });
+
+  app.use(errorHandler);
 
   return app;
 };
