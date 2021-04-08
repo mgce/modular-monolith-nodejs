@@ -1,5 +1,6 @@
-import { asFunction, AwilixContainer, createContainer, Resolver } from "awilix";
+import { asFunction, asValue, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
+import { DbConnection } from "@travelhoop/infrastructure-types";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -11,6 +12,14 @@ export class ContainerBuilder {
   addRouting(createRouter: () => Router) {
     this.container.register({
       router: asFunction(createRouter),
+    });
+
+    return this;
+  }
+
+  addDbConnection(dbConnection: DbConnection) {
+    this.container.register({
+      dbConnection: asValue(dbConnection),
     });
 
     return this;

@@ -1,3 +1,5 @@
 export * from "./logger";
 
-export { AppModule } from "./module";
+export * from "./module";
+
+export * from "./database";

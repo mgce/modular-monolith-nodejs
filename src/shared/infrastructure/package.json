@@ -14,14 +14,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@travelhoop/infrastructure-types":"1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
     "winston": "~3.3.3",
-    "awilix": "~4.3.3"
+    "awilix": "~4.3.3",
+    "@mikro-orm/core": "~4.5.2"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
-    "@travelhoop/infrastructure-types":"1.0.0",
     "@types/node": "~14.14.37",
     "@types/express": "~4.17.11",
     "eslint": "~7.23.0",

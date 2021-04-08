@@ -16,7 +16,8 @@
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
     "winston": "~3.3.3",
-    "awilix": "~4.3.3"
+    "awilix": "~4.3.3",
+    "@mikro-orm/core": "~4.5.2"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
