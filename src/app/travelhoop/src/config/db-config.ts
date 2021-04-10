@@ -1,7 +1,7 @@
 import { Options } from "@mikro-orm/core";
 import { join } from "path";
+import { loadEnvs } from "@travelhoop/infrastructure";
 import { EnvVariables } from ".";
-import { loadEnvs } from "./env";
 
 loadEnvs();
 

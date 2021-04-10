@@ -15,4 +15,8 @@ export class UserRepository {
   async get(id: Guid) {
     return this.deps.dbConnection.em.getRepository(User).findOne({ id });
   }
+
+  async getByEmail(email: string) {
+    return this.deps.dbConnection.em.getRepository(User).findOne({ email });
+  }
 }

@@ -1,5 +1,5 @@
 import { MikroORM } from "@mikro-orm/core";
-import { loadEnvs } from "../../config";
+import { loadEnvs } from "@travelhoop/infrastructure";
 import { dbConfigFactory } from "../../config/db-config";
 import { loadModules } from "../../module.loader";
 

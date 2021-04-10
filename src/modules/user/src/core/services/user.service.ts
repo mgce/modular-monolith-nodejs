@@ -1,12 +1,16 @@
 import { Guid } from "guid-typescript";
+import { LoginDto } from "../dto/login.dto";
 import { RegisterDto } from "../dto/register.dto";
 import { UserDto } from "../dto/user.dto";
 import { User } from "../entities/user";
 import { UserRepository } from "../repositories/user.repository";
-import { hashPassword } from "./password-hasher";
+import { AuthService } from "./auth.service";
+import { PasswordManager } from "./password-hasher";
 
 interface UserServiceDependencies {
   userRepository: UserRepository;
+  passwordManager: PasswordManager;
+  authService: AuthService;
 }
 
 export class UserService {
@@ -14,7 +18,7 @@ export class UserService {
 
   async register(dto: RegisterDto) {
     const id = Guid.create();
-    const password = await hashPassword(dto.password);
+    const password = await this.deps.passwordManager.hashPassword(dto.password);
 
     const user = User.create({
       id,
@@ -40,5 +44,21 @@ export class UserService {
       isActive: user.isActive,
       createdAt: user.createdAt,
     });
+  }
+
+  async login(dto: LoginDto) {
+    const user = await this.deps.userRepository.getByEmail(dto.email);
+
+    if (!user) {
+      throw new Error("User doesn't exists");
+    }
+
+    const isPasswordCorrect = await this.deps.passwordManager.compare(dto.password, user.password);
+
+    if (!isPasswordCorrect) {
+      throw new Error("Invalid password");
+    }
+
+    return this.deps.authService.createToken(user.id);
   }
 }

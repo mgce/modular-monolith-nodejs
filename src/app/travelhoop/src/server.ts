@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Logger } from "@travelhoop/infrastructure-types";
 import { Server } from "http";
-import { loadEnvs } from "./config";
+import { loadEnvs } from "@travelhoop/infrastructure";
 import { appConfigFactory } from "./config/config";
 import { dbConfigFactory } from "./config/db-config";
 import { setupContainer } from "./container";

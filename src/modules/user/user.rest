@@ -1,9 +1,9 @@
 @url = http://localhost:3010/user
-@email = user@testing.com
+@email = user2@testing.com
 
 @password = password1234
 
-@userId = 8feed477-d7aa-d408-ec21-7ba78e96ce60
+@userId = c839b40c-7dec-0138-6682-7dbe471c5181
 ### 
 POST {{url}}/register HTTP/1.1
 content-type: application/json
@@ -16,3 +16,11 @@ content-type: application/json
 ###
 GET {{url}}/{{userId}} HTTP/1.1
 content-type: application/json
+### 
+POST {{url}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email":"{{email}}",
+    "password":"{{password}}"
+}
