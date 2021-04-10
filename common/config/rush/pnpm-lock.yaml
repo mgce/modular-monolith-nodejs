@@ -11,6 +11,7 @@ dependencies:
   '@swc/cli': 0.1.36_@swc+core@1.2.51
   '@swc/core': 1.2.51
   '@types/express': 4.17.11
+  '@types/uuid': 8.3.0
   '@typescript-eslint/eslint-plugin': 4.20.0_08655f1af47a99f295fbf21bcc8b4221
   '@typescript-eslint/parser': 4.20.0_typescript@4.2.3
   awilix: 4.3.3
@@ -33,6 +34,7 @@ dependencies:
   ts-node-dev: 1.1.6_typescript@4.2.3
   typescript: 4.2.3
   unicorn: 0.0.1
+  uuid: 8.3.2
   winston: 3.3.3
 lockfileVersion: 5.2
 packages:
@@ -796,6 +798,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-DUwMKFa+QmApO7I5zhqpc12n9+Mqm006+PTPKrqoZ4F38rk2+iWl8K5IjVvWemERajtkfkiBkHtH/YkOPcBQjA==
+  /@types/uuid/8.3.0:
+    dev: false
+    resolution:
+      integrity: sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
   /@types/validator/13.1.3:
     dev: false
     resolution:
@@ -6110,11 +6116,13 @@ packages:
       '@swc/core': 1.2.51
       '@types/express': 4.17.11
       '@types/node': 14.14.37
+      '@types/uuid': 8.3.0
       awilix: 4.3.3
       eslint: 7.23.0
       express: 4.17.1
       rimraf: 3.0.2
       typescript: 4.2.3
+      uuid: 8.3.2
       winston: 3.3.3
     dev: false
     id: file:projects/infrastructure.tgz
@@ -6123,7 +6131,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-fbX0I6SYQKTqtdDSJG7XMsaszv628BXBD5FuFSKkvwFe1HeZtk5yDfxdij8CYRrt1JgiFIdbt3AvS1RFNG0xiA==
+      integrity: sha512-bNbFst7sbIST6ENHkd0GHmPsJrCiXk9OZ5It25B9MkLGRK7HXz/+ohuAsKqGQG9nkw8TS21zPVY9RD6pPPAf+Q==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
   file:projects/toolchain.tgz:
@@ -6191,6 +6199,7 @@ specifiers:
   '@swc/cli': ~0.1.36
   '@swc/core': ~1.2.51
   '@types/express': ~4.17.11
+  '@types/uuid': ~8.3.0
   '@typescript-eslint/eslint-plugin': ~4.20.0
   '@typescript-eslint/parser': ~4.20.0
   awilix: ~4.3.3
@@ -6213,4 +6222,5 @@ specifiers:
   ts-node-dev: 1.1.6
   typescript: ~4.2.3
   unicorn: ~0.0.1
+  uuid: ~8.3.2
   winston: ~3.3.3

@@ -1,10 +1,13 @@
+import { DbConnection } from "@travelhoop/infrastructure-types";
 import { User } from "../entities/user";
 
+interface UserRepositoryDependencies {
+  dbConnection: DbConnection;
+}
 export class UserRepository {
-  private memory: User[] = [];
+  constructor(private readonly deps: UserRepositoryDependencies) {}
 
   async add(user: User): Promise<void> {
-    this.memory.push(user);
-    await Promise.resolve();
+    await this.deps.dbConnection.em.persistAndFlush(user);
   }
 }

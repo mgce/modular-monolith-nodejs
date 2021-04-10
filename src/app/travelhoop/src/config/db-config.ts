@@ -16,7 +16,7 @@ export const dbConfigFactory = (env: EnvVariables, modulesNames: string[]): Opti
     debug: false,
     migrations: {
       tableName: "mikro_orm_migrations", // name of database table with log of executed transactions
-      path: "./travelhoop/src/migrations", // path to the folder with migrations
+      path: join(__dirname, "../../build/migrations"), // path to the folder with migrations
       pattern: /^[\w-]+\d+\.js$/, // regex pattern for the migration files
       transactional: true, // wrap each migration in a transaction
       disableForeignKeys: true, // wrap statements with `set foreign_key_checks = 0` or equivalent

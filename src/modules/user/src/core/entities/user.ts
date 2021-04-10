@@ -1,9 +1,10 @@
 import { Guid } from "guid-typescript";
 import { Entity, Property, PrimaryKey } from "@mikro-orm/core";
+import { GuidType } from "@travelhoop/infrastructure";
 
 @Entity()
 export class User {
-  @PrimaryKey()
+  @PrimaryKey({ type: GuidType })
   id: Guid;
 
   @Property()
