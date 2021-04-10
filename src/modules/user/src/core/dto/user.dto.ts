@@ -1,13 +1,15 @@
-import { IsEmail, IsString } from "class-validator";
+export class UserDto {
+  id: string;
 
-export class RegisterDto {
-  @IsEmail()
   email: string;
 
-  @IsString()
   password: string;
 
-  constructor(props: RegisterDto) {
+  isActive: boolean;
+
+  createdAt: Date;
+
+  constructor(props: UserDto) {
     Object.assign(this, props);
   }
 }

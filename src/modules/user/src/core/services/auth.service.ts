@@ -1,5 +1,6 @@
 import { Guid } from "guid-typescript";
-import { RegisterDto } from "../dto/user.dto";
+import { RegisterDto } from "../dto/register.dto";
+import { UserDto } from "../dto/user.dto";
 import { User } from "../entities/user";
 import { UserRepository } from "../repositories/user.repository";
 
@@ -22,5 +23,21 @@ export class AuthService {
     });
 
     await this.deps.userRepository.add(user);
+  }
+
+  async get(id: Guid) {
+    const user = await this.deps.userRepository.get(id);
+
+    if (!user) {
+      throw new Error("User doesn't exists");
+    }
+
+    return new UserDto({
+      id: user.id.toString(),
+      email: user.email,
+      password: user.password,
+      isActive: user.isActive,
+      createdAt: user.createdAt,
+    });
   }
 }

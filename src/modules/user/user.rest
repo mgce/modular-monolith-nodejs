@@ -3,6 +3,7 @@
 
 @password = password1234
 
+@userId = 8feed477-d7aa-d408-ec21-7ba78e96ce60
 ### 
 POST {{url}}/register HTTP/1.1
 content-type: application/json
@@ -12,3 +13,6 @@ content-type: application/json
     "password":"{{password}}"
 }
 
+###
+GET {{url}}/{{userId}} HTTP/1.1
+content-type: application/json
