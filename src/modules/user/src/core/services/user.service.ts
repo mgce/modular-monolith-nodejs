@@ -3,6 +3,7 @@ import { RegisterDto } from "../dto/register.dto";
 import { UserDto } from "../dto/user.dto";
 import { User } from "../entities/user";
 import { UserRepository } from "../repositories/user.repository";
+import { hashPassword } from "./password-hasher";
 
 interface UserServiceDependencies {
   userRepository: UserRepository;
@@ -13,11 +14,12 @@ export class UserService {
 
   async register(dto: RegisterDto) {
     const id = Guid.create();
+    const password = await hashPassword(dto.password);
 
     const user = User.create({
       id,
       email: dto.email.toLowerCase(),
-      password: dto.password,
+      password,
       isActive: true,
       createdAt: new Date(),
     });
@@ -35,7 +37,6 @@ export class UserService {
     return new UserDto({
       id: user.id.toString(),
       email: user.email,
-      password: user.password,
       isActive: user.isActive,
       createdAt: user.createdAt,
     });

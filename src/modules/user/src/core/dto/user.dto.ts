@@ -3,8 +3,6 @@ export class UserDto {
 
   email: string;
 
-  password: string;
-
   isActive: boolean;
 
   createdAt: Date;

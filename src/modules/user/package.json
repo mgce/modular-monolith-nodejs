@@ -24,7 +24,8 @@
     "awilix-express": "~4.0.0",
     "express-async-handler": "~1.1.4",
     "@mikro-orm/core": "~4.5.2",
-    "@mikro-orm/postgresql": "~4.5.2"
+    "@mikro-orm/postgresql": "~4.5.2",
+    "bcryptjs": "~2.4.3"
   },
   "devDependencies": {
     "eslint": "~7.23.0",
@@ -33,6 +34,7 @@
     "@types/express": "~4.17.11",
     "@types/node": "~14.14.37",
     "@swc/core": "~1.2.51",
-    "@swc/cli": "~0.1.36"
+    "@swc/cli": "~0.1.36",
+    "@types/bcryptjs": "~2.4.2"
   }
 }
