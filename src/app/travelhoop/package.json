@@ -8,7 +8,10 @@
     "build:watch":"swc src -d build --config-file ./node_modules/@travelhoop/toolchain/.swcrc",
     "lint": "eslint './**/*.ts'",
     "lint:fix": "eslint './**/*.ts' --fix",
-    "start-dev": "node-dev build/server.js"
+    "start-dev": "node-dev build/server.js",
+    "migration:up":"node ./build/database/migrator/up.js",
+    "migration:down":"node ./build/database/migrator/down.js",
+    "migration:create":"node ./build/database/migrator/create.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +25,8 @@
     "dotenv": "~8.2.0",
     "@mikro-orm/core": "~4.5.2",
     "@mikro-orm/postgresql": "~4.5.2",
-    "reflect-metadata": "~0.1.13"
+    "reflect-metadata": "~0.1.13",
+    "@mikro-orm/migrations": "~4.5.2"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
