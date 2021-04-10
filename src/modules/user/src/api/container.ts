@@ -2,7 +2,7 @@ import { ContainerBuilder } from "@travelhoop/infrastructure";
 import { asClass } from "awilix";
 import { DbConnection } from "@travelhoop/infrastructure-types";
 import { createRouter } from "./routes/router";
-import { AuthService } from "../core/services/auth.service";
+import { UserService } from "../core/services/user.service";
 import { UserRepository } from "../core/repositories/user.repository";
 
 interface CreateContainerDependencies {
@@ -14,6 +14,6 @@ export const createContainer = ({ dbConnection }: CreateContainerDependencies) =
     .addRouting(createRouter)
     .addDbConnection(dbConnection)
     .register({
-      authService: asClass(AuthService),
+      userService: asClass(UserService),
       userRepository: asClass(UserRepository),
     });

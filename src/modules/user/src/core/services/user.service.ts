@@ -4,12 +4,12 @@ import { UserDto } from "../dto/user.dto";
 import { User } from "../entities/user";
 import { UserRepository } from "../repositories/user.repository";
 
-interface AuthServiceDependencies {
+interface UserServiceDependencies {
   userRepository: UserRepository;
 }
 
-export class AuthService {
-  constructor(private readonly deps: AuthServiceDependencies) {}
+export class UserService {
+  constructor(private readonly deps: UserServiceDependencies) {}
 
   async register(dto: RegisterDto) {
     const id = Guid.create();
