@@ -1,6 +1,9 @@
-import { asFunction, asValue, AwilixContainer, createContainer, Resolver } from "awilix";
+import { asFunction, asValue, asClass, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
 import { DbConnection } from "@travelhoop/infrastructure-types";
+import { InMemoryEventDispatcher } from "../event/event.dispatcher";
+import { registerAsArray } from "./as-array";
+import { createLogger } from "../logger";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -20,6 +23,28 @@ export class ContainerBuilder {
   addDbConnection(dbConnection: DbConnection) {
     this.container.register({
       dbConnection: asValue(dbConnection),
+    });
+
+    return this;
+  }
+
+  addCommon() {
+    this.container.register({
+      logger: asValue(createLogger()),
+    });
+
+    return this;
+  }
+
+  addEventSubscribers(eventSubscribers: any[]) {
+    this.container.register({
+      eventDispatcher: asClass(InMemoryEventDispatcher),
+    });
+
+    this.container.register({
+      eventSubscribers: registerAsArray<any>(
+        eventSubscribers.map(eventSubscriber => asClass(eventSubscriber as any).scoped()),
+      ),
     });
 
     return this;

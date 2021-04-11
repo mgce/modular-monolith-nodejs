@@ -7,6 +7,7 @@ import { UserRepository } from "../core/repositories/user.repository";
 import { PasswordManager } from "../core/services/password-hasher";
 import { userModuleConfigFactory } from "../core/config";
 import { AuthService } from "../core/services/auth.service";
+import { UserCreatedSubscriber } from "../core/subscribers/user-created.subscriber";
 
 interface CreateContainerDependencies {
   dbConnection: DbConnection;
@@ -15,8 +16,10 @@ interface CreateContainerDependencies {
 export const createContainer = ({ dbConnection }: CreateContainerDependencies) => {
   const config = userModuleConfigFactory(process.env as any);
   return new ContainerBuilder()
+    .addCommon()
     .addRouting(createRouter)
     .addDbConnection(dbConnection)
+    .addEventSubscribers([UserCreatedSubscriber])
     .register({
       secretKey: asValue(config.jwt.secretKey),
       expiry: asValue(config.jwt.expiry),

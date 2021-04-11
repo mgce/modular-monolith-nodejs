@@ -1,4 +1,5 @@
 import { Guid } from "guid-typescript";
+import { EventDispatcher } from "@travelhoop/infrastructure-types";
 import { LoginDto } from "../dto/login.dto";
 import { RegisterDto } from "../dto/register.dto";
 import { UserDto } from "../dto/user.dto";
@@ -6,11 +7,13 @@ import { User } from "../entities/user";
 import { UserRepository } from "../repositories/user.repository";
 import { AuthService } from "./auth.service";
 import { PasswordManager } from "./password-hasher";
+import { UserCreated } from "../events/user-created.event";
 
 interface UserServiceDependencies {
   userRepository: UserRepository;
   passwordManager: PasswordManager;
   authService: AuthService;
+  eventDispatcher: EventDispatcher;
 }
 
 export class UserService {
@@ -29,6 +32,8 @@ export class UserService {
     });
 
     await this.deps.userRepository.add(user);
+
+    await this.deps.eventDispatcher.dispatch(new UserCreated({ id }));
   }
 
   async get(id: Guid) {
