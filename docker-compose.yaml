@@ -15,3 +15,8 @@ services:
         interval: 30s
         timeout: 30s
         retries: 3
+  travelhoop-redis:
+      image: redis:alpine
+      ports:
+        - "6379:6379"
+        

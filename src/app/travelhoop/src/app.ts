@@ -1,20 +1,22 @@
 import { AppModule } from "@travelhoop/infrastructure-types";
 import express, { Application } from "express";
 import { DbConnection } from "@travelhoop/infrastructure-types";
+import { RedisClient as Redis } from "redis";
 import { MiddlewareType } from "./shared/types/middleware.type";
 
 interface AppDependencies {
   errorHandler: MiddlewareType;
   modules: AppModule[];
   dbConnection: DbConnection;
+  redis: Redis;
 }
 
-export const createApp = ({ errorHandler, modules, dbConnection }: AppDependencies): Application => {
+export const createApp = ({ errorHandler, modules, dbConnection, redis }: AppDependencies): Application => {
   const app = express();
 
   app.use(express.json());
 
-  modules.forEach(m => m.use(app, dbConnection));
+  modules.forEach(m => m.use(app, { dbConnection, redis }));
 
   app.get("/", (_req, res) => {
     res.json("Travelhoop!");

@@ -4,6 +4,7 @@ import { Application } from "express";
 import * as http from "http";
 import { AppModule } from "@travelhoop/infrastructure-types";
 import { MikroORM } from "@mikro-orm/core";
+import { RedisClient as Redis } from "redis";
 import { createApp } from "./app";
 import { AppConfig } from "./config/config";
 import { errorHandler } from "./middleware/error-handler";
@@ -13,9 +14,10 @@ interface ContainerDependencies {
   appConfig: AppConfig;
   dbConfig: DbConfig;
   appModules: AppModule[];
+  redis: Redis;
 }
 
-export const setupContainer = async ({ appConfig, appModules, dbConfig }: ContainerDependencies) => {
+export const setupContainer = async ({ appConfig, appModules, dbConfig, redis }: ContainerDependencies) => {
   const container = createContainer();
 
   const dbConnection = await MikroORM.init(dbConfig);
@@ -27,6 +29,7 @@ export const setupContainer = async ({ appConfig, appModules, dbConfig }: Contai
     errorHandler: asFunction(errorHandler),
     modules: registerAsArray<any>(appModules.map(appModule => asValue(appModule))),
     dbConnection: asValue(dbConnection),
+    redis: asValue(redis),
   });
 
   container.register({

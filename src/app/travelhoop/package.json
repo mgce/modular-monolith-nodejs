@@ -26,7 +26,8 @@
     "@mikro-orm/core": "~4.5.2",
     "@mikro-orm/postgresql": "~4.5.2",
     "reflect-metadata": "~0.1.13",
-    "@mikro-orm/migrations": "~4.5.2"
+    "@mikro-orm/migrations": "~4.5.2",
+    "redis": "~3.1.1"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
@@ -36,6 +37,7 @@
     "typescript": "~4.2.3",
     "node-dev": "~6.6.0",
     "@swc/core": "~1.2.51",
-    "@swc/cli": "~0.1.36"
+    "@swc/cli": "~0.1.36",
+    "@types/redis": "~2.8.28"
   }
 }

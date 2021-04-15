@@ -6,5 +6,7 @@ interface UserCreatedPayload {
 }
 
 export class UserCreated implements Event {
+  name = this.constructor.name;
+
   constructor(public payload: UserCreatedPayload) {}
 }

@@ -21,7 +21,10 @@
     "awilix": "~4.3.3",
     "@mikro-orm/core": "~4.5.2",
     "guid-typescript": "~1.0.9",
-    "dotenv": "~8.2.0"
+    "dotenv": "~8.2.0",
+    "redis": "~3.1.1",
+    "rsmq": "~0.12.3",
+    "rsmq-worker": "~0.5.2"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
@@ -30,6 +33,8 @@
     "eslint": "~7.23.0",
     "typescript": "~4.2.3",
     "@swc/core": "~1.2.51",
-    "@swc/cli": "~0.1.36"
+    "@swc/cli": "~0.1.36",
+    "@types/redis": "~2.8.28",
+    "@types/rsmq-worker": "~0.3.29"
   }
 }

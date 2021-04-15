@@ -1,9 +1,12 @@
 import { asFunction, asValue, asClass, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
 import { DbConnection } from "@travelhoop/infrastructure-types";
+import { RedisClient as Redis } from "redis";
 import { InMemoryEventDispatcher } from "../event/event.dispatcher";
 import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
+import { MessageBroker, RedisMessageDispatcher } from "../messaging";
+import { RedisClient } from "../redis/redis.queue";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -28,6 +31,14 @@ export class ContainerBuilder {
     return this;
   }
 
+  addRedis(redis: Redis) {
+    this.container.register({
+      redis: asValue(redis),
+    });
+
+    return this;
+  }
+
   addCommon() {
     this.container.register({
       logger: asValue(createLogger()),
@@ -39,6 +50,9 @@ export class ContainerBuilder {
   addEventSubscribers(eventSubscribers: any[]) {
     this.container.register({
       eventDispatcher: asClass(InMemoryEventDispatcher),
+      queueClient: asClass(RedisClient),
+      messageDispatcher: asClass(RedisMessageDispatcher),
+      messageBroker: asClass(MessageBroker),
     });
 
     this.container.register({

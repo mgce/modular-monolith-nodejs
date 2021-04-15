@@ -1,7 +1,9 @@
 import "reflect-metadata";
 import { Logger } from "@travelhoop/infrastructure-types";
+import { createBackgroundMessageDispatcher } from "@travelhoop/infrastructure";
 import { Server } from "http";
 import { loadEnvs } from "@travelhoop/infrastructure";
+import { createClient } from "redis";
 import { appConfigFactory } from "./config/config";
 import { dbConfigFactory } from "./config/db-config";
 import { setupContainer } from "./container";
@@ -16,23 +18,27 @@ loadEnvs();
     process.env as any,
     appModules.map(appModule => appModule.name),
   );
-  const container = await setupContainer({ appConfig, dbConfig, appModules });
+  const redis = createClient(appConfig.redis.url);
+  const container = await setupContainer({ appConfig, dbConfig, appModules, redis });
+  const logger = container.resolve<Logger>("logger");
 
   process.on("uncaughtException", err => {
-    container.resolve<Logger>("logger").error(`Uncaught: ${err.toString()}`, err);
+    logger.error(`Uncaught: ${err.toString()}`, err);
     process.exit(1);
   });
 
   process.on("unhandledRejection", err => {
     if (err) {
-      container.resolve<Logger>("logger").error(`Unhandled: ${err.toString()}`, err);
+      logger.error(`Unhandled: ${err.toString()}`, err);
     }
     process.exit(1);
   });
 
   const server: Server = container.resolve("server");
-
   const port = container.resolve("port");
+
+  createBackgroundMessageDispatcher({ redis, logger, modules: appModules, queueName: appConfig.queues.messageBroker });
   server.listen(port);
-  container.resolve<Logger>("logger").info(`listening on port: ${port}`);
+
+  logger.info(`listening on port: ${port}`);
 })();

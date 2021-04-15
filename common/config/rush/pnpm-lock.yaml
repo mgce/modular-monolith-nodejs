@@ -13,6 +13,8 @@ dependencies:
   '@types/bcryptjs': 2.4.2
   '@types/express': 4.17.11
   '@types/jsonwebtoken': 8.5.1
+  '@types/redis': 2.8.28
+  '@types/rsmq-worker': 0.3.29
   '@typescript-eslint/eslint-plugin': 4.20.0_08655f1af47a99f295fbf21bcc8b4221
   '@typescript-eslint/parser': 4.20.0_typescript@4.2.3
   awilix: 4.3.3
@@ -34,7 +36,10 @@ dependencies:
   jsonwebtoken: 8.5.1
   node-dev: 6.6.0
   prettier: 2.2.1
+  redis: 3.1.1
   reflect-metadata: 0.1.13
+  rsmq: 0.12.3
+  rsmq-worker: 0.5.2
   ts-node-dev: 1.1.6_typescript@4.2.3
   typescript: 4.2.3
   unicorn: 0.0.1
@@ -780,6 +785,25 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
+  /@types/redis/2.8.28:
+    dependencies:
+      '@types/node': 14.14.37
+    dev: false
+    resolution:
+      integrity: sha512-8l2gr2OQ969ypa7hFOeKqtFoY70XkHxISV0pAwmQ2nm6CSPb1brmTmqJCGGrekCo+pAZyWlNXr+Kvo6L/1wijA==
+  /@types/rsmq-worker/0.3.29:
+    dependencies:
+      '@types/redis': 2.8.28
+      '@types/rsmq': 0.3.27
+    dev: false
+    resolution:
+      integrity: sha512-s5EBY9dfaaV2Hp7J91g62ArsPJo73q4x9PC6pqnVcyhvP/Egoukh53MKfq4Ia6cAbYpM1U+GIZjA9wTWYwkkNA==
+  /@types/rsmq/0.3.27:
+    dependencies:
+      '@types/redis': 2.8.28
+    dev: false
+    resolution:
+      integrity: sha1-oGPFZjSCqwFYNwE6DtAFe623s1w=
   /@types/sequelize/4.28.9:
     dependencies:
       '@types/bluebird': 3.5.33
@@ -1324,6 +1348,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==
+  /async/2.1.5:
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+    resolution:
+      integrity: sha1-5YfGhYCZSsZ/xW/4bTrFa9voELw=
   /async/3.2.0:
     dev: false
     resolution:
@@ -1402,6 +1432,13 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
+  /bindings/1.5.0:
+    dependencies:
+      file-uri-to-path: 1.0.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
   /bluebird/3.7.2:
     dev: false
     resolution:
@@ -1728,6 +1765,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
+  /colors/1.1.2:
+    dev: false
+    engines:
+      node: '>=0.1.90'
+    resolution:
+      integrity: sha1-FopHAXVran9RoSzgyXv6KMCE7WM=
   /colors/1.4.0:
     dev: false
     engines:
@@ -1966,6 +2009,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-jwK2UV4cnPpbcG7+VRARKTZPUWowwXA8bzH5NP6ud0oeAxyYPuGZUAC7hMugpCdz4BeSZl2Dl9k66CHJ/46ZYQ==
+  /denque/1.5.0:
+    dev: false
+    engines:
+      node: '>=0.10'
+    resolution:
+      integrity: sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ==
   /depd/1.1.2:
     dev: false
     engines:
@@ -2035,6 +2084,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+  /double-ended-queue/2.1.0-0:
+    dev: false
+    resolution:
+      integrity: sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
   /duplexer3/0.1.4:
     dev: false
     resolution:
@@ -2754,6 +2807,11 @@ packages:
       node: ^10.12.0 || >=12.0.0
     resolution:
       integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==
+  /file-uri-to-path/1.0.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==
   /filewatcher/3.0.1:
     dependencies:
       debounce: 1.2.1
@@ -3187,6 +3245,17 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
+  /hiredis/0.4.1:
+    dependencies:
+      bindings: 1.5.0
+      nan: 2.14.2
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    optional: true
+    requiresBuild: true
+    resolution:
+      integrity: sha1-qrTc/Q/Ey9shnSaABfIzWjxjno8=
   /homedir-polyfill/1.0.3:
     dependencies:
       parse-passwd: 1.0.0
@@ -4231,6 +4300,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-w0OUxFEla6z3d7sVpMZGBCpQvYh8PHS1wZ6Wu9GNKHMpAHWJ0if0LsQZh3DlOqw55HlhJEOMLpFnwtxp99Y5GA==
+  /mpbasic/0.0.18:
+    dependencies:
+      colors: 1.1.2
+      extend: 3.0.2
+      lodash: 4.17.21
+    dev: false
+    engines:
+      node: '> 0.10.20'
+    resolution:
+      integrity: sha1-9Fm6HclcyhPl+AA4gnANCSalPAA=
   /ms/2.0.0:
     dev: false
     resolution:
@@ -4247,6 +4326,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-0ZIR9PasPxGXmRsEF8jsDzndzHDj7tIav+JUmvIFB/WHswliFnquxECT/De7GR4yg99ky/NlRKJT82G1y271bw==
+  /nan/2.14.2:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
   /nanomatch/1.2.13:
     dependencies:
       arr-diff: 4.0.0
@@ -5060,6 +5144,51 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-z5Fqsf1fHxbfsggi3W7H9zDCr94=
+  /redis-commands/1.7.0:
+    dev: false
+    resolution:
+      integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==
+  /redis-errors/1.2.0:
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=
+  /redis-parser/2.6.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
+  /redis-parser/3.0.0:
+    dependencies:
+      redis-errors: 1.2.0
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-tm2CjNyv5rS4pCin3vTGvKwxyLQ=
+  /redis/2.8.0:
+    dependencies:
+      double-ended-queue: 2.1.0-0
+      redis-commands: 1.7.0
+      redis-parser: 2.6.0
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
+  /redis/3.1.1:
+    dependencies:
+      denque: 1.5.0
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-QhkKhOuzhogR1NDJfBD34TQJz2ZJwDhhIC6ZmvpftlmfYShHHQXjjNspAJ+Z2HH5NwSBVYBVganbiZ8bgFMHjg==
   /reflect-metadata/0.1.13:
     dev: false
     resolution:
@@ -5218,6 +5347,38 @@ packages:
       node: '>=8.3'
     resolution:
       integrity: sha512-rGUmYYsYsceRJRqLVlE9FivJMxJ7X6jDlP79fmFkL8sJs7VVMSVyA2yfyL+PGyO/vJs4A87hwhgVfz61njI+uQ==
+  /rsmq-worker/0.5.2:
+    dependencies:
+      async: 2.1.5
+      lodash: 4.17.21
+      mpbasic: 0.0.18
+      rsmq: 0.7.2
+    dev: false
+    engines:
+      node: '>= 0.10.0'
+    resolution:
+      integrity: sha1-jsT5oRnW7AlHi/nDtTSaY7S6T0g=
+  /rsmq/0.12.3:
+    dependencies:
+      '@types/redis': 2.8.28
+      lodash: 4.17.21
+      redis: 3.1.1
+    dev: false
+    engines:
+      node: '> 6.0.0'
+    resolution:
+      integrity: sha512-RiF5cUD7/nZHyGaV5W+hbwkvipYgW2GMcbgvetJQmO48K/B3VeP+MbxuDNb1i/PpzxRyQT2nkLq+ZCLNJKkp0Q==
+  /rsmq/0.7.2:
+    dependencies:
+      lodash: 4.17.21
+      redis: 2.8.0
+    dev: false
+    engines:
+      node: '> 0.10.20'
+    optionalDependencies:
+      hiredis: 0.4.1
+    resolution:
+      integrity: sha1-oNHuAFiJfcSKLpCAL7ZkyyflyTU=
   /run-parallel/1.2.0:
     dependencies:
       queue-microtask: 1.2.3
@@ -6210,12 +6371,18 @@ packages:
       '@swc/core': 1.2.51
       '@types/express': 4.17.11
       '@types/node': 14.14.37
+      '@types/redis': 2.8.28
+      '@types/rsmq-worker': 0.3.29
       '@types/uuid': 8.3.0
       awilix: 4.3.3
+      dotenv: 8.2.0
       eslint: 7.23.0
       express: 4.17.1
       guid-typescript: 1.0.9
+      redis: 3.1.1
       rimraf: 3.0.2
+      rsmq: 0.12.3
+      rsmq-worker: 0.5.2
       typescript: 4.2.3
       uuid: 8.3.2
       winston: 3.3.3
@@ -6226,7 +6393,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-VdiJfYieToGNTma3v7kpEQ4E4dT5Yb7pN3XGMTWbAt1VPeSeJClC2vZI6IPKABF88mnhOB0/TE+tq8qSFjswPg==
+      integrity: sha512-HtliVZyWpK8txyghoIPuxBPtmHU8EKmlIp+Uqgx6mlU4sUMwAMn4+o4CQtd1t73TQK9ofgPACT5qv2c7S1WLtg==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
   file:projects/toolchain.tgz:
@@ -6301,6 +6468,8 @@ specifiers:
   '@types/bcryptjs': ~2.4.2
   '@types/express': ~4.17.11
   '@types/jsonwebtoken': ~8.5.1
+  '@types/redis': ~2.8.28
+  '@types/rsmq-worker': ~0.3.29
   '@typescript-eslint/eslint-plugin': ~4.20.0
   '@typescript-eslint/parser': ~4.20.0
   awilix: ~4.3.3
@@ -6322,7 +6491,10 @@ specifiers:
   jsonwebtoken: ~8.5.1
   node-dev: ~6.6.0
   prettier: ~2.2.1
+  redis: ~3.1.1
   reflect-metadata: ~0.1.13
+  rsmq: ~0.12.3
+  rsmq-worker: ~0.5.2
   ts-node-dev: 1.1.6
   typescript: ~4.2.3
   unicorn: ~0.0.1

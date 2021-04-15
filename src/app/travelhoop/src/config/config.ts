@@ -1,6 +1,8 @@
 export interface EnvVariables extends NodeJS.Process {
   SERVER_PORT: string;
   POSTGRES_URL: string;
+  REDIS_URL: string;
+  MESSAGE_BROKER_QUEUE_NAME: string;
 }
 
 export const appConfigFactory = (env: EnvVariables) => ({
@@ -9,6 +11,12 @@ export const appConfigFactory = (env: EnvVariables) => ({
   },
   database: {
     url: env.POSTGRES_URL,
+  },
+  redis: {
+    url: env.REDIS_URL,
+  },
+  queues: {
+    messageBroker: env.MESSAGE_BROKER_QUEUE_NAME,
   },
 });
 

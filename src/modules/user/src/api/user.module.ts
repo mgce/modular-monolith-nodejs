@@ -1,5 +1,6 @@
-import { AppModule, DbConnection } from "@travelhoop/infrastructure-types";
 import { scopePerRequest } from "@travelhoop/infrastructure";
+import { AppModule, UseDependencies, Event, EventDispatcher } from "@travelhoop/infrastructure-types";
+import { AwilixContainer } from "awilix";
 import { Application } from "express";
 import { createContainer } from "./container";
 
@@ -12,10 +13,18 @@ export class UserModule implements AppModule {
 
   path: string = this.basePath;
 
-  use(app: Application, dbConnection: DbConnection) {
-    const container = createContainer({ dbConnection });
+  private container: AwilixContainer;
 
-    app.use(scopePerRequest(this.basePath, container.build()));
+  use(app: Application, { dbConnection, redis }: UseDependencies) {
+    const container = createContainer({ dbConnection, redis });
+
+    this.container = container.build();
+
+    app.use(scopePerRequest(this.basePath, this.container));
     app.use(this.path, container.router);
+  }
+
+  async dispatchEvent(event: Event): Promise<void> {
+    await this.container.resolve<EventDispatcher>("eventDispatcher").dispatch(event);
   }
 }
