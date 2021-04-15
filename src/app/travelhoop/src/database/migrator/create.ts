@@ -13,6 +13,6 @@ loadEnvs();
   );
   const orm = await MikroORM.init(config);
   const migrator = orm.getMigrator();
-  await migrator.createMigration("./src/migrations", false, true);
+  await migrator.createMigration("./src/migrations", false, false);
   await orm.close(true);
 })();
