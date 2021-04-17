@@ -12,14 +12,10 @@
       "sourceMap": true,
       "inlineSourceMap": false,
       "outDir": "../../../../build",
-      "typeRoots": ["../../@types", "../../../../typings"],
+      "typeRoots": ["../../../@types"],
       "resolveJsonModule": true,
-      "baseUrl": ".",
       "allowJs": true,
       "esModuleInterop": true,
-      "paths": {
-        "*": ["typings/*"]
-      },
     },
     "include": [
       "../../../../src/**/*.ts",
