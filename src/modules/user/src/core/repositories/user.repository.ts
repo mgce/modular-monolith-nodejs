@@ -13,10 +13,10 @@ export class UserRepository {
   }
 
   async get(id: Guid) {
-    return this.deps.dbConnection.em.getRepository(User).findOne({ id });
+    return this.deps.dbConnection.em.getRepository(User).findOne({ id }, { profile: true });
   }
 
   async getByEmail(email: string) {
-    return this.deps.dbConnection.em.getRepository(User).findOne({ email });
+    return this.deps.dbConnection.em.getRepository(User).findOne({ email }, { profile: true });
   }
 }

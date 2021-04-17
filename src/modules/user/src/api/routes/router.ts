@@ -11,6 +11,7 @@ export const createRouter = (): Router => {
   router.post("/register", userApi("register"));
   router.post("/login", userApi("login"));
   router.get("/:id", userApi("get"));
+  router.put("/:id", userApi("update"));
 
   return router;
 };

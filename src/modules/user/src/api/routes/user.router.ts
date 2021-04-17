@@ -6,6 +6,7 @@ import { Guid } from "guid-typescript";
 import { RegisterDto } from "../../core/dto/register.dto";
 import { UserService } from "../../core/services/user.service";
 import { LoginDto } from "../../core/dto/login.dto";
+import { UpdateUserDto } from "../../core/dto/update-user.dto";
 
 interface UserApiDependencies {
   userService: UserService;
@@ -26,6 +27,12 @@ const api = ({ userService }: UserApiDependencies) => ({
 
   get: asyncHandler(async (req: Request, res: Response) => {
     res.json(await userService.get(Guid.parse(req.params.id)));
+  }),
+
+  update: asyncHandler(async (req: Request, res: Response) => {
+    const dto = new UpdateUserDto({ id: req.params.id, ...req.body });
+    await validateOrReject(dto);
+    res.json(await userService.update(dto));
   }),
 });
 

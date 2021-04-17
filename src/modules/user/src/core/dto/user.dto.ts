@@ -7,6 +7,16 @@ export class UserDto {
 
   createdAt: Date;
 
+  profile: {
+    firstName?: string;
+
+    lastName?: string;
+
+    location?: string;
+
+    aboutMe?: string;
+  };
+
   constructor(props: UserDto) {
     Object.assign(this, props);
   }

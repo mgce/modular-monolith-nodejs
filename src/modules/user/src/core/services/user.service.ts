@@ -2,6 +2,7 @@ import { MessageBroker } from "@travelhoop/infrastructure";
 import { Guid } from "guid-typescript";
 import { LoginDto } from "../dto/login.dto";
 import { RegisterDto } from "../dto/register.dto";
+import { UpdateUserDto } from "../dto/update-user.dto";
 import { UserDto } from "../dto/user.dto";
 import { Profile } from "../entities/profile";
 import { User } from "../entities/user";
@@ -41,6 +42,21 @@ export class UserService {
     await this.deps.messageBroker.publish(new UserCreated({ id: userId }));
   }
 
+  async update(dto: UpdateUserDto) {
+    const user = await this.deps.userRepository.get(Guid.parse(dto.id));
+
+    console.log(dto);
+
+    if (!user) {
+      throw new Error("User doesn't exists");
+    }
+
+    user.profile.firstName = dto.firstName;
+    user.profile.lastName = dto.lastName;
+    user.profile.location = dto.location;
+    user.profile.aboutMe = dto.aboutMe;
+  }
+
   async get(id: Guid) {
     const user = await this.deps.userRepository.get(id);
 
@@ -53,6 +69,12 @@ export class UserService {
       email: user.email,
       isActive: user.isActive,
       createdAt: user.createdAt,
+      profile: {
+        firstName: user.profile.firstName,
+        lastName: user.profile.lastName,
+        location: user.profile.location,
+        aboutMe: user.profile.aboutMe,
+      },
     });
   }
 
