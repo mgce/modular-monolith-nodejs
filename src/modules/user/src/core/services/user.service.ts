@@ -3,6 +3,7 @@ import { Guid } from "guid-typescript";
 import { LoginDto } from "../dto/login.dto";
 import { RegisterDto } from "../dto/register.dto";
 import { UserDto } from "../dto/user.dto";
+import { Profile } from "../entities/profile";
 import { User } from "../entities/user";
 import { UserCreated } from "../events/user-created.event";
 import { UserRepository } from "../repositories/user.repository";
@@ -20,11 +21,15 @@ export class UserService {
   constructor(private readonly deps: UserServiceDependencies) {}
 
   async register(dto: RegisterDto) {
-    const id = Guid.create();
+    const userId = Guid.create();
+    const profileId = Guid.create();
     const password = await this.deps.passwordManager.hashPassword(dto.password);
 
+    const profile = Profile.create({ id: profileId });
+
     const user = User.create({
-      id,
+      id: userId,
+      profile,
       email: dto.email.toLowerCase(),
       password,
       isActive: true,
@@ -33,7 +38,7 @@ export class UserService {
 
     await this.deps.userRepository.add(user);
 
-    await this.deps.messageBroker.publish(new UserCreated({ id }));
+    await this.deps.messageBroker.publish(new UserCreated({ id: userId }));
   }
 
   async get(id: Guid) {

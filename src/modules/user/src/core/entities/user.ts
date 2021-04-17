@@ -8,7 +8,7 @@ export class User {
   @PrimaryKey({ type: GuidType })
   id: Guid;
 
-  @OneToOne()
+  @OneToOne({ fieldName: "profileId" })
   profile: Profile;
 
   @Property()
