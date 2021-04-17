@@ -1,3 +1,3 @@
-import { UserModule } from "./api/user.module";
+import { userModule } from "./api/user.module";
 
-export default new UserModule();
+export default userModule;

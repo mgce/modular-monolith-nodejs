@@ -70,10 +70,6 @@ export class ContainerBuilder {
     return this;
   }
 
-  get router(): Router {
-    return this.container.resolve("router");
-  }
-
   build() {
     return this.container;
   }
