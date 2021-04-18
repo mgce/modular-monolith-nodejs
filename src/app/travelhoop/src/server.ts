@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Logger } from "@travelhoop/infrastructure-types";
+import { DbConnection, Logger } from "@travelhoop/infrastructure-types";
 import { createBackgroundMessageDispatcher } from "@travelhoop/infrastructure";
 import { Server } from "http";
 import { loadEnvs } from "@travelhoop/infrastructure";
@@ -21,6 +21,9 @@ loadEnvs();
   const redis = createClient(appConfig.redis.url);
   const container = await setupContainer({ appConfig, dbConfig, appModules, redis });
   const logger = container.resolve<Logger>("logger");
+  const dbConnection = container.resolve<DbConnection>("dbConnection");
+
+  await dbConnection.getMigrator().up();
 
   process.on("uncaughtException", err => {
     logger.error(`Uncaught: ${err.toString()}`, err);

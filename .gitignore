@@ -70,3 +70,4 @@ common/autoinstallers/*/.npmrc
 
 # .env
 .env
+.env.prod
