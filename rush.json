@@ -441,6 +441,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "@travelhoop/host-module",
+      "projectFolder": "src/modules/host",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "@travelhoop/infrastructure",
       "projectFolder": "src/shared/infrastructure",
       "reviewCategory": "production"
