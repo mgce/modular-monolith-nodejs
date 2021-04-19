@@ -7,6 +7,7 @@ import { UserDto } from "../dto/user.dto";
 import { Profile } from "../entities/profile";
 import { User } from "../entities/user";
 import { InvalidEmailOrPasswordError } from "../error/invalid-email-or-password.error";
+import { UserExistsError } from "../error/user-exists.error";
 import { UserCreated } from "../events/user-created.event";
 import { UserRepository } from "../repositories/user.repository";
 import { AuthService } from "./auth.service";
@@ -23,6 +24,12 @@ export class UserService {
   constructor(private readonly deps: UserServiceDependencies) {}
 
   async register(dto: RegisterDto) {
+    const existingUser = await this.deps.userRepository.findByEmail(dto.email);
+
+    if (existingUser) {
+      throw new UserExistsError();
+    }
+
     const userId = Guid.create();
     const profileId = Guid.create();
     const password = await this.deps.passwordManager.hashPassword(dto.password);

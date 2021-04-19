@@ -32,4 +32,8 @@ export class UserRepository {
 
     return user;
   }
+
+  async findByEmail(email: string) {
+    return this.deps.dbConnection.em.getRepository(User).findOne({ email });
+  }
 }
