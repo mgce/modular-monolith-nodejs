@@ -6,6 +6,7 @@ import { UpdateUserDto } from "../dto/update-user.dto";
 import { UserDto } from "../dto/user.dto";
 import { Profile } from "../entities/profile";
 import { User } from "../entities/user";
+import { InvalidEmailOrPasswordError } from "../error/invalid-email-or-password.error";
 import { UserCreated } from "../events/user-created.event";
 import { UserRepository } from "../repositories/user.repository";
 import { AuthService } from "./auth.service";
@@ -58,10 +59,6 @@ export class UserService {
   async get(id: Guid) {
     const user = await this.deps.userRepository.get(id);
 
-    if (!user) {
-      throw new Error("User doesn't exists");
-    }
-
     return new UserDto({
       id: user.id.toString(),
       email: user.email,
@@ -79,14 +76,10 @@ export class UserService {
   async login(dto: LoginDto) {
     const user = await this.deps.userRepository.getByEmail(dto.email);
 
-    if (!user) {
-      throw new Error("User doesn't exists");
-    }
-
     const isPasswordCorrect = await this.deps.passwordManager.compare(dto.password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new Error("Invalid password");
+      throw new InvalidEmailOrPasswordError();
     }
 
     return this.deps.authService.createToken(user.id);

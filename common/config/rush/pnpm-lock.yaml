@@ -34,6 +34,7 @@ dependencies:
   express: 4.17.1
   express-async-handler: 1.1.4
   guid-typescript: 1.0.9
+  http-status-codes: 2.1.4
   jsonwebtoken: 8.5.1
   node-dev: 6.6.0
   prettier: 2.2.1
@@ -3297,6 +3298,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw==
+  /http-status-codes/2.1.4:
+    dev: false
+    resolution:
+      integrity: sha512-MZVIsLKGVOVE1KEnldppe6Ij+vmemMuApDfjhVSLzyYP+td0bREEYyAoIw9yFePoBXManCuBqmiNP5FqJS5Xkg==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -6341,7 +6346,7 @@ packages:
     dev: false
     name: '@rush-temp/app'
     resolution:
-      integrity: sha512-LkeQNQkPd404wmVd3T/ZgXnw5xPW+EQnsNmMy2MynN7mYZXCPyfoz6bP14m/ZvYJ8sc0Hx/o4ZzJSSTEiFGDvQ==
+      integrity: sha512-ttuh8hYSjxWaAM8q8DELCYlxMhN99yUjtqnDk8jjuzIOXhyAZQVIw1liNFziJQuyH/AwB1IJWJMWKQd7Jx3VGg==
       tarball: file:projects/app.tgz
     version: 0.0.0
   file:projects/host-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6401,6 +6406,7 @@ packages:
       '@swc/cli': 0.1.36_@swc+core@1.2.51
       '@swc/core': 1.2.51
       '@types/express': 4.17.11
+      '@types/jsonwebtoken': 8.5.1
       '@types/node': 14.14.37
       '@types/redis': 2.8.28
       '@types/rsmq-worker': 0.3.29
@@ -6410,6 +6416,7 @@ packages:
       eslint: 7.23.0
       express: 4.17.1
       guid-typescript: 1.0.9
+      jsonwebtoken: 8.5.1
       redis: 3.1.1
       rimraf: 3.0.2
       rsmq: 0.12.3
@@ -6424,7 +6431,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-HtliVZyWpK8txyghoIPuxBPtmHU8EKmlIp+Uqgx6mlU4sUMwAMn4+o4CQtd1t73TQK9ofgPACT5qv2c7S1WLtg==
+      integrity: sha512-qTDrduFalYxDr1CCBYLHWbukUi7KyG58iuneuLSMVE74xfm74Kju5SyMs2Phn3U26HtLpmm07hGDkb17QOt4eg==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
   file:projects/toolchain.tgz:
@@ -6471,6 +6478,7 @@ packages:
       express: 4.17.1
       express-async-handler: 1.1.4
       guid-typescript: 1.0.9
+      http-status-codes: 2.1.4
       jsonwebtoken: 8.5.1
       rimraf: 3.0.2
       typescript: 4.2.3
@@ -6480,7 +6488,7 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-rtafHSGIMZWWIg/kde6XyV4aauy7h1gQL37obiSh9vKuZE2e+djxqg9avwsvJ2Wj+X6svtGlAjyV5eNrMIH86w==
+      integrity: sha512-2recuLAsZdVKDThipq6iZi4h7jHYb3ePjme3Z5eLDNNychIXje61m1aAe7cPhGzOZD9NPLXmfdoTCBi1pq/QFA==
       tarball: file:projects/user-module.tgz
     version: 0.0.0
 registry: ''
@@ -6520,6 +6528,7 @@ specifiers:
   express: ~4.17.1
   express-async-handler: ~1.1.4
   guid-typescript: ~1.0.9
+  http-status-codes: ~2.1.4
   jsonwebtoken: ~8.5.1
   node-dev: ~6.6.0
   prettier: ~2.2.1

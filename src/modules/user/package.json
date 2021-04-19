@@ -27,7 +27,8 @@
     "@mikro-orm/postgresql": "~4.5.2",
     "bcryptjs": "~2.4.3",
     "jsonwebtoken": "~8.5.1",
-    "date-fns": "~2.20.1"
+    "date-fns": "~2.20.1",
+    "http-status-codes": "~2.1.4"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

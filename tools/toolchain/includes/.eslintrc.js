@@ -14,6 +14,7 @@ module.exports = {
       "project": "tools/toolchain/includes/tsconfig.web.json"
     },
     "rules": {
+      "no-throw-literal": "off",
       "no-console": "error",
       "import/prefer-default-export": "off",
       "no-empty-pattern": "off",

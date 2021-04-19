@@ -1,6 +1,7 @@
 import { DbConnection } from "@travelhoop/infrastructure-types";
 import { Guid } from "guid-typescript";
 import { User } from "../entities/user";
+import { UserNotFoundError } from "../error/user-not-found.error";
 
 interface UserRepositoryDependencies {
   dbConnection: DbConnection;
@@ -13,10 +14,22 @@ export class UserRepository {
   }
 
   async get(id: Guid) {
-    return this.deps.dbConnection.em.getRepository(User).findOne({ id }, { profile: true });
+    const user = await this.deps.dbConnection.em.getRepository(User).findOne({ id }, { profile: true });
+
+    if (!user) {
+      throw new UserNotFoundError();
+    }
+
+    return user;
   }
 
   async getByEmail(email: string) {
-    return this.deps.dbConnection.em.getRepository(User).findOne({ email }, { profile: true });
+    const user = await this.deps.dbConnection.em.getRepository(User).findOne({ email }, { profile: true });
+
+    if (!user) {
+      throw new UserNotFoundError();
+    }
+
+    return user;
   }
 }

@@ -1,10 +1,10 @@
 import { Logger } from "@travelhoop/infrastructure-types";
+import { TravelhoopError } from "@travelhoop/infrastructure";
 import { Request, Response, NextFunction } from "express";
 
 interface ErrorHandlerDependencies {
   logger: Logger;
 }
-
 interface ValidationError {
   property: string;
   constraints: Record<string, string>;
@@ -24,6 +24,13 @@ export const errorHandler = ({ logger }: ErrorHandlerDependencies) => (
 
   if (Array.isArray(err)) {
     return res.status(400).json(handleClassValidator(err));
+  }
+
+  if (err instanceof TravelhoopError) {
+    return res.status(err.statusCode).json({
+      error: err.message,
+      stack: err.stack,
+    });
   }
 
   return res.status(500).json({
