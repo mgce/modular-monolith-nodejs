@@ -7,6 +7,7 @@ import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
 import { MessageBroker, RedisMessageDispatcher } from "../messaging";
 import { RedisClient } from "../redis/redis.queue";
+import { auth } from "..";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -15,7 +16,7 @@ export class ContainerBuilder {
     this.container = createContainer();
   }
 
-  addRouting(createRouter: () => Router) {
+  addRouting(createRouter: (deps: any) => Router) {
     this.container.register({
       router: asFunction(createRouter),
     });
@@ -47,19 +48,37 @@ export class ContainerBuilder {
     return this;
   }
 
-  addEventSubscribers(eventSubscribers: any[]) {
+  addAuth({ secretKey }: { secretKey: string }) {
     this.container.register({
+      secretKey: asValue(secretKey),
+      auth: asFunction(auth),
+    });
+
+    return this;
+  }
+
+  addEventSubscribers({
+    eventSubscribers,
+    messageBrokerQueueName,
+  }: {
+    messageBrokerQueueName: string;
+    eventSubscribers?: any[];
+  }) {
+    this.container.register({
+      messageBrokerQueueName: asValue(messageBrokerQueueName),
       eventDispatcher: asClass(InMemoryEventDispatcher),
       queueClient: asClass(RedisClient),
       messageDispatcher: asClass(RedisMessageDispatcher),
       messageBroker: asClass(MessageBroker),
     });
 
-    this.container.register({
-      eventSubscribers: registerAsArray<any>(
-        eventSubscribers.map(eventSubscriber => asClass(eventSubscriber as any).scoped()),
-      ),
-    });
+    if (eventSubscribers) {
+      this.container.register({
+        eventSubscribers: registerAsArray<any>(
+          eventSubscribers.map(eventSubscriber => asClass(eventSubscriber as any).scoped()),
+        ),
+      });
+    }
 
     return this;
   }

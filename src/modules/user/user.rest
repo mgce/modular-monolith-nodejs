@@ -3,7 +3,9 @@
 
 @password = password1234
 
-@userId = ddc30800-f412-a3d7-cc80-4c4a9f6a1b0e
+@userId = 3753ddba-acc3-c25c-3d48-762ac4d8cc28
+
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidmFsdWUiOiIzNzUzZGRiYS1hY2MzLWMyNWMtM2Q0OC03NjJhYzRkOGNjMjgifSwiZXhwIjoxNjE4ODUxMDEzMjM1LCJpYXQiOjE2MTg4NDkyMTN9.xn1v7Bdvep5QVvnhHFvySw3WgAWGFzqLKfKPUII4EO0
 ### 
 POST {{url}}/register HTTP/1.1
 content-type: application/json
@@ -27,6 +29,7 @@ content-type: application/json
 ### 
 PUT {{url}}/{{userId}} HTTP/1.1
 content-type: application/json
+authorization: Bearer {{accessToken}}
 
 {
     "firstName":"John",

@@ -1,10 +1,14 @@
 export interface EnvVariables extends NodeJS.Process {
-  HOST_MODULE_MESSAGE_BROKER_QUEUE: string;
+  JWT_SECRET_KEY: string;
+  ASYNC_MESSAGE_BROKER_QUEUE: string;
 }
 
 export const userModuleConfigFactory = (env: EnvVariables) => ({
+  jwt: {
+    secretKey: env.JWT_SECRET_KEY,
+  },
   queues: {
-    messageBroker: env.HOST_MODULE_MESSAGE_BROKER_QUEUE,
+    messageBroker: env.ASYNC_MESSAGE_BROKER_QUEUE,
   },
 });
 

@@ -9,3 +9,5 @@ export * from "./event";
 export * from "./queue";
 
 export * from "./messaging";
+
+export * from "./middleware";

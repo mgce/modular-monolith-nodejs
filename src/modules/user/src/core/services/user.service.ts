@@ -45,8 +45,6 @@ export class UserService {
   async update(dto: UpdateUserDto) {
     const user = await this.deps.userRepository.get(Guid.parse(dto.id));
 
-    console.log(dto);
-
     if (!user) {
       throw new Error("User doesn't exists");
     }

@@ -1,8 +1,7 @@
 import { AppModule } from "@travelhoop/infrastructure-types";
 import express, { Application } from "express";
-import { DbConnection } from "@travelhoop/infrastructure-types";
+import { DbConnection, MiddlewareType } from "@travelhoop/infrastructure-types";
 import { RedisClient as Redis } from "redis";
-import { MiddlewareType } from "./shared/types/middleware.type";
 
 interface AppDependencies {
   errorHandler: MiddlewareType;

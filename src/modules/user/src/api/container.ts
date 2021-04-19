@@ -14,14 +14,16 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
   return new ContainerBuilder()
     .addCommon()
     .register({
-      secretKey: asValue(config.jwt.secretKey),
       expiry: asValue(config.jwt.expiry),
-      messageBrokerQueueName: asValue(config.queues.messageBroker),
     })
+    .addAuth({ secretKey: config.jwt.secretKey })
     .addRedis(redis)
     .addRouting(createRouter)
     .addDbConnection(dbConnection)
-    .addEventSubscribers([UserCreatedSubscriber])
+    .addEventSubscribers({
+      messageBrokerQueueName: config.queues.messageBroker,
+      eventSubscribers: [UserCreatedSubscriber],
+    })
     .register({
       passwordManager: asClass(PasswordManager),
       authService: asClass(AuthService),

@@ -9,3 +9,5 @@ export * from "./config";
 export * from "./messaging";
 
 export * from "./module";
+
+export * from "./middleware";
