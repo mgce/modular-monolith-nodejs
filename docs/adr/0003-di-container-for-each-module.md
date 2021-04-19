@@ -1,4 +1,4 @@
-# 7. DI container for each module
+# 3. DI container for each module
 
 Date: 2021-04-01
 
