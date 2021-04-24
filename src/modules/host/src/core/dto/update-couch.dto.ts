@@ -1,6 +1,8 @@
 import { IsString, IsNumber, Min } from "class-validator";
 
-export class CreateCouchDto {
+export class UpdateCouchDto {
+  couchId: string;
+
   hostId: string;
 
   @IsString()
@@ -13,7 +15,7 @@ export class CreateCouchDto {
   @Min(1)
   rooms: number;
 
-  constructor(props: CreateCouchDto) {
+  constructor(props: UpdateCouchDto) {
     Object.assign(this, props);
   }
 }

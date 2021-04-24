@@ -6,6 +6,7 @@ export const createRouter = ({ auth }: { auth: MiddlewareType }): Router => {
   const router = express.Router();
 
   router.post("/couch", auth, couchApi("create"));
+  router.post("/couch/:id", auth, couchApi("update"));
 
   return router;
 };

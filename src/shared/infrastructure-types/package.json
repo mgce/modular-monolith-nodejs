@@ -17,7 +17,8 @@
     "rimraf": "~3.0.2",
     "winston": "~3.3.3",
     "awilix": "~4.3.3",
-    "@mikro-orm/core": "~4.5.2"
+    "@mikro-orm/core": "~4.5.2",
+    "guid-typescript": "~1.0.9"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",

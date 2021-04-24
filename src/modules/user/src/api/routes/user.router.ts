@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response } from "@travelhoop/infrastructure-types";
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import asyncHandler from "express-async-handler";
@@ -30,7 +30,7 @@ const api = ({ userService }: UserApiDependencies) => ({
   }),
 
   update: asyncHandler(async (req: Request, res: Response) => {
-    const dto = new UpdateUserDto({ id: req.params.id, ...req.body });
+    const dto = new UpdateUserDto({ id: req.user?.id, ...req.body });
     await validateOrReject(dto);
     res.json(await userService.update(dto));
   }),

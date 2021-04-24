@@ -12,7 +12,7 @@
       "sourceMap": true,
       "inlineSourceMap": false,
       "outDir": "../../../../build",
-      "typeRoots": ["../../../@types"],
+      "typeRoots": ["../../../@types", "../../../@travelhoop/infrastructure-types/src/typings"],
       "resolveJsonModule": true,
       "allowJs": true,
       "esModuleInterop": true,
