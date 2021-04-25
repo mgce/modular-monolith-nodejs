@@ -446,6 +446,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "@travelhoop/booking-module",
+      "projectFolder": "src/modules/booking",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "@travelhoop/infrastructure",
       "projectFolder": "src/shared/infrastructure",
       "reviewCategory": "production"

@@ -3,6 +3,7 @@ dependencies:
   '@mikro-orm/migrations': 4.5.2_@mikro-orm+core@4.5.2
   '@mikro-orm/postgresql': 4.5.2_@mikro-orm+core@4.5.2
   '@rush-temp/app': file:projects/app.tgz
+  '@rush-temp/booking-module': file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/couch-module': file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/infrastructure': file:projects/infrastructure.tgz_d92aad7d255c240226982115d0ab5be6
   '@rush-temp/infrastructure-types': file:projects/infrastructure-types.tgz_d92aad7d255c240226982115d0ab5be6
@@ -6349,6 +6350,34 @@ packages:
       integrity: sha512-qbdx77a+z2AD819RPYVIXl68Z75uXqgFUQZ4TQKWi+VDdXyjeZi3V3XskkAWFge69RAh3Ob+T1QdZwQ/qgrw/w==
       tarball: file:projects/app.tgz
     version: 0.0.0
+  file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2:
+    dependencies:
+      '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
+      '@mikro-orm/postgresql': 4.5.2_@mikro-orm+core@4.5.2
+      '@swc/cli': 0.1.36_@swc+core@1.2.51
+      '@swc/core': 1.2.51
+      '@types/express': 4.17.11
+      '@types/node': 14.14.37
+      awilix: 4.3.3
+      awilix-express: 4.0.0_awilix@4.3.3+express@4.17.1
+      class-validator: 0.13.1
+      date-fns: 2.20.1
+      eslint: 7.23.0
+      express: 4.17.1
+      express-async-handler: 1.1.4
+      guid-typescript: 1.0.9
+      http-status-codes: 2.1.4
+      rimraf: 3.0.2
+      typescript: 4.2.3
+    dev: false
+    id: file:projects/booking-module.tgz
+    name: '@rush-temp/booking-module'
+    peerDependencies:
+      '@mikro-orm/migrations': '*'
+    resolution:
+      integrity: sha512-r2EBfcH0SGHpSIPQYOtxKy8qFrtfD7Tqs6rE3aCH+136v2AlZSNPnFIkTqn6fL+XzdvoLcWSa3aqW/Q2/4Ffgg==
+      tarball: file:projects/booking-module.tgz
+    version: 0.0.0
   file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2:
     dependencies:
       '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
@@ -6499,6 +6528,7 @@ specifiers:
   '@mikro-orm/migrations': ~4.5.2
   '@mikro-orm/postgresql': ~4.5.2
   '@rush-temp/app': file:./projects/app.tgz
+  '@rush-temp/booking-module': file:./projects/booking-module.tgz
   '@rush-temp/couch-module': file:./projects/couch-module.tgz
   '@rush-temp/infrastructure': file:./projects/infrastructure.tgz
   '@rush-temp/infrastructure-types': file:./projects/infrastructure-types.tgz
