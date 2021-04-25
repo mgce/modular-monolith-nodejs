@@ -1,8 +1,8 @@
 import { standardAppModuleFactory } from "@travelhoop/infrastructure";
 import { createContainer } from "./container";
 
-export const hostModule = standardAppModuleFactory({
-  basePath: "host",
-  name: "host-module",
+export const couchModule = standardAppModuleFactory({
+  basePath: "couch",
+  name: "couch-module",
   createContainer,
 });

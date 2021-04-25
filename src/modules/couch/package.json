@@ -1,5 +1,5 @@
 {
-  "name": "@travelhoop/host-module",
+  "name": "@travelhoop/couch-module",
   "version": "1.0.0",
   "description": "",
   "main":"./build/index.js",

@@ -441,8 +441,8 @@
       "reviewCategory": "production"
     },
     {
-      "packageName": "@travelhoop/host-module",
-      "projectFolder": "src/modules/host",
+      "packageName": "@travelhoop/couch-module",
+      "projectFolder": "src/modules/couch",
       "reviewCategory": "production"
     },
     {

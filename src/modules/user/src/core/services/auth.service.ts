@@ -1,3 +1,4 @@
+import { AuthenticatedUser } from "@travelhoop/infrastructure-types";
 import { Guid } from "guid-typescript";
 import { sign } from "jsonwebtoken";
 import { addMinutes } from "date-fns";
@@ -12,6 +13,7 @@ export class AuthService {
 
   createToken(userId: Guid) {
     const expiresIn = addMinutes(new Date(), this.deps.expiry);
-    return sign({ userId, exp: expiresIn.getTime() }, this.deps.secretKey);
+    const authUser: AuthenticatedUser = { id: userId, exp: expiresIn.getTime() };
+    return sign(authUser, this.deps.secretKey);
   }
 }

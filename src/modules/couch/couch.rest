@@ -1,0 +1,37 @@
+@url = http://localhost:3010/couch
+
+@couchId=dd8ec02f-c65f-42b8-408a-034a6948448f
+
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJ2YWx1ZSI6IjM3NTNkZGJhLWFjYzMtYzI1Yy0zZDQ4LTc2MmFjNGQ4Y2MyOCJ9LCJleHAiOjE2MTkyODc2NjkxNTEsImlhdCI6MTYxOTI4NTg2OX0.Rd8sRBbH9vUTtDQEYfcyD9lATeE1j3FFZ42fZqP2hsY
+### 
+POST {{url}} HTTP/1.1
+content-type: application/json
+authorization: Bearer {{accessToken}}
+
+{
+    "name":"Example couch",
+    "description": "Lorem ipsum",
+    "rooms": 2
+}
+
+### 
+POST {{url}}/{{couchId}} HTTP/1.1
+content-type: application/json
+authorization: Bearer {{accessToken}}
+
+{
+    "name":"Example couch 22",
+    "description": "Lorem ipsum",
+    "rooms": 2
+}
+
+### 
+GET {{url}}/{{couchId}} HTTP/1.1
+content-type: application/json
+authorization: Bearer {{accessToken}}
+
+### 
+GET {{url}}/ HTTP/1.1
+content-type: application/json
+authorization: Bearer {{accessToken}}
+

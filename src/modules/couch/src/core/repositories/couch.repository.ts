@@ -13,6 +13,10 @@ export class CouchRepository {
     await this.deps.dbConnection.em.persistAndFlush(couch);
   }
 
+  async update(couch: Couch): Promise<void> {
+    await this.deps.dbConnection.em.persistAndFlush(couch);
+  }
+
   async get(id: Guid) {
     const couch = await this.deps.dbConnection.em.getRepository(Couch).findOne({ id });
 
@@ -21,5 +25,9 @@ export class CouchRepository {
     }
 
     return couch;
+  }
+
+  async getByUserId(userId: Guid) {
+    return this.deps.dbConnection.em.getRepository(Couch).find({ userId });
   }
 }

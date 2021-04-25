@@ -1,15 +1,14 @@
-import { Guid } from "guid-typescript";
-import { Entity, Property, PrimaryKey, ManyToOne } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { GuidType } from "@travelhoop/infrastructure";
-import { Host } from "./host";
+import { Guid } from "guid-typescript";
 
 @Entity()
 export class Couch {
   @PrimaryKey({ type: GuidType })
   id: Guid;
 
-  @ManyToOne(() => Host, { fieldName: "hostId" })
-  host: Host;
+  @Property({ type: GuidType })
+  userId: Guid;
 
   @Property()
   name: string;
@@ -21,7 +20,7 @@ export class Couch {
   rooms: number;
 
   @Property()
-  createdAt: Date;
+  createdAt: Date = new Date();
 
   static create(data: Partial<Couch>) {
     const model = new Couch();

@@ -11,7 +11,7 @@ In this file, as well as in the ADR, you will find implementation details as wel
   - [1.1 About domain](#11-about-domain)
   - [1.2 Event storming](#12-event-storming)
     - [1.2.1 User module](#121-user-module)
-    - [1.2.2 Host module](#122-host-module)
+    - [1.2.2 Couch module](#122-couch-module)
     - [1.2.3 Booking module](#123-booking-module)
     - [1.2.4 Review module](#124-review-module)
 - [2. Architecture](#2-architecture)
@@ -37,8 +37,8 @@ To discover the domain and what was behind it, I decided to use a very popular m
 
 ### 1.2.1 User module
 ![User module](./docs/images/es-user-module.jpg "User module")
-### 1.2.2 Host module
-![Host module](./docs/images/es-host-module.jpg "Host module")
+### 1.2.2 Couch module
+![Couch module](./docs/images/es-couch-module.jpg "Couch module")
 ### 1.2.3 Booking module
 ![Booking module](./docs/images/es-booking-module.jpg "Booking module")
 ### 1.2.4 Review module

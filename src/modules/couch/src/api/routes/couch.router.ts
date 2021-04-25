@@ -1,3 +1,4 @@
+import { Guid } from "guid-typescript";
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import { Request, Response } from "@travelhoop/infrastructure-types";
@@ -12,14 +13,20 @@ interface CouchApiDependencies {
 
 const api = ({ couchService }: CouchApiDependencies) => ({
   create: asyncHandler(async (req: Request, res: Response) => {
-    const dto = new CreateCouchDto(req.body);
+    const dto = new CreateCouchDto({ ...req.body, userId: req.user?.id! });
     await validateOrReject(dto);
     res.json(await couchService.create(dto));
   }),
   update: asyncHandler(async (req: Request, res: Response) => {
-    const dto = new UpdateCouchDto({ id: req.params.id, hostId: req.user?.id.toString(), ...req.body });
+    const dto = new UpdateCouchDto({ id: req.params.id, userId: req.user?.id!, ...req.body });
     await validateOrReject(dto);
     res.json(await couchService.update(dto));
+  }),
+  getByUserId: asyncHandler(async (req: Request, res: Response) => {
+    res.json(await couchService.getByUserId(req.user?.id!));
+  }),
+  getById: asyncHandler(async (req: Request, res: Response) => {
+    res.json(await couchService.getById(Guid.parse(req.params.couchId)));
   }),
 });
 

@@ -1,9 +1,11 @@
-import { IsString, IsNumber, Min } from "class-validator";
+import { IsString, IsNumber, Min, IsDefined } from "class-validator";
 
 export class UpdateCouchDto {
-  couchId: string;
+  @IsDefined()
+  id: string;
 
-  hostId: string;
+  @IsDefined()
+  userId: string;
 
   @IsString()
   name: string;

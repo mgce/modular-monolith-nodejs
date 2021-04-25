@@ -1,3 +1,4 @@
+import { Guid } from "guid-typescript";
 import { Logger, AuthenticatedUser } from "@travelhoop/infrastructure-types";
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
@@ -18,10 +19,14 @@ export const auth = ({ secretKey }: AuthDependencies) => (
     throw new Error("Invalid token");
   }
 
-  const user = verify(token, secretKey) as AuthenticatedUser;
+  const parsedToken = verify(token, secretKey) as any;
+  const id = Guid.parse(parsedToken.id.value);
 
   // eslint-disable-next-line no-param-reassign
-  req.user = user;
+  req.user = {
+    ...parsedToken,
+    id,
+  };
 
   next();
 };
