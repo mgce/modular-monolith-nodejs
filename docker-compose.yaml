@@ -1,20 +1,6 @@
 version: "3.7"
 
 services:
-  travelhoop:
-      build:
-        context: .
-        dockerfile: ./docker/Dockerfile
-        cache_from:
-          - travelhoop:latest
-      ports:
-        - "3010:3010"
-      env_file: 
-        - ./src/app/travelhoop/.env.prod
-      depends_on:
-        - travelhoop-postgres
-        - travelhoop-redis
-
   travelhoop-postgres:
       image: postgres:10-alpine
       container_name: travelhoop-postgres
