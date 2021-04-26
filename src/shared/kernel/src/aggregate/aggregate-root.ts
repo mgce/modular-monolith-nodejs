@@ -7,7 +7,7 @@ interface DomainEvent {
 export class AggregateRoot<T = AggregateId> {
   public id: T;
 
-  public version: number;
+  public version: number = 1;
 
   private events: DomainEvent[];
 

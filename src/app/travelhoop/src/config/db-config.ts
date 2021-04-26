@@ -5,13 +5,23 @@ import { EnvVariables } from ".";
 
 loadEnvs();
 
+const infrastructureEntityPath = "./node_modules/@travelhoop/infrastructure/build/database/entity-schema/*.js";
+
+const entityPathFactory = (moduleName: string) =>
+  join(__dirname, `../../node_modules/@travelhoop/${moduleName}/build/core/entities/*.js`);
+
+const entitySchemaPathFactory = (moduleName: string) =>
+  join(__dirname, `../../node_modules/@travelhoop/${moduleName}/build/infrastructure/mikro-orm/entity-schemas/*.js`);
+
 export const dbConfigFactory = (env: EnvVariables, modulesNames: string[]): Options => {
   return {
     type: "postgresql",
     clientUrl: env.POSTGRES_URL,
-    entities: modulesNames.map(moduleName =>
-      join(__dirname, `../../node_modules/@travelhoop/${moduleName}/build/core/entities/*.js`),
-    ),
+    entities: [
+      infrastructureEntityPath,
+      ...modulesNames.map(entityPathFactory),
+      ...modulesNames.map(entitySchemaPathFactory),
+    ],
     forceUndefined: true,
     debug: false,
     namingStrategy: EntityCaseNamingStrategy,

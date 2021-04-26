@@ -1,3 +1,10 @@
-import { AggregateRoot } from "@travelhoop/shared-kernel";
+import { AggregateRoot, AggregateId } from "@travelhoop/shared-kernel";
 
-export class BookableCouch extends AggregateRoot {}
+export interface BookableCouchProps {
+  id: AggregateId;
+  quantity: number;
+}
+
+export class BookableCouch extends AggregateRoot {
+  private quantity: number;
+}
