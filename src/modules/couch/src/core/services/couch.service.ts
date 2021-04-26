@@ -20,7 +20,7 @@ export class CouchService {
     const couch = Couch.create({ id, ...dto });
     await this.deps.couchRepository.add(couch);
 
-    await this.deps.messageBroker.publish(new CouchCreated({ id, quantity: couch.quantity }));
+    await this.deps.messageBroker.publish(new CouchCreated({ id: id.toString(), quantity: couch.quantity }));
   }
 
   async update(dto: UpdateCouchDto) {

@@ -23,13 +23,15 @@ export class InMemoryEventDispatcher implements EventDispatcher {
   }
 
   public async dispatch(event: Event) {
-    this.logger.debug(`Dispatching event ${event.name}@${JSON.stringify(event.payload)}`);
-
     const promises = this.subscribers
       .filter(s => s.name === event.name)
       .map(({ subscriber }) =>
         subscriber(event).catch(e => this.logger.debug(`Subscriber failed to handle event ${event.name}`, e)),
       );
+
+    if (promises.length) {
+      this.logger.debug(`Dispatching event ${event.name}@${JSON.stringify(event.payload)}`);
+    }
 
     await Promise.all(promises);
   }

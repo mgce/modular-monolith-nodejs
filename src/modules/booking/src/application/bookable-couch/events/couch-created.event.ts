@@ -1,8 +1,7 @@
-import { Guid } from "guid-typescript";
 import { Event } from "@travelhoop/infrastructure-types";
 
 interface CouchCreatedPayload {
-  id: Guid;
+  id: string;
   quantity: number;
 }
 

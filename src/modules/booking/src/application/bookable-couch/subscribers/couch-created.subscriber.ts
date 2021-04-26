@@ -1,3 +1,4 @@
+import { Guid } from "guid-typescript";
 import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/infrastructure-types";
 import { CouchCreated } from "../events/couch-created.event";
 import { BookableCouch, BookableCouchRepository } from "../../../domain";
@@ -14,6 +15,6 @@ export class CouchCreatedSubscriber implements EventSubscriber {
   }
 
   async onCouchCreated({ payload: { id, quantity } }: CouchCreated) {
-    return this.deps.bookableCouchRepository.add(BookableCouch.create({ id, quantity }));
+    return this.deps.bookableCouchRepository.add(BookableCouch.create({ id: Guid.parse(id), quantity }));
   }
 }

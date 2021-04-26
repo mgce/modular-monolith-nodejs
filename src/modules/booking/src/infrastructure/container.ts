@@ -3,6 +3,7 @@ import { ContainerBuilder, StandardCreateContainerDependencies } from "@travelho
 import { createRouter } from "../api/routes/router";
 import { bookingModuleConfigFactory } from "./config";
 import { MikroOrmBookableCouchRepository } from "./mikro-orm/repositories/bookable-couch.repository";
+import { CouchCreatedSubscriber } from "../application/bookable-couch/subscribers/couch-created.subscriber";
 
 export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies): AwilixContainer<any> => {
   const config = bookingModuleConfigFactory(process.env as any);
@@ -17,7 +18,7 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
     .addDbConnection(dbConnection)
     .addEventSubscribers({
       messageBrokerQueueName: config.queues.messageBroker,
-      eventSubscribers: [],
+      eventSubscribers: [CouchCreatedSubscriber],
     })
     .build();
 };
