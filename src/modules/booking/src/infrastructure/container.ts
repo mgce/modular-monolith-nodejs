@@ -1,7 +1,8 @@
+import { AwilixContainer } from "awilix";
 import { ContainerBuilder, StandardCreateContainerDependencies } from "@travelhoop/infrastructure";
 import { bookingModuleConfigFactory } from "./config";
 
-export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies) => {
+export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies): AwilixContainer<any> => {
   const config = bookingModuleConfigFactory(process.env as any);
   return new ContainerBuilder()
     .addCommon()

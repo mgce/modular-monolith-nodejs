@@ -456,6 +456,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "@travelhoop/shared-kernel",
+      "projectFolder": "src/shared/kernel",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "@travelhoop/infrastructure-types",
       "projectFolder": "src/shared/infrastructure-types",
       "reviewCategory": "tools"

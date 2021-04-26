@@ -7,6 +7,7 @@ dependencies:
   '@rush-temp/couch-module': file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/infrastructure': file:projects/infrastructure.tgz_d92aad7d255c240226982115d0ab5be6
   '@rush-temp/infrastructure-types': file:projects/infrastructure-types.tgz_d92aad7d255c240226982115d0ab5be6
+  '@rush-temp/shared-kernel': file:projects/shared-kernel.tgz_d92aad7d255c240226982115d0ab5be6
   '@rush-temp/toolchain': file:projects/toolchain.tgz
   '@rush-temp/user-module': file:projects/user-module.tgz_@mikro-orm+migrations@4.5.2
   '@rushstack/eslint-patch': 1.0.6
@@ -6465,6 +6466,25 @@ packages:
       integrity: sha512-qTDrduFalYxDr1CCBYLHWbukUi7KyG58iuneuLSMVE74xfm74Kju5SyMs2Phn3U26HtLpmm07hGDkb17QOt4eg==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
+  file:projects/shared-kernel.tgz_d92aad7d255c240226982115d0ab5be6:
+    dependencies:
+      '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
+      '@swc/cli': 0.1.36_@swc+core@1.2.51
+      '@swc/core': 1.2.51
+      '@types/node': 14.14.37
+      eslint: 7.23.0
+      guid-typescript: 1.0.9
+      typescript: 4.2.3
+    dev: false
+    id: file:projects/shared-kernel.tgz
+    name: '@rush-temp/shared-kernel'
+    peerDependencies:
+      '@mikro-orm/migrations': '*'
+      '@mikro-orm/postgresql': '*'
+    resolution:
+      integrity: sha512-ZqU4aNiq6AI+94wWsEhj9ljgz28l8CEI4Mklgn6C5UBT4zc6WK6XQOcysEjPAX+k1KZLnPyekZttTEOeunhENw==
+      tarball: file:projects/shared-kernel.tgz
+    version: 0.0.0
   file:projects/toolchain.tgz:
     dependencies:
       '@rushstack/eslint-patch': 1.0.6
@@ -6532,6 +6552,7 @@ specifiers:
   '@rush-temp/couch-module': file:./projects/couch-module.tgz
   '@rush-temp/infrastructure': file:./projects/infrastructure.tgz
   '@rush-temp/infrastructure-types': file:./projects/infrastructure-types.tgz
+  '@rush-temp/shared-kernel': file:./projects/shared-kernel.tgz
   '@rush-temp/toolchain': file:./projects/toolchain.tgz
   '@rush-temp/user-module': file:./projects/user-module.tgz
   '@rushstack/eslint-patch': ~1.0.6
