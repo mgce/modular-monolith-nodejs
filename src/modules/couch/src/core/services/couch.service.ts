@@ -1,12 +1,15 @@
+import { MessageBroker } from "@travelhoop/infrastructure";
 import { Guid } from "guid-typescript";
 import { Couch } from "../entities/couch";
 import { CreateCouchDto } from "../dto/create-couch.dto";
 import { CouchRepository } from "../repositories/couch.repository";
 import { UpdateCouchDto } from "../dto/update-couch.dto";
 import { CouchDto } from "../dto/couch.dto";
+import { CouchCreated } from "../events/couch-created.event";
 
 interface CouchServiceDependencies {
   couchRepository: CouchRepository;
+  messageBroker: MessageBroker;
 }
 
 export class CouchService {
@@ -16,6 +19,8 @@ export class CouchService {
     const id = Guid.create();
     const couch = Couch.create({ id, ...dto });
     await this.deps.couchRepository.add(couch);
+
+    await this.deps.messageBroker.publish(new CouchCreated({ id, quantity: couch.quantity }));
   }
 
   async update(dto: UpdateCouchDto) {

@@ -3,9 +3,9 @@ import { Guid } from "guid-typescript";
 export class AggregateId {
   private value: string;
 
-  static create() {
+  static create(guid?: Guid) {
     const id = new AggregateId();
-    id.value = Guid.create().toString();
+    id.value = guid?.toString() || Guid.create().toString();
     return id;
   }
 

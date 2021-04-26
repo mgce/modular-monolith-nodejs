@@ -5,7 +5,10 @@ import { EnvVariables } from ".";
 
 loadEnvs();
 
-const infrastructureEntityPath = "./node_modules/@travelhoop/infrastructure/build/database/entity-schema/*.js";
+const infrastructureEntityPath = join(
+  __dirname,
+  "../../node_modules/@travelhoop/infrastructure/build/mikro-orm/entity-schema/*.js",
+);
 
 const entityPathFactory = (moduleName: string) =>
   join(__dirname, `../../node_modules/@travelhoop/${moduleName}/build/core/entities/*.js`);
