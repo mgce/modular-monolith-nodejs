@@ -9,7 +9,7 @@ export class CouchDto {
 
   description: string;
 
-  rooms: number;
+  quantity: number;
 
   createdAt: Date;
 

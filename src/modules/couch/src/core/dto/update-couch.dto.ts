@@ -15,7 +15,7 @@ export class UpdateCouchDto {
 
   @IsNumber()
   @Min(1)
-  rooms: number;
+  quantity: number;
 
   constructor(props: UpdateCouchDto) {
     Object.assign(this, props);

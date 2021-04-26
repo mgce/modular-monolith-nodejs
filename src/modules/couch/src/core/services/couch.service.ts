@@ -23,7 +23,7 @@ export class CouchService {
 
     couch.description = dto.description;
     couch.name = dto.name;
-    couch.rooms = dto.rooms;
+    couch.quantity = dto.quantity;
   }
 
   async getByUserId(userId: Guid) {

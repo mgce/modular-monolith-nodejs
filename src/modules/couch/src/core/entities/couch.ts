@@ -17,7 +17,7 @@ export class Couch {
   description: string;
 
   @Property()
-  rooms: number;
+  quantity: number;
 
   @Property()
   createdAt: Date = new Date();

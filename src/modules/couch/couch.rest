@@ -11,7 +11,7 @@ authorization: Bearer {{accessToken}}
 {
     "name":"Example couch",
     "description": "Lorem ipsum",
-    "rooms": 2
+    "quantity": 2
 }
 
 ### 
@@ -22,7 +22,7 @@ authorization: Bearer {{accessToken}}
 {
     "name":"Example couch 22",
     "description": "Lorem ipsum",
-    "rooms": 2
+    "quantity": 2
 }
 
 ### 

@@ -13,7 +13,7 @@ export class CreateCouchDto {
 
   @IsNumber()
   @Min(1)
-  rooms: number;
+  quantity: number;
 
   constructor(props: CreateCouchDto) {
     Object.assign(this, props);
