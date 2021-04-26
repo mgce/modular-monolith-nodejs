@@ -12,8 +12,8 @@ export class AuthService {
   constructor(private readonly deps: AuthServiceDependencies) {}
 
   createToken(userId: Guid) {
-    const expiresIn = addMinutes(new Date(), this.deps.expiry);
-    const authUser: AuthenticatedUser = { id: userId, exp: expiresIn.getTime() };
+    const expiresIn = Math.floor(addMinutes(new Date(), this.deps.expiry).getTime() / 1000);
+    const authUser: AuthenticatedUser = { id: userId, exp: expiresIn };
     return sign(authUser, this.deps.secretKey);
   }
 }
