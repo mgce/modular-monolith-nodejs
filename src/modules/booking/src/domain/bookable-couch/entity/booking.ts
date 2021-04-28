@@ -7,9 +7,9 @@ export interface BookingProps {
 }
 
 export abstract class Booking {
-  private Id: Guid;
+  id: Guid;
 
-  private dateFrom: Date;
+  dateFrom: Date;
 
-  private dateTo: Date;
+  dateTo: Date;
 }

@@ -2,6 +2,7 @@ import { Event } from "@travelhoop/infrastructure-types";
 
 interface CouchCreatedPayload {
   id: string;
+  hostId: string;
   quantity: number;
 }
 

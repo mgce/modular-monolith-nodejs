@@ -20,7 +20,9 @@ export class CouchService {
     const couch = Couch.create({ id, ...dto });
     await this.deps.couchRepository.add(couch);
 
-    await this.deps.messageBroker.publish(new CouchCreated({ id: id.toString(), quantity: couch.quantity }));
+    await this.deps.messageBroker.publish(
+      new CouchCreated({ id: id.toString(), hostId: couch.hostId.toString(), quantity: couch.quantity }),
+    );
   }
 
   async update(dto: UpdateCouchDto) {
@@ -32,7 +34,7 @@ export class CouchService {
   }
 
   async getByUserId(userId: Guid) {
-    const couches = await this.deps.couchRepository.getByUserId(userId);
+    const couches = await this.deps.couchRepository.getByHostId(userId);
     return couches.map(couch => new CouchDto(couch));
   }
 

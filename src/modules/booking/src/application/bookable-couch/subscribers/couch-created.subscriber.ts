@@ -14,7 +14,9 @@ export class CouchCreatedSubscriber implements EventSubscriber {
     return [{ name: CouchCreated.name, method: "onCouchCreated" }];
   }
 
-  async onCouchCreated({ payload: { id, quantity } }: CouchCreated) {
-    return this.deps.bookableCouchRepository.add(BookableCouch.create({ id: Guid.parse(id), quantity }));
+  async onCouchCreated({ payload: { id, hostId, quantity } }: CouchCreated) {
+    return this.deps.bookableCouchRepository.add(
+      BookableCouch.create({ id: Guid.parse(id), hostId: Guid.parse(hostId), quantity }),
+    );
   }
 }

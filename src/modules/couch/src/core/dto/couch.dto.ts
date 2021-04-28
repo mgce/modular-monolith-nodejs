@@ -3,7 +3,7 @@ import { Guid } from "guid-typescript";
 export class CouchDto {
   id: Guid;
 
-  userId: Guid;
+  hostId: Guid;
 
   name: string;
 

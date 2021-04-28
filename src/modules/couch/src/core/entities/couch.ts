@@ -8,7 +8,7 @@ export class Couch {
   id: Guid;
 
   @Property({ type: GuidType })
-  userId: Guid;
+  hostId: Guid;
 
   @Property()
   name: string;

@@ -27,7 +27,7 @@ export class CouchRepository {
     return couch;
   }
 
-  async getByUserId(userId: Guid) {
-    return this.deps.dbConnection.em.getRepository(Couch).find({ userId });
+  async getByHostId(hostId: Guid) {
+    return this.deps.dbConnection.em.getRepository(Couch).find({ hostId });
   }
 }

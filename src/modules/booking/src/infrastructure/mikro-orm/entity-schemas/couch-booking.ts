@@ -9,5 +9,6 @@ export const couchBookingEntitySchema = new EntitySchema<CouchBookingProps, Book
   extends: "Booking",
   properties: {
     guestId: { type: GuidType },
+    reservedQuantity: { type: "number" },
   },
 });
