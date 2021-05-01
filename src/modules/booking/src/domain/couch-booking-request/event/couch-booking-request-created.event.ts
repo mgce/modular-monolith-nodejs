@@ -1,8 +1,7 @@
-import { Guid } from "guid-typescript";
-import { DomainEvent } from "@travelhoop/shared-kernel";
+import { AggregateId, DomainEvent } from "@travelhoop/shared-kernel";
 
 interface CouchBookingRequestCreatedPayload {
-  id: Guid;
+  couchBookingRequestId: AggregateId;
 }
 
 export class CouchBookingRequestCreated implements DomainEvent<CouchBookingRequestCreatedPayload> {

@@ -1,10 +1,9 @@
+import { AggregateId, AggregateRoot } from "@travelhoop/shared-kernel";
 import { Guid } from "guid-typescript";
-import { AggregateRoot, AggregateId } from "@travelhoop/shared-kernel";
-import { CouchBooking } from "./couch-booking";
-import { Booking } from "./booking";
-import { CouchBookingRequest, CouchBookingRequestProps } from "./couch-booking-request";
 import { UnavailableBooking } from ".";
-import { CouchBookingRequestCreated } from "../event/couch-booking-request-created.event";
+import { CouchBookingRequestProps } from "../../couch-booking-request/entity/couch-booking-request";
+import { Booking } from "./booking";
+import { CouchBooking } from "./couch-booking";
 
 export interface BookableCouchProps {
   id: AggregateId;
@@ -24,8 +23,6 @@ export class BookableCouch extends AggregateRoot {
 
   private bookings: Booking[];
 
-  private bookingRequests: CouchBookingRequest[];
-
   static create(props: CreateBookableCouchProps) {
     return new BookableCouch(props);
   }
@@ -35,25 +32,14 @@ export class BookableCouch extends AggregateRoot {
     this.id = AggregateId.create(id);
     this.quantity = quantity;
     this.hostId = hostId;
-    this.bookingRequests = [];
     this.bookings = [];
   }
 
-  requestBooking(props: CouchBookingRequestProps) {
-    if (this.hostId.equals(props.guestId)) {
+  public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CouchBookingRequestProps, "id">) {
+    if (this.hostId.equals(guestId)) {
       throw new Error("You cannot book your couch");
     }
 
-    this.canBook(props.dateFrom, props.dateTo, props.quantity);
-
-    const bookingRequest = CouchBookingRequest.create(props as any);
-
-    this.bookingRequests.push(bookingRequest);
-
-    this.addEvent(new CouchBookingRequestCreated({ id: bookingRequest.id }));
-  }
-
-  private canBook(dateFrom: Date, dateTo: Date, requestedQuantity: number) {
     const overlappingBookings = this.getOverlappingBookings(dateFrom, dateTo);
     const areBookingUnavailable = overlappingBookings.some(booking => booking instanceof UnavailableBooking);
 

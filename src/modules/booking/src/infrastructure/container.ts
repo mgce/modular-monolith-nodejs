@@ -5,6 +5,8 @@ import { bookingModuleConfigFactory } from "./config";
 import { MikroOrmBookableCouchRepository } from "./mikro-orm/repositories/bookable-couch.repository";
 import { CouchCreatedSubscriber } from "../application/bookable-couch/subscribers/couch-created.subscriber";
 import { RequestCouchBookingCommandHandler } from "../application/bookable-couch/handlers/request-couch-booking/request-couch-booking.handler";
+import { MikroOrmCouchBookingRequestRepository } from "./mikro-orm/repositories/couch-booking-request.repository";
+import { CouchBookingRequestDomainService } from "../domain";
 
 export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies): AwilixContainer<any> => {
   const config = bookingModuleConfigFactory(process.env as any);
@@ -12,6 +14,8 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
     .addCommon()
     .register({
       bookableCouchRepository: asClass(MikroOrmBookableCouchRepository),
+      couchBookingRequestRepository: asClass(MikroOrmCouchBookingRequestRepository),
+      couchBookingRequestDomainService: asClass(CouchBookingRequestDomainService),
     })
     .addRouting(createRouter)
     .addAuth({ secretKey: config.jwt.secretKey })

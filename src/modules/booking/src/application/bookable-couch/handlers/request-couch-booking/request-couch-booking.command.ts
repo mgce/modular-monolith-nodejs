@@ -3,7 +3,7 @@ import { Command } from "@travelhoop/infrastructure";
 import { AggregateId } from "@travelhoop/shared-kernel";
 
 interface RequestCouchBookingCommandPayload {
-  couchId: AggregateId;
+  bookableCouchId: AggregateId;
   guestId: Guid;
   dateFrom: Date;
   dateTo: Date;
