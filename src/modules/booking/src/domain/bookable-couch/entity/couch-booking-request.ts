@@ -1,5 +1,4 @@
 import { Guid } from "guid-typescript";
-import { AggregateId, AggregateRoot } from "@travelhoop/shared-kernel";
 
 export interface CouchBookingRequestProps {
   id: Guid;
@@ -9,7 +8,9 @@ export interface CouchBookingRequestProps {
   quantity: number;
 }
 
-export class CouchBookingRequest extends AggregateRoot {
+export class CouchBookingRequest {
+  id: Guid;
+
   guestId: Guid;
 
   dateFrom: Date;
@@ -23,8 +24,7 @@ export class CouchBookingRequest extends AggregateRoot {
   }
 
   private constructor(props: CouchBookingRequestProps) {
-    super();
-    this.id = AggregateId.create(props.id);
+    this.id = props.id;
     this.guestId = props.guestId;
     this.dateFrom = props.dateFrom;
     this.dateTo = props.dateTo;

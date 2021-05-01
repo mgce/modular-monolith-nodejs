@@ -2,7 +2,7 @@ import { Guid } from "guid-typescript";
 import { AggregateRoot, AggregateId } from "@travelhoop/shared-kernel";
 import { CouchBooking } from "./couch-booking";
 import { Booking } from "./booking";
-import { CouchBookingRequest } from "./booking-request";
+import { CouchBookingRequest, CouchBookingRequestProps } from "./couch-booking-request";
 import { UnavailableBooking } from ".";
 
 export interface BookableCouchProps {
@@ -23,6 +23,8 @@ export class BookableCouch extends AggregateRoot {
 
   private bookings: Booking[];
 
+  private bookingRequests: CouchBookingRequest[];
+
   static create(props: CreateBookableCouchProps) {
     return new BookableCouch(props);
   }
@@ -34,12 +36,16 @@ export class BookableCouch extends AggregateRoot {
     this.hostId = hostId;
   }
 
-  addBooking(bookingRequest: CouchBookingRequest) {
-    this.canBook(bookingRequest.dateFrom, bookingRequest.dateTo, bookingRequest.quantity);
+  requestBooking(props: CouchBookingRequestProps) {
+    if (this.hostId.equals(props.guestId)) {
+      throw new Error("You cannot book your couch");
+    }
 
-    const booking = CouchBooking.create(bookingRequest as any);
+    this.canBook(props.dateFrom, props.dateTo, props.quantity);
 
-    this.bookings.push(booking);
+    const bookingRequest = CouchBookingRequest.create(props as any);
+
+    this.bookingRequests.push(bookingRequest);
   }
 
   private canBook(dateFrom: Date, dateTo: Date, requestedQuantity: number) {

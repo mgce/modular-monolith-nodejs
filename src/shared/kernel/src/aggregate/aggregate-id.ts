@@ -15,6 +15,10 @@ export class AggregateId {
     return id;
   }
 
+  static isAggregateId(aggregateId: AggregateId) {
+    return Guid.isGuid(aggregateId.toString());
+  }
+
   toString() {
     return this.value;
   }

@@ -27,7 +27,8 @@
     "@mikro-orm/core": "~4.5.2",
     "@mikro-orm/postgresql": "~4.5.2",
     "date-fns": "~2.20.1",
-    "http-status-codes": "~2.1.4"
+    "http-status-codes": "~2.1.4",
+    "yup": "~0.32.9"
   },
   "devDependencies": {
     "eslint": "~7.23.0",

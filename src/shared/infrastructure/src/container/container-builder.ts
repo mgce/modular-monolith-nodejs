@@ -2,6 +2,7 @@ import { asFunction, asValue, asClass, AwilixContainer, createContainer, Resolve
 import { Router } from "express";
 import { DbConnection } from "@travelhoop/infrastructure-types";
 import { RedisClient as Redis } from "redis";
+import { CommandDispatcher } from "../command/command-bus";
 import { InMemoryEventDispatcher } from "../event/event.dispatcher";
 import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
@@ -53,6 +54,22 @@ export class ContainerBuilder {
       secretKey: asValue(secretKey),
       auth: asFunction(auth),
     });
+
+    return this;
+  }
+
+  addCommandHandlers({ commandHandlers }: { commandHandlers: any[] }) {
+    this.container.register({
+      commandDispatcher: asClass(CommandDispatcher),
+    });
+
+    if (commandHandlers) {
+      this.container.register({
+        commandHandlers: registerAsArray<any>(
+          commandHandlers.map(commandHandler => asClass(commandHandler as any).scoped()),
+        ),
+      });
+    }
 
     return this;
   }

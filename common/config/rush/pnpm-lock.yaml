@@ -48,6 +48,7 @@ dependencies:
   typescript: 4.2.3
   unicorn: 0.0.1
   winston: 3.3.3
+  yup: 0.32.9
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.12.11:
@@ -234,6 +235,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-OhsyMrqygfk5v8HmWwOzlYjJrtLaFhF34MrfG/Z73DgYCI6ojNUTUp2TYbtnjo8PegeJp12eamsNettCQjKjVw==
+  /@babel/runtime/7.14.0:
+    dependencies:
+      regenerator-runtime: 0.13.7
+    dev: false
+    resolution:
+      integrity: sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
   /@babel/template/7.12.13:
     dependencies:
       '@babel/code-frame': 7.12.13
@@ -4047,6 +4054,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
+  /lodash-es/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
   /lodash.clonedeep/4.5.0:
     dev: false
     resolution:
@@ -4339,6 +4350,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
+  /nanoclone/0.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
   /nanomatch/1.2.13:
     dependencies:
       arr-diff: 4.0.0
@@ -4971,6 +4986,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
+  /property-expr/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-sFPkHQjVKheDNnPvotjQmm3KD3uk1fWKUN7CrpdbwmUx3CrG3QiM8QpTSimvig5vTXmTvjz7+TDvXOI9+4rkcg==
   /proxy-addr/2.0.6:
     dependencies:
       forwarded: 0.1.2
@@ -5201,6 +5220,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+  /regenerator-runtime/0.13.7:
+    dev: false
+    resolution:
+      integrity: sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
   /regex-not/1.0.2:
     dependencies:
       extend-shallow: 3.0.2
@@ -5900,6 +5923,10 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /toposort/2.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
   /touch/3.1.0:
     dependencies:
       nopt: 1.0.10
@@ -6322,6 +6349,20 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
+  /yup/0.32.9:
+    dependencies:
+      '@babel/runtime': 7.14.0
+      '@types/lodash': 4.14.168
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      nanoclone: 0.2.1
+      property-expr: 2.0.4
+      toposort: 2.0.2
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-Ci1qN+i2H0XpY7syDQ0k5zKQ/DoxO0LzPg8PAR/X4Mpj6DqaeCoIYEEjDJwhArh3Fa7GWbQQVDZKeXYlSH4JMg==
   file:projects/app.tgz:
     dependencies:
       '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
@@ -6348,7 +6389,7 @@ packages:
     dev: false
     name: '@rush-temp/app'
     resolution:
-      integrity: sha512-qbdx77a+z2AD819RPYVIXl68Z75uXqgFUQZ4TQKWi+VDdXyjeZi3V3XskkAWFge69RAh3Ob+T1QdZwQ/qgrw/w==
+      integrity: sha512-0X5Qbyp7ebsyYJPul0uQ4b5tMWq1/mNDh/coUU5rLtxZE9gHWx42/G1EBNxwim61ThrTGe0Ra20dURx1dSKy/A==
       tarball: file:projects/app.tgz
     version: 0.0.0
   file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6370,13 +6411,14 @@ packages:
       http-status-codes: 2.1.4
       rimraf: 3.0.2
       typescript: 4.2.3
+      yup: 0.32.9
     dev: false
     id: file:projects/booking-module.tgz
     name: '@rush-temp/booking-module'
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-r2EBfcH0SGHpSIPQYOtxKy8qFrtfD7Tqs6rE3aCH+136v2AlZSNPnFIkTqn6fL+XzdvoLcWSa3aqW/Q2/4Ffgg==
+      integrity: sha512-RpM88OZKH5QZn2tnuYwwvo9l9pafLsiSqb0Bsp94ASpA+w8H7WPtF3J3vDrqQrBr7CNut9R0MPC00QDMUtaQFg==
       tarball: file:projects/booking-module.tgz
     version: 0.0.0
   file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6463,7 +6505,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-qTDrduFalYxDr1CCBYLHWbukUi7KyG58iuneuLSMVE74xfm74Kju5SyMs2Phn3U26HtLpmm07hGDkb17QOt4eg==
+      integrity: sha512-UYChgiLQxBuZv8sqEnMWy+172HvCe0HU3nh4+oaXFLSEmXkKT4DAfOcqdsmjZqrnAkhDEJSIilTKExsiSt9vrg==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
   file:projects/shared-kernel.tgz_d92aad7d255c240226982115d0ab5be6:
@@ -6474,6 +6516,7 @@ packages:
       '@types/node': 14.14.37
       eslint: 7.23.0
       guid-typescript: 1.0.9
+      rimraf: 3.0.2
       typescript: 4.2.3
     dev: false
     id: file:projects/shared-kernel.tgz
@@ -6482,7 +6525,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-ZqU4aNiq6AI+94wWsEhj9ljgz28l8CEI4Mklgn6C5UBT4zc6WK6XQOcysEjPAX+k1KZLnPyekZttTEOeunhENw==
+      integrity: sha512-/KH6ZdASuxQNnvkvPRcnC2XLefUNndxCyDjbHvXJbjODt6gWs6ekiHiHJttidlFV1FxohOXowCuhXvFj9cwh5g==
       tarball: file:projects/shared-kernel.tgz
     version: 0.0.0
   file:projects/toolchain.tgz:
@@ -6593,3 +6636,4 @@ specifiers:
   typescript: ~4.2.3
   unicorn: ~0.0.1
   winston: ~3.3.3
+  yup: ~0.32.9
