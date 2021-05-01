@@ -5,7 +5,7 @@
   "main":"./build/index.js",
   "typings":"./build/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha \"build/**/*.test.js\"",
     "build": "rimraf build && tsc",
     "build:watch":"swc src -d build",
     "lint": "eslint './**/*.ts'",
@@ -37,6 +37,10 @@
     "@types/express": "~4.17.11",
     "@types/node": "~14.14.37",
     "@swc/core": "~1.2.51",
-    "@swc/cli": "~0.1.36"
+    "@swc/cli": "~0.1.36",
+    "mocha": "~8.3.2",
+    "chai": "~4.3.4",
+    "@types/mocha": "~8.2.2",
+    "@types/chai": "~4.2.17"
   }
 }

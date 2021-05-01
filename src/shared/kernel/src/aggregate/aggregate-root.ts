@@ -9,23 +9,27 @@ export class AggregateRoot<T = AggregateId> {
 
   public version: number = 1;
 
-  private events: DomainEvent[];
+  private domainEvents: DomainEvent[] = [];
 
   private versionIncremented: boolean;
 
   addEvent(event: DomainEvent) {
-    if (!this.events.length && !this.versionIncremented) {
+    if (!this.domainEvents && !this.versionIncremented) {
       this.incrementVersion();
     }
 
-    this.events.push(event);
+    this.domainEvents.push(event);
   }
 
   clearEvents() {
-    this.events = [];
+    this.domainEvents = [];
   }
 
-  protected incrementVersion() {
+  get events(): ReadonlyArray<DomainEvent> {
+    return this.domainEvents;
+  }
+
+  private incrementVersion() {
     if (!this.versionIncremented) {
       this.version += 1;
       this.versionIncremented = true;

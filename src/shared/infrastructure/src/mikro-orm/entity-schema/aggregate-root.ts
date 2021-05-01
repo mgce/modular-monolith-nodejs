@@ -8,5 +8,6 @@ export const aggregateRootEntitySchema = new EntitySchema<AggregateRoot>({
   properties: {
     id: { type: AggregateIdType, primary: true },
     version: { type: "number", default: 1 },
+    events: { type: "array", persist: false },
   },
 });

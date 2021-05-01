@@ -4,6 +4,7 @@ import { CouchBooking } from "./couch-booking";
 import { Booking } from "./booking";
 import { CouchBookingRequest, CouchBookingRequestProps } from "./couch-booking-request";
 import { UnavailableBooking } from ".";
+import { CouchBookingRequestCreated } from "../event/couch-booking-request-created.event";
 
 export interface BookableCouchProps {
   id: AggregateId;
@@ -34,6 +35,8 @@ export class BookableCouch extends AggregateRoot {
     this.id = AggregateId.create(id);
     this.quantity = quantity;
     this.hostId = hostId;
+    this.bookingRequests = [];
+    this.bookings = [];
   }
 
   requestBooking(props: CouchBookingRequestProps) {
@@ -46,6 +49,8 @@ export class BookableCouch extends AggregateRoot {
     const bookingRequest = CouchBookingRequest.create(props as any);
 
     this.bookingRequests.push(bookingRequest);
+
+    this.addEvent(new CouchBookingRequestCreated({ id: bookingRequest.id }));
   }
 
   private canBook(dateFrom: Date, dateTo: Date, requestedQuantity: number) {
