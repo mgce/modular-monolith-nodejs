@@ -22,15 +22,27 @@ export class InMemoryEventDispatcher implements EventDispatcher {
     this.logger = logger;
   }
 
-  public async dispatch(event: Event) {
+  public async dispatch(event: Event | Event[]) {
+    const events = event instanceof Array ? event : [event];
+
+    const eventNames = events.map(e => e.name);
+
     const promises = this.subscribers
-      .filter(s => s.name === event.name)
-      .map(({ subscriber }) =>
-        subscriber(event).catch(e => this.logger.debug(`Subscriber failed to handle event ${event.name}`, e)),
-      );
+      .filter(s => eventNames.includes(s.name))
+      .map(({ subscriber, name: eventName }) => {
+        const subscribedEvent = events.find(e => e.name === eventName);
+
+        if (!subscribedEvent) {
+          throw new Error(`There is no subscriber for ${eventName} event`);
+        }
+
+        return subscriber(subscribedEvent).catch(e =>
+          this.logger.debug(`Subscriber failed to handle event ${eventName}`, e),
+        );
+      });
 
     if (promises.length) {
-      this.logger.debug(`Dispatching event ${event.name}@${JSON.stringify(event.payload)}`);
+      this.logger.debug(`Dispatching events ${eventNames.join(", ")}@${JSON.stringify(events)}`);
     }
 
     await Promise.all(promises);

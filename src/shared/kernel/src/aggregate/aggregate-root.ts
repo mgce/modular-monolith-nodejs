@@ -1,19 +1,16 @@
 import { AggregateId } from "./aggregate-id";
-
-interface DomainEvent {
-  payload: object;
-}
+import { DomainEvent } from "./domain.event";
 
 export class AggregateRoot<T = AggregateId> {
   public id: T;
 
   public version: number = 1;
 
-  private domainEvents: DomainEvent[] = [];
+  private domainEvents: DomainEvent<unknown>[] = [];
 
   private versionIncremented: boolean;
 
-  addEvent(event: DomainEvent) {
+  addEvent(event: DomainEvent<unknown>) {
     if (!this.domainEvents && !this.versionIncremented) {
       this.incrementVersion();
     }
@@ -25,7 +22,7 @@ export class AggregateRoot<T = AggregateId> {
     this.domainEvents = [];
   }
 
-  get events(): ReadonlyArray<DomainEvent> {
+  get events(): DomainEvent<unknown>[] {
     return this.domainEvents;
   }
 

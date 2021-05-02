@@ -83,7 +83,8 @@ export class ContainerBuilder {
   }) {
     this.container.register({
       messageBrokerQueueName: asValue(messageBrokerQueueName),
-      eventDispatcher: asClass(InMemoryEventDispatcher),
+      eventDispatcher: asClass(InMemoryEventDispatcher).scoped(),
+      domainEventDispatcher: asClass(InMemoryEventDispatcher).scoped(),
       queueClient: asClass(RedisClient),
       messageDispatcher: asClass(RedisMessageDispatcher),
       messageBroker: asClass(MessageBroker),

@@ -1,15 +1,12 @@
+import { DomainEventDispatcher } from "@travelhoop/shared-kernel";
 import { CommandHandler } from "@travelhoop/infrastructure";
-import {
-  BookableCouchRepository,
-  CouchBookingRequestDomainService,
-  CouchBookingRequestRepository,
-} from "../../../../domain";
+import { BookableCouchRepository, CouchBookingRequestRepository } from "../../../../domain";
 import { CreateBookingCommand } from "./create-booking.command";
 
 interface CreateBookingCommandHandlerDependencies {
-  couchBookingRequestDomainService: CouchBookingRequestDomainService;
   couchBookingRequestRepository: CouchBookingRequestRepository;
   bookableCouchRepository: BookableCouchRepository;
+  domainEventDispatcher: DomainEventDispatcher;
 }
 
 export class CreateBookingCommandHandler implements CommandHandler<CreateBookingCommand> {
@@ -22,5 +19,7 @@ export class CreateBookingCommandHandler implements CommandHandler<CreateBooking
     const bookableCouch = await this.deps.bookableCouchRepository.get(couchBookingRequestDto.id);
 
     bookableCouch.createBooking(couchBookingRequestDto);
+
+    await this.deps.domainEventDispatcher.dispatch(bookableCouch.events);
   }
 }
