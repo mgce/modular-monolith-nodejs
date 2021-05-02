@@ -2,8 +2,8 @@ import { Request, Response } from "@travelhoop/infrastructure-types";
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import asyncHandler from "express-async-handler";
+import { CommandDispatcher } from "@travelhoop/infrastructure";
 import { CreateBookingCommand } from "../../application/bookable-couch/handlers/create-booking/create-booking.command";
-import { CommandDispatcher } from "../../../../../shared/infrastructure/src/command/command-bus";
 import { RequestCouchBookingCommand } from "../../application/couch-booking-request/handlers/request-couch-booking/request-couch-booking.command";
 
 interface BookableCouchApiDependencies {

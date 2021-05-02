@@ -1,13 +1,13 @@
 import { MikroOrmRepository, MikroOrmRepositoryDependencies } from "@travelhoop/infrastructure";
 import { AggregateId } from "@travelhoop/shared-kernel";
 import { CouchBookingRequestRepository, CouchBookingRequest, CouchBookingRequestProps } from "../../../domain";
-import { bookableCouchEntitySchema } from "../entity-schemas/bookable-couch.entity";
+import { couchBookingRequestEntitySchema } from "../entity-schemas/couch-booking-request.entity";
 
 export class MikroOrmCouchBookingRequestRepository
   extends MikroOrmRepository<CouchBookingRequest, CouchBookingRequestProps>
   implements CouchBookingRequestRepository {
   constructor({ dbConnection }: MikroOrmRepositoryDependencies) {
-    super({ dbConnection, entitySchema: bookableCouchEntitySchema });
+    super({ dbConnection, entitySchema: couchBookingRequestEntitySchema });
   }
 
   async get(id: AggregateId) {

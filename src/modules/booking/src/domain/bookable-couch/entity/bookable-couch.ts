@@ -8,6 +8,8 @@ import {
 import { CouchBookingCreated } from "../event/couch-booking-created.event";
 import { Booking } from "./booking";
 import { CouchBooking } from "./couch-booking";
+import { BookingCancellationPolicy } from "../policy";
+import { CouchBookingCancelled } from "../event/couch-booking-cancelled.event";
 
 export interface BookableCouchProps {
   id: AggregateId;
@@ -49,6 +51,21 @@ export class BookableCouch extends AggregateRoot {
 
     this.bookings.push(booking);
     this.addEvent(new CouchBookingCreated({ couchBookingRequestId: couchBookingRequest.id }));
+  }
+
+  cancelBooking(couchBookingId: Guid, reason: string, bookingCancellationPolicy: BookingCancellationPolicy) {
+    const couchBooking = this.bookings.find(booking => booking.id.equals(couchBookingId));
+
+    if (!couchBooking || !(couchBooking instanceof CouchBooking)) {
+      throw new Error("Booking doesn't exists");
+    }
+
+    if (bookingCancellationPolicy.canCancel(couchBooking)) {
+      this.bookings = this.bookings.filter(booking => booking.id !== couchBooking.id);
+      this.addEvent(new CouchBookingCancelled({ couchBooking, reason }));
+    } else {
+      throw new Error("Cannot cancel booking");
+    }
   }
 
   public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {

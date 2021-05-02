@@ -1,5 +1,5 @@
 import { AggregateId } from "./aggregate-id";
-import { DomainEvent } from "./domain.event";
+import { DomainEvent } from "../domain-event";
 
 export class AggregateRoot<T = AggregateId> {
   public id: T;
