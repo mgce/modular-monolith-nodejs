@@ -22,4 +22,8 @@ export class AggregateId {
   toString() {
     return this.value;
   }
+
+  toGuid() {
+    return Guid.parse(this.value);
+  }
 }

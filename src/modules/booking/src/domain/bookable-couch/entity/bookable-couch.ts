@@ -1,7 +1,11 @@
 import { AggregateId, AggregateRoot } from "@travelhoop/shared-kernel";
 import { Guid } from "guid-typescript";
 import { UnavailableBooking } from ".";
-import { CouchBookingRequestProps } from "../../couch-booking-request/entity/couch-booking-request";
+import {
+  CouchBookingRequestProps,
+  CreateCouchBookingRequest,
+} from "../../couch-booking-request/entity/couch-booking-request";
+import { CouchBookingCreated } from "../event/couch-booking-created.event";
 import { Booking } from "./booking";
 import { CouchBooking } from "./couch-booking";
 
@@ -35,7 +39,19 @@ export class BookableCouch extends AggregateRoot {
     this.bookings = [];
   }
 
-  public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CouchBookingRequestProps, "id">) {
+  createBooking(couchBookingRequest: CouchBookingRequestProps) {
+    this.canBook(couchBookingRequest);
+
+    const booking = CouchBooking.create({
+      ...couchBookingRequest,
+      id: Guid.parse(couchBookingRequest.id.toString()),
+    });
+
+    this.bookings.push(booking);
+    this.addEvent(new CouchBookingCreated({ couchBookingRequestId: couchBookingRequest.id }));
+  }
+
+  public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {
     if (this.hostId.equals(guestId)) {
       throw new Error("You cannot book your couch");
     }
@@ -49,7 +65,7 @@ export class BookableCouch extends AggregateRoot {
 
     const allCouchReserved = overlappingBookings
       .filter(booking => booking instanceof CouchBooking)
-      .some(booking => (booking as CouchBooking).reservedQuantity > this.quantity - requestedQuantity);
+      .some(booking => (booking as CouchBooking).quantity > this.quantity - requestedQuantity);
 
     if (allCouchReserved) {
       throw new Error("All couches are reserved");

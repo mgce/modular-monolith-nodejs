@@ -3,7 +3,7 @@ import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import asyncHandler from "express-async-handler";
 import { CommandDispatcher } from "../../../../../shared/infrastructure/src/command/command-bus";
-import { RequestCouchBookingCommand } from "../../application/bookable-couch/handlers/request-couch-booking/request-couch-booking.command";
+import { RequestCouchBookingCommand } from "../../application/couch-booking-request/handlers/request-couch-booking/request-couch-booking.command";
 
 interface BookableCouchApiDependencies {
   commandDispatcher: CommandDispatcher;

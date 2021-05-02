@@ -4,9 +4,10 @@ import { createRouter } from "../api/routes/router";
 import { bookingModuleConfigFactory } from "./config";
 import { MikroOrmBookableCouchRepository } from "./mikro-orm/repositories/bookable-couch.repository";
 import { CouchCreatedSubscriber } from "../application/bookable-couch/subscribers/couch-created.subscriber";
-import { RequestCouchBookingCommandHandler } from "../application/bookable-couch/handlers/request-couch-booking/request-couch-booking.handler";
+import { RequestCouchBookingCommandHandler } from "../application/couch-booking-request/handlers/request-couch-booking/request-couch-booking.handler";
 import { MikroOrmCouchBookingRequestRepository } from "./mikro-orm/repositories/couch-booking-request.repository";
 import { CouchBookingRequestDomainService } from "../domain";
+import { CouchBookingCreatedSubscriber } from "../application/couch-booking-request/subscribers/couch-booking-created.subscriber";
 
 export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies): AwilixContainer<any> => {
   const config = bookingModuleConfigFactory(process.env as any);
@@ -24,7 +25,7 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
     .addCommandHandlers({ commandHandlers: [RequestCouchBookingCommandHandler] })
     .addEventSubscribers({
       messageBrokerQueueName: config.queues.messageBroker,
-      eventSubscribers: [CouchCreatedSubscriber],
+      eventSubscribers: [CouchCreatedSubscriber, CouchBookingCreatedSubscriber],
     })
     .build();
 };
