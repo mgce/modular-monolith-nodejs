@@ -10,6 +10,7 @@ import { Booking } from "./booking";
 import { CouchBooking } from "./couch-booking";
 import { BookingCancellationPolicy } from "../policy";
 import { CouchBookingCancelled } from "../event/couch-booking-cancelled.event";
+import { BookingsFinished } from "../event/bookings-finished.event";
 
 export interface BookableCouchProps {
   id: AggregateId;
@@ -66,6 +67,13 @@ export class BookableCouch extends AggregateRoot {
     } else {
       throw new Error("Cannot cancel booking");
     }
+  }
+
+  finishBookings() {
+    const currentDate = new Date();
+    const bookingsToFinish = this.bookings.filter(booking => booking.dateTo > currentDate);
+    this.bookings = this.bookings.filter(booking => !bookingsToFinish.includes(booking));
+    this.addEvent(new BookingsFinished({ bookings: bookingsToFinish }));
   }
 
   public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {

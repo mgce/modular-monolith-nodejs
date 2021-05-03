@@ -5,12 +5,12 @@ export interface BookingCancellationPolicy {
   canCancel: (couchBooking: CouchBooking) => boolean;
 }
 
-interface BookableCouchBookingCancellationPolicyDependencies {
+interface CouchBookingCancellationPolicyDependencies {
   maxDaysBeforeCancellation: number;
 }
 
-export class BookableCouchBookingCancellationPolicy implements BookingCancellationPolicy {
-  constructor(private readonly deps: BookableCouchBookingCancellationPolicyDependencies) {}
+export class CouchBookingCancellationPolicy implements BookingCancellationPolicy {
+  constructor(private readonly deps: CouchBookingCancellationPolicyDependencies) {}
 
   canCancel(couchBooking: CouchBooking) {
     if (couchBooking.dateFrom > addDays(new Date(), this.deps.maxDaysBeforeCancellation)) {

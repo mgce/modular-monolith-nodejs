@@ -1,7 +1,7 @@
 import { DomainEventDispatcher } from "@travelhoop/shared-kernel";
 import { CommandHandler } from "@travelhoop/infrastructure";
 import {
-  BookableCouchBookingCancellationPolicy,
+  CouchBookingCancellationPolicy,
   BookableCouchRepository,
   CouchBookingRequestRepository,
 } from "../../../../domain";
@@ -22,7 +22,7 @@ export class CancelBookingCommandHandler implements CommandHandler<CancelBooking
     bookableCouch.cancelBooking(
       payload.couchBookingId,
       payload.reason,
-      new BookableCouchBookingCancellationPolicy({ maxDaysBeforeCancellation: 3 }),
+      new CouchBookingCancellationPolicy({ maxDaysBeforeCancellation: 3 }),
     );
 
     await this.deps.domainEventDispatcher.dispatch(bookableCouch.events);

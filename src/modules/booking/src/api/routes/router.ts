@@ -8,6 +8,7 @@ export const createRouter = ({ auth }: { auth: MiddlewareType }): Router => {
 
   router.post("/request-booking", auth, bookableCouchApi("requestCouchBooking"));
   router.post("/create-booking", auth, bookableCouchApi("createBooking"));
+  router.post("/finish-bookings", auth, bookableCouchApi("finishBookings"));
   router.post("/reject-booking-request", auth, couchBookingRequestApi("rejectRequest"));
 
   return router;

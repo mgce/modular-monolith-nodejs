@@ -1,1 +1,1 @@
-export * from "./bookable-couch-booking-cancellation.policy";
+export * from "./couch-booking-cancellation.policy";
