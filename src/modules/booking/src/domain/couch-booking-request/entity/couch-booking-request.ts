@@ -37,7 +37,7 @@ export class CouchBookingRequest extends AggregateRoot {
 
   static create(props: CreateCouchBookingRequest) {
     const currentDate = new Date();
-    if (props.dateTo > props.dateFrom || currentDate > props.dateFrom) {
+    if (props.dateFrom > props.dateTo || currentDate > props.dateFrom) {
       throw new Error("Booking request date must be from the future. Date to must be greater than date from");
     }
 

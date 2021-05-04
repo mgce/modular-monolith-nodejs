@@ -1,6 +1,6 @@
 import { GuidType } from "@travelhoop/infrastructure";
 import { EntitySchema } from "@mikro-orm/core";
-import { BookingProps } from "../../../domain";
+import { BookingProps, BookableCouch } from "../../../domain";
 
 export const bookingEntitySchema = new EntitySchema<BookingProps>({
   name: "Booking",
@@ -9,5 +9,13 @@ export const bookingEntitySchema = new EntitySchema<BookingProps>({
     couchBooking: "CouchBooking",
     unavailableBooking: "UnavailableBooking",
   },
-  properties: { id: { type: GuidType, primary: true }, dateFrom: { type: Date }, dateTo: { type: Date } },
+  properties: {
+    id: { type: GuidType, primary: true },
+    dateFrom: { type: Date },
+    dateTo: { type: Date },
+    bookableCouch: {
+      reference: "m:1",
+      entity: () => BookableCouch,
+    },
+  },
 });

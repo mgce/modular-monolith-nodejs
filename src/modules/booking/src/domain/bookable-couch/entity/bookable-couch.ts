@@ -1,5 +1,6 @@
 import { AggregateId, AggregateRoot } from "@travelhoop/shared-kernel";
 import { Guid } from "guid-typescript";
+import { Collection } from "@mikro-orm/core";
 import { UnavailableBooking } from ".";
 import {
   CouchBookingRequestProps,
@@ -14,7 +15,9 @@ import { BookingsFinished } from "../event/bookings-finished.event";
 
 export interface BookableCouchProps {
   id: AggregateId;
+  hostId: AggregateId;
   quantity: number;
+  bookings: Booking[];
 }
 
 interface CreateBookableCouchProps {
@@ -28,7 +31,7 @@ export class BookableCouch extends AggregateRoot {
 
   private quantity: number;
 
-  private bookings: Booking[];
+  private bookings = new Collection<Booking>(this);
 
   static create(props: CreateBookableCouchProps) {
     return new BookableCouch(props);
@@ -39,7 +42,6 @@ export class BookableCouch extends AggregateRoot {
     this.id = AggregateId.create(id);
     this.quantity = quantity;
     this.hostId = hostId;
-    this.bookings = [];
   }
 
   createBooking(couchBookingRequest: CouchBookingRequestProps) {
@@ -50,19 +52,19 @@ export class BookableCouch extends AggregateRoot {
       id: Guid.parse(couchBookingRequest.id.toString()),
     });
 
-    this.bookings.push(booking);
+    this.bookings.add(booking);
     this.addEvent(new CouchBookingCreated({ couchBookingRequestId: couchBookingRequest.id }));
   }
 
   cancelBooking(couchBookingId: Guid, reason: string, bookingCancellationPolicy: BookingCancellationPolicy) {
-    const couchBooking = this.bookings.find(booking => booking.id.equals(couchBookingId));
+    const couchBooking = this.bookings.getItems().find(booking => booking.id.equals(couchBookingId));
 
     if (!couchBooking || !(couchBooking instanceof CouchBooking)) {
       throw new Error("Booking doesn't exists");
     }
 
     if (bookingCancellationPolicy.canCancel(couchBooking)) {
-      this.bookings = this.bookings.filter(booking => booking.id !== couchBooking.id);
+      this.bookings.remove(couchBooking);
       this.addEvent(new CouchBookingCancelled({ couchBooking, reason }));
     } else {
       throw new Error("Cannot cancel booking");
@@ -71,8 +73,8 @@ export class BookableCouch extends AggregateRoot {
 
   finishBookings() {
     const currentDate = new Date();
-    const bookingsToFinish = this.bookings.filter(booking => booking.dateTo > currentDate);
-    this.bookings = this.bookings.filter(booking => !bookingsToFinish.includes(booking));
+    const bookingsToFinish = this.bookings.getItems().filter(booking => booking.dateTo > currentDate);
+    this.bookings.remove(...bookingsToFinish);
     this.addEvent(new BookingsFinished({ bookings: bookingsToFinish }));
   }
 
@@ -85,7 +87,7 @@ export class BookableCouch extends AggregateRoot {
     const areBookingUnavailable = overlappingBookings.some(booking => booking instanceof UnavailableBooking);
 
     if (areBookingUnavailable) {
-      throw new Error("Between ths date you cannot make a booking");
+      throw new Error("Between this date you cannot make a booking");
     }
 
     const allCouchReserved = overlappingBookings
@@ -98,6 +100,6 @@ export class BookableCouch extends AggregateRoot {
   }
 
   private getOverlappingBookings(dateFrom: Date, dateTo: Date) {
-    return this.bookings.filter(booking => booking.dateFrom <= dateTo && dateFrom <= booking.dateTo);
+    return this.bookings.getItems().filter(booking => booking.dateFrom <= dateTo && dateFrom <= booking.dateTo);
   }
 }

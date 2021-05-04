@@ -11,6 +11,8 @@ export class AggregateRoot<T = AggregateId> {
   private versionIncremented: boolean;
 
   addEvent(event: DomainEvent<unknown>) {
+    if (!this.domainEvents) this.domainEvents = [];
+
     if (!this.domainEvents && !this.versionIncremented) {
       this.incrementVersion();
     }

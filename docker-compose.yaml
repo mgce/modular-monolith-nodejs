@@ -18,6 +18,7 @@ services:
 
   travelhoop-redis:
       image: redis:alpine
+      container_name: travelhoop-redis
       ports:
         - "6379:6379"
         

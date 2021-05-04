@@ -17,4 +17,8 @@ export class MikroOrmCouchBookingRequestRepository
   async add(couchBookingRequest: CouchBookingRequest) {
     await this.repo.persistAndFlush(couchBookingRequest);
   }
+
+  async save(couchBookingRequest: CouchBookingRequest) {
+    await this.repo.persistAndFlush(couchBookingRequest);
+  }
 }

@@ -1,4 +1,4 @@
-import { Options, EntityCaseNamingStrategy } from "@mikro-orm/core";
+import { Options, EntityCaseNamingStrategy, LoadStrategy } from "@mikro-orm/core";
 import { join } from "path";
 import { loadEnvs } from "@travelhoop/infrastructure";
 import { EnvVariables } from ".";
@@ -28,6 +28,7 @@ export const dbConfigFactory = (env: EnvVariables, modulesNames: string[]): Opti
     forceUndefined: true,
     debug: false,
     namingStrategy: EntityCaseNamingStrategy,
+    loadStrategy: LoadStrategy.JOINED,
     migrations: {
       tableName: "mikro_orm_migrations", // name of database table with log of executed transactions
       path: join(__dirname, "../../build/migrations"), // path to the folder with migrations

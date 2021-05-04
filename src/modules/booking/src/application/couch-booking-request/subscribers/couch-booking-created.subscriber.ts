@@ -16,5 +16,7 @@ export class CouchBookingCreatedSubscriber implements EventSubscriber {
     const couchBookingRequest = await this.deps.couchBookingRequestRepository.get(couchBookingRequestId);
 
     couchBookingRequest.accept();
+
+    await this.deps.couchBookingRequestRepository.save(couchBookingRequest);
   }
 }

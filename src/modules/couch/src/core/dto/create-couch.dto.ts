@@ -3,7 +3,7 @@ import { IsNumber, IsString, Min, IsDefined } from "class-validator";
 
 export class CreateCouchDto {
   @IsDefined()
-  userId: Guid;
+  hostId: Guid;
 
   @IsString()
   name: string;

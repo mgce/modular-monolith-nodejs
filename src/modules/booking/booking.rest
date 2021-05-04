@@ -1,0 +1,40 @@
+@url = http://localhost:3010/booking
+
+@bookableCouchId=c95482bc-719e-7b1c-f299-75032885801b
+
+@couchBookingRequestId=dece7048-280a-0cb8-a401-926610aca82c
+
+@guestAccessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJ2YWx1ZSI6IjY5YjBkNjViLTNhYjMtMTg3Yy0xZTM4LTk4ZDI5MDJiYTk4YyJ9LCJleHAiOjE2MjAxNDk3NTksImlhdCI6MTYyMDE0Nzk1OX0.X5v8yZj8KL3yGRYs-b-Lxoc-Wm4Zrgz6gJwNWcXwyWc
+
+@hostAccessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJ2YWx1ZSI6Ijk1MTVlNWQ2LTgxZmMtMzAwYS0zYzJkLWQzZjNhYTQ5ODkxMSJ9LCJleHAiOjE2MjAxNTIyODUsImlhdCI6MTYyMDE1MDQ4NX0.zSBi6ZrmkRiqNQ9Rpv2NgA0V2ebkiusVnZoP6FTvU5Y
+### 
+POST {{url}}/request-booking HTTP/1.1
+content-type: application/json
+authorization: Bearer {{guestAccessToken}}
+
+{
+    "bookableCouchId":"{{bookableCouchId}}",
+    "dateFrom": "2021-10-23T00:00:00.000Z",
+    "dateTo": "2021-10-25T00:00:00.000Z",
+    "quantity": 1
+}
+### 
+POST {{url}}/create-booking HTTP/1.1
+content-type: application/json
+authorization: Bearer {{hostAccessToken}}
+
+{
+    "couchBookingRequestId":"{{couchBookingRequestId}}"
+}
+### 
+POST {{url}}/reject-booking-request HTTP/1.1
+content-type: application/json
+authorization: Bearer {{hostAccessToken}}
+
+{
+    "couchBookingRequestId":"{{couchBookingRequestId}}",
+}
+### 
+POST {{url}}/finish-bookings HTTP/1.1
+content-type: application/json
+authorization: Bearer {{hostAccessToken}}

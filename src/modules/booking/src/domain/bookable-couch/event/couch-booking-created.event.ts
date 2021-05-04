@@ -5,5 +5,7 @@ interface CouchBookingCreatedPayload {
 }
 
 export class CouchBookingCreated implements DomainEvent<CouchBookingCreatedPayload> {
+  name = this.constructor.name;
+
   constructor(public payload: CouchBookingCreatedPayload) {}
 }

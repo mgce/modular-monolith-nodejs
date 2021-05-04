@@ -11,11 +11,11 @@ export class CouchBooking extends Booking {
 
   quantity: number;
 
-  static create(props: CouchBookingProps) {
+  static create(props: Omit<CouchBookingProps, "bookableCouch">) {
     return new CouchBooking(props);
   }
 
-  private constructor(props: CouchBookingProps) {
+  private constructor(props: Omit<CouchBookingProps, "bookableCouch">) {
     super();
     this.id = props.id;
     this.guestId = props.guestId;

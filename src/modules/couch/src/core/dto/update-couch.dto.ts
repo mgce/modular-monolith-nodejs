@@ -5,7 +5,7 @@ export class UpdateCouchDto {
   id: string;
 
   @IsDefined()
-  userId: string;
+  hostId: string;
 
   @IsString()
   name: string;

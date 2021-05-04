@@ -60,7 +60,7 @@ export class ContainerBuilder {
 
   addCommandHandlers({ commandHandlers }: { commandHandlers: any[] }) {
     this.container.register({
-      commandDispatcher: asClass(CommandDispatcher),
+      commandDispatcher: asClass(CommandDispatcher).classic(),
     });
 
     if (commandHandlers) {

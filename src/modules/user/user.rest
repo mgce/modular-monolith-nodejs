@@ -1,5 +1,5 @@
 @url = http://localhost:3010/user
-@email = user@testing.com
+@email = user1@testing.com
 
 @password = password1234
 

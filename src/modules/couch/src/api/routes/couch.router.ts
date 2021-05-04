@@ -13,12 +13,12 @@ interface CouchApiDependencies {
 
 const api = ({ couchService }: CouchApiDependencies) => ({
   create: asyncHandler(async (req: Request, res: Response) => {
-    const dto = new CreateCouchDto({ ...req.body, userId: req.user?.id! });
+    const dto = new CreateCouchDto({ ...req.body, hostId: req.user?.id! });
     await validateOrReject(dto);
     res.json(await couchService.create(dto));
   }),
   update: asyncHandler(async (req: Request, res: Response) => {
-    const dto = new UpdateCouchDto({ id: req.params.id, userId: req.user?.id!, ...req.body });
+    const dto = new UpdateCouchDto({ id: req.params.id, hostId: req.user?.id!, ...req.body });
     await validateOrReject(dto);
     res.json(await couchService.update(dto));
   }),

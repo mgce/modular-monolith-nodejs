@@ -13,12 +13,17 @@ interface BookableCouchApiDependencies {
 
 const api = ({ commandDispatcher }: BookableCouchApiDependencies) => ({
   requestCouchBooking: asyncHandler(async (req: Request, res: Response) => {
-    const command = new RequestCouchBookingCommand({ ...req.body, userId: req.user?.id! });
+    const command = new RequestCouchBookingCommand({
+      ...req.body,
+      guestId: req.user?.id!,
+      dateFrom: new Date(req.body.dateFrom),
+      dateTo: new Date(req.body.dateTo),
+    });
     await validateOrReject(command);
     res.json(await commandDispatcher.execute(command));
   }),
   createBooking: asyncHandler(async (req: Request, res: Response) => {
-    const command = new CreateBookingCommand({ ...req.body, userId: req.user?.id! });
+    const command = new CreateBookingCommand(req.body);
     await validateOrReject(command);
     res.json(await commandDispatcher.execute(command));
   }),

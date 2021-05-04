@@ -10,11 +10,21 @@ export class MikroOrmBookableCouchRepository
     super({ dbConnection, entitySchema: bookableCouchEntitySchema });
   }
 
+  findWithFinishedBookings() {
+    return (this.repo.find({ bookings: { $ne: null } }, { populate: ["bookings"] }) as unknown) as Promise<
+      BookableCouch[]
+    >;
+  }
+
   async get(id: AggregateId) {
-    return (this.repo.findOneOrFail({ id }) as unknown) as BookableCouch;
+    return (this.repo.findOneOrFail({ id }, ["bookings"]) as unknown) as BookableCouch;
   }
 
   async add(bookableCouch: BookableCouch) {
+    await this.repo.persistAndFlush(bookableCouch);
+  }
+
+  async save(bookableCouch: BookableCouch) {
     await this.repo.persistAndFlush(bookableCouch);
   }
 }

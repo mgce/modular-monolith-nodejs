@@ -14,8 +14,8 @@ export const couchBookingRequestEntitySchema = new EntitySchema<CouchBookingRequ
     quantity: { type: "number" },
     dateFrom: { type: Date },
     dateTo: { type: Date },
-    decisionDate: { type: Date },
+    decisionDate: { type: Date, nullable: true },
     status: { enum: true, items: () => RequestStatus },
-    rejectionReason: { type: "string" },
+    rejectionReason: { type: "string", nullable: true },
   },
 });
