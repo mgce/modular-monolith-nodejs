@@ -41,13 +41,13 @@ dependencies:
   guid-typescript: 1.0.9
   http-status-codes: 2.1.4
   jsonwebtoken: 8.5.1
-  mocha: 8.3.2
   node-dev: 6.6.0
   prettier: 2.2.1
   redis: 3.1.1
   reflect-metadata: 0.1.13
   rsmq: 0.12.3
   rsmq-worker: 0.5.2
+  ts-mockito: 2.6.1
   ts-node-dev: 1.1.6_typescript@4.2.3
   typescript: 4.2.3
   unicorn: 0.0.1
@@ -4517,6 +4517,39 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-UdmISwr/5w+uXLPKspgoV7/RXZwKRTiTjJ2/AC5ZiEztIoOYdfKb19+9jNmEInzx5pBsCyJQzarAxqIGBNYJhg==
+  /mocha/8.4.0:
+    dependencies:
+      '@ungap/promise-all-settled': 1.1.2
+      ansi-colors: 4.1.1
+      browser-stdout: 1.3.1
+      chokidar: 3.5.1
+      debug: 4.3.1_supports-color@8.1.1
+      diff: 5.0.0
+      escape-string-regexp: 4.0.0
+      find-up: 5.0.0
+      glob: 7.1.6
+      growl: 1.10.5
+      he: 1.2.0
+      js-yaml: 4.0.0
+      log-symbols: 4.0.0
+      minimatch: 3.0.4
+      ms: 2.1.3
+      nanoid: 3.1.20
+      serialize-javascript: 5.0.1
+      strip-json-comments: 3.1.1
+      supports-color: 8.1.1
+      which: 2.0.2
+      wide-align: 1.1.3
+      workerpool: 6.1.0
+      yargs: 16.2.0
+      yargs-parser: 20.2.4
+      yargs-unparser: 2.0.0
+    dev: false
+    engines:
+      node: '>= 10.12.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-hJaO0mwDXmZS4ghXsvPVriOhsxQ7ofcpQdm8dE+jISUOKopitvnXFQmpRR7jd2K6VBG6E26gU3IAbXXGIbu4sQ==
   /mout/1.2.2:
     dev: false
     resolution:
@@ -6225,6 +6258,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==
+  /ts-mockito/2.6.1:
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+    resolution:
+      integrity: sha512-qU9m/oEBQrKq5hwfbJ7MgmVN5Gu6lFnIGWvpxSjrqq6YYEVv+RwVFWySbZMBgazsWqv6ctAyVBpo9TmAxnOEKw==
   /ts-node-dev/1.1.6_typescript@4.2.3:
     dependencies:
       chokidar: 3.5.1
@@ -6724,6 +6763,7 @@ packages:
       dotenv: 8.2.0
       eslint: 7.23.0
       express: 4.17.1
+      mocha: 8.4.0
       node-dev: 6.6.0
       nodemon: 2.0.7
       redis: 3.1.1
@@ -6734,7 +6774,7 @@ packages:
     dev: false
     name: '@rush-temp/app'
     resolution:
-      integrity: sha512-0X5Qbyp7ebsyYJPul0uQ4b5tMWq1/mNDh/coUU5rLtxZE9gHWx42/G1EBNxwim61ThrTGe0Ra20dURx1dSKy/A==
+      integrity: sha512-mmbvaFWcKJgupBcmUpEEX2pf0Ariq7to3cNZyPSA7UQoTBjWcVyMyLVgJGb/Xd+eRlw1sfICkPpBuDgoX+mYiw==
       tarball: file:projects/app.tgz
     version: 0.0.0
   file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6758,7 +6798,9 @@ packages:
       guid-typescript: 1.0.9
       http-status-codes: 2.1.4
       mocha: 8.3.2
+      reflect-metadata: 0.1.13
       rimraf: 3.0.2
+      ts-mockito: 2.6.1
       typescript: 4.2.3
       yup: 0.32.9
     dev: false
@@ -6767,7 +6809,7 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-J0ry1aNbDQEuP+AiDzyYOm1xBxDYCFsNHFrzsDStsp5NoLuR8OVBb743lGC2alEcM9WVr/mEeyzkE3MrZw5OJw==
+      integrity: sha512-qJuNZVoOnvBUlbv1NxSE4X0PIECR1SK1s+a4zMB2+R8kuOkKYZ1drS4uwfFSSzfHkSEnXdHTl1XnE7/fbDjNSw==
       tarball: file:projects/booking-module.tgz
     version: 0.0.0
   file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6978,13 +7020,13 @@ specifiers:
   guid-typescript: ~1.0.9
   http-status-codes: ~2.1.4
   jsonwebtoken: ~8.5.1
-  mocha: ~8.3.2
   node-dev: ~6.6.0
   prettier: ~2.2.1
   redis: ~3.1.1
   reflect-metadata: ~0.1.13
   rsmq: ~0.12.3
   rsmq-worker: ~0.5.2
+  ts-mockito: ~2.6.1
   ts-node-dev: 1.1.6
   typescript: ~4.2.3
   unicorn: ~0.0.1

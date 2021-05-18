@@ -64,6 +64,8 @@ npm run start-dev
     - [Message broker](#message-broker)
     - [Event dispatcher](#event-dispatcher)
   - [2.5 Architectural Decision Records](#25-architectural-decision-records)
+- [3. Tests](#3-tests)
+  - [3.1 Unit tests](#31-unit-tests)
 
 # 1. Domain
 
@@ -219,3 +221,43 @@ Responsibility of each module is to decide if the message should be handled or n
 
 ## 2.5 Architectural Decision Records
 All architectural decisions are keeped in `./docs/adr` directory. It captures an important architectural decision made along with its context and consequences. To automate this process I've used [adr-tools](https://github.com/npryce/adr-tools) library. It should help you understand, why I've made some decisions in this project. Very often we have a couple of possibility how to solve some problems. Often it has some pros and cons. It is important to make this decisions, knowing potential consequences. 
+
+
+# 3. Tests
+For testing purposes I am using following stack:
+Mocha - as a test runner
+Chai - asseration library
+Ts-Mockito - mocking library
+
+Because tests are run on `.js` files, you need to run watcher at first, or build the project. You can do it by run `rush build:watch` or `rush build`
+## 3.1 Unit tests
+
+Unit test should focus mostly on domain logic. For this reason, most of this type of testing will be in modules that implement the clean architecture. The tests are located at the root level of the domain directory.
+An important issue in unit testing is to test only publicly available methods. We should not change the implementation of a class just for the sake of testing. If a method is marked as private, we should not make it public just for testing purposes. Let the public interface be responsible for using those private methods that it needs. Through it we should test them.
+
+In assert step we will be looking at mainly two things:
+1. whether valid events have been published, after the action, and whether they contain the correct information
+2. whether any rules were broken/whether the class threw an exception
+  
+Example test:
+```typescript
+it("accept booking request", () => {
+  // arrange
+  const bookingRequest = createCouchBookingRequest();
+
+  // act
+  bookingRequest.accept();
+
+  // assert
+  const { events } = bookingRequest;
+
+  expect(events).length(1);
+  expect(events[0]).instanceOf(CouchBookingStatusChanged);
+
+  const { payload } = events[0] as CouchBookingStatusChanged;
+
+  expect(payload.status).to.be.equal(RequestStatus.Accepted);
+  expect(payload.couchBookingRequestId).to.be.equal(bookingRequest.id);
+  expect(payload.rejectionReason).to.be.undefined!;
+});
+```

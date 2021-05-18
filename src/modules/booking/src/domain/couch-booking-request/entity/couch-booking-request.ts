@@ -89,7 +89,7 @@ export class CouchBookingRequest extends AggregateRoot {
     this.decisionDate = new Date();
     this.addEvent(
       new CouchBookingStatusChanged({
-        couchBookingRequestId: this.bookableCouchId,
+        couchBookingRequestId: this.id,
         status: this.status,
         decisionDate: this.decisionDate,
         rejectionReason: this.rejectionReason,

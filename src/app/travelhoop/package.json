@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --lazyLoadFiles=true --file=\"build/tests/bootstrap.js\" \"./node_modules/@travelhoop/*/build/**/*.test.js\"",
     "build": "rimraf build && tsc",
     "build:watch":"swc src -d build --config-file ./node_modules/@travelhoop/toolchain/.swcrc",
     "lint": "eslint './**/*.ts'",
@@ -29,7 +29,8 @@
     "@mikro-orm/postgresql": "~4.5.2",
     "reflect-metadata": "~0.1.13",
     "@mikro-orm/migrations": "~4.5.2",
-    "redis": "~3.1.1"
+    "redis": "~3.1.1",
+    "mocha": "~8.4.0"
   },
   "devDependencies": {
     "@travelhoop/toolchain":"1.0.0",
@@ -40,6 +41,7 @@
     "node-dev": "~6.6.0",
     "@swc/core": "~1.2.51",
     "@swc/cli": "~0.1.36",
-    "@types/redis": "~2.8.28"
+    "@types/redis": "~2.8.28",
+    "@types/mocha": "~8.2.2"
   }
 }
