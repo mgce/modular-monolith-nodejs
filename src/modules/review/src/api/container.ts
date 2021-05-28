@@ -1,12 +1,12 @@
 import { ContainerBuilder, StandardCreateContainerDependencies } from "@travelhoop/infrastructure";
 import { asClass } from "awilix";
-import { couchModuleConfigFactory } from "../core/config";
-import { CouchRepository } from "../core/repositories/couch.repository";
-import { CouchService } from "../core/services/couch.service";
+import { reviewModuleConfigFactory } from "../core/config";
+import { BookingReviewRepository } from "../core/repositories/booking-review.repository";
+import { BookingReviewService } from "../core/services/booking-review.service";
 import { createRouter } from "./routes/router";
 
 export const createContainer = ({ dbConnection, redis }: StandardCreateContainerDependencies) => {
-  const config = couchModuleConfigFactory(process.env as any);
+  const config = reviewModuleConfigFactory(process.env as any);
   return new ContainerBuilder()
     .addCommon()
     .addAuth({ secretKey: config.jwt.secretKey })
@@ -18,8 +18,8 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
       eventSubscribers: [],
     })
     .register({
-      couchService: asClass(CouchService),
-      couchRepository: asClass(CouchRepository),
+      bookingReviewService: asClass(BookingReviewService),
+      bookingReviewRepository: asClass(BookingReviewRepository),
     })
     .build();
 };

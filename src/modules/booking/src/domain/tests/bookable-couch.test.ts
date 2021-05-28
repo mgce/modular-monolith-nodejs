@@ -1,6 +1,7 @@
-import { addDays } from "date-fns";
 import { expect } from "chai";
+import { addDays } from "date-fns";
 import { Guid } from "guid-typescript";
+import "mocha";
 import {
   BookableCouch,
   CouchBookingCancellationPolicy,

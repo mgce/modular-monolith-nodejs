@@ -3,7 +3,7 @@ export interface EnvVariables extends NodeJS.Process {
   ASYNC_MESSAGE_BROKER_QUEUE: string;
 }
 
-export const couchModuleConfigFactory = (env: EnvVariables) => ({
+export const reviewModuleConfigFactory = (env: EnvVariables) => ({
   jwt: {
     secretKey: env.JWT_SECRET_KEY,
   },
@@ -12,4 +12,4 @@ export const couchModuleConfigFactory = (env: EnvVariables) => ({
   },
 });
 
-export type CouchModuleConfig = ReturnType<typeof couchModuleConfigFactory>;
+export type ReviewModuleConfig = ReturnType<typeof reviewModuleConfigFactory>;
