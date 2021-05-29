@@ -9,7 +9,7 @@ interface BookingReviewRepositoryDependencies {
 export class BookingReviewRepository {
   constructor(private readonly deps: BookingReviewRepositoryDependencies) {}
 
-  async add(bookingReview: BookingReview): Promise<void> {
+  async add(...bookingReview: BookingReview[]): Promise<void> {
     await this.deps.dbConnection.em.persistAndFlush(bookingReview);
   }
 
@@ -25,6 +25,10 @@ export class BookingReviewRepository {
     }
 
     return bookingReview;
+  }
+
+  async findByReviewerIdAndRevieweeId(reviewerId: Guid, revieweeId: Guid) {
+    return this.deps.dbConnection.em.getRepository(BookingReview).findOneOrFail({ reviewerId, revieweeId });
   }
 
   async getByIdAndReviewerId(bookingReviewId: Guid, reviewerId: Guid) {
