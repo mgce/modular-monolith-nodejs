@@ -63,6 +63,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "@travelhoop/scheduler",
+      "projectFolder": "src/app/scheduler",
+      "reviewCategory": "tools"
+    },
+    {
       "packageName": "@travelhoop/infrastructure-types",
       "projectFolder": "src/shared/infrastructure-types",
       "reviewCategory": "tools"

@@ -1,0 +1,1 @@
+* * * * * node /app/src/app/scheduler/build/jobs/finish-bookings.job.js >> /var/log/cron.log 2>&1

@@ -1,8 +1,8 @@
 FROM node:14.15.1-alpine3.10 as builder
 
-WORKDIR /app
-
 RUN npm i -g @microsoft/rush
+
+WORKDIR /app
 
 COPY ./src ./src
 COPY ./tools ./tools
@@ -11,14 +11,17 @@ COPY ./rush.json .
 
 RUN rush install
 RUN rush build
-RUN rush deploy --project @travelhoop/app
+RUN rush deploy --project @travelhoop/scheduler
 
 FROM node:14.15.1-alpine3.10
 
 WORKDIR /app
 
 COPY --from=builder /app/common/deploy/ .
+COPY --from=builder /app/src/app/scheduler/crontab /etc/cron.d/crontab
 
-EXPOSE 3010
+RUN chmod 0644 /etc/cron.d/crontab
+RUN crontab /etc/cron.d/crontab
+RUN touch /var/log/cron.log
 
-CMD ["node", "./src/app/travelhoop/build/server.js"]
+CMD crond && tail -f /var/log/cron.log

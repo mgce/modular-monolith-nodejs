@@ -71,3 +71,6 @@ common/autoinstallers/*/.npmrc
 # .env
 .env
 .env.prod
+
+# docker-compose override
+docker-compose.override.yaml
