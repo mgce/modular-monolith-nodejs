@@ -22,25 +22,12 @@ services:
       ports:
         - "6379:6379"
 
-  # ofelia:
-  #   image: mcuadros/ofelia:latest
-  #   restart: always
-  #   depends_on:
-  #     - travelhoop-scheduler
-  #   command: daemon --docker
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-
   travelhoop-scheduler:
+    restart: always
     build:
       context: .
       dockerfile: ./docker/Dockerfile.scheduler
       cache_from:
         - travelhoop-scheduler:latest
-    # restart: always
     env_file: 
       - ./src/app/scheduler/.env
-    # command: "/usr/sbin/crond -f -l 0 -c /home/node/app/crontab -L /var/log/cron.log"    # labels:
-    #   ofelia.enabled: "true"
-    #   ofelia.job-exec.datecron.schedule: "@every 1s"
-    #   ofelia.job-exec.datecron.command: "node ./src/app/scheduler/build/jobs/finish-bookings.job.js"

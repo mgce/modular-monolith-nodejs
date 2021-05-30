@@ -18,6 +18,7 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
   const config = bookingModuleConfigFactory(process.env as any);
   return new ContainerBuilder()
     .addCommon()
+    .addSecurityTokens({ schedulerToken: config.securityTokens.schedulerToken })
     .register({
       bookableCouchRepository: asClass(MikroOrmBookableCouchRepository),
       couchBookingRequestRepository: asClass(MikroOrmCouchBookingRequestRepository),

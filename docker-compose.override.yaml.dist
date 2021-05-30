@@ -12,5 +12,6 @@ services:
       env_file: 
         - ./src/app/travelhoop/.env.prod
       depends_on:
+        - travelhoop-scheduler
         - travelhoop-postgres
         - travelhoop-redis

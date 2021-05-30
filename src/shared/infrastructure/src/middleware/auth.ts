@@ -8,25 +8,23 @@ interface AuthDependencies {
   secretKey: string;
 }
 
-export const auth = ({ secretKey }: AuthDependencies) => (
-  req: Request & { user?: AuthenticatedUser },
-  _res: Response,
-  next: NextFunction,
-) => {
-  const token = req.headers.authorization?.split("Bearer ")[1];
+export const auth =
+  ({ secretKey }: AuthDependencies) =>
+  (req: Request & { user?: AuthenticatedUser }, _res: Response, next: NextFunction) => {
+    const token = req.headers.authorization?.split("Bearer ")[1];
 
-  if (!token) {
-    throw new Error("Invalid token");
-  }
+    if (!token) {
+      throw new Error("Invalid token");
+    }
 
-  const parsedToken = verify(token, secretKey) as any;
-  const id = Guid.parse(parsedToken.id.value);
+    const parsedToken = verify(token, secretKey) as any;
+    const id = Guid.parse(parsedToken.id.value);
 
-  // eslint-disable-next-line no-param-reassign
-  req.user = {
-    ...parsedToken,
-    id,
+    // eslint-disable-next-line no-param-reassign
+    req.user = {
+      ...parsedToken,
+      id,
+    };
+
+    next();
   };
-
-  next();
-};

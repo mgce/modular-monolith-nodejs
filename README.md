@@ -64,6 +64,7 @@ npm run start-dev
     - [Message broker](#message-broker)
     - [Event dispatcher](#event-dispatcher)
   - [2.5 Architectural Decision Records](#25-architectural-decision-records)
+  - [2.6 Scheduler](#26-scheduler)
 - [3. Tests](#3-tests)
   - [3.1 Unit tests](#31-unit-tests)
 
@@ -222,12 +223,37 @@ Responsibility of each module is to decide if the message should be handled or n
 ## 2.5 Architectural Decision Records
 All architectural decisions are keeped in `./docs/adr` directory. It captures an important architectural decision made along with its context and consequences. To automate this process I've used [adr-tools](https://github.com/npryce/adr-tools) library. It should help you understand, why I've made some decisions in this project. Very often we have a couple of possibility how to solve some problems. Often it has some pros and cons. It is important to make this decisions, knowing potential consequences. 
 
+## 2.6 Scheduler
+The Scheduler is a separate application, for this reason it is placed in the `src/app` folder where things that are deployed separately will eventually be located.
+Using HTTP shots, it shoots our application every specified time, triggering some action.
 
+In order to add a new Job, we need to do the following:
+
+1. add a new definition in `/src/app/scheduler/src/jobs`. In the simplest case, we can copy an already existing job and change only `URL_PATH`. e.g.
+```ts
+import { httpClient } from "../http.client";
+
+const URL_PATH = "booking/finish-bookings";
+
+(async () => {
+  await httpClient(URL_PATH);
+})();
+
+```
+2. update the `/src/app/scheduler/crontab file with the new job definition. First, we define how often our job should be fired. Then we define the command that is to be executed. And at the end we indicate the file where we put our logs.
+
+```
+* * * * * node /app/src/app/scheduler/build/jobs/finish-bookings.job.js >> /var/log/cron.log 2>&1
+
+```
+
+For security reasons, each endpoint that is used by our scheduler, should be secured using the `x-scheduler-token` header. For this reason, we have created a middleware on our application side, which easily validates its correctness and throws an exception when the header does not match. On the scheduler side, the token is added at the `httpClient` level, so when defining a job, we don't have to remember to define it each time.
+Of course, the approach of shooting from an external application to ours via http has its pros and cons. The biggest advantage is that when scaling the application, shooting it through the load balancer, we are sure that the request will be served only once, by a single instance. So even having a process that will strongly eat up our resources, the rest of the instance will be able to take over the traffic. The second issue is the ease of replacement of this layer and move to the implementation of jobs provided by e.g. AWS.
 # 3. Tests
 For testing purposes I am using following stack:
-Mocha - as a test runner
-Chai - asseration library
-Ts-Mockito - mocking library
+[Mocha](https://github.com/mochajs/mocha) - as a test runner
+[Chai](https://github.com/chaijs/chai) - asseration library
+[Ts-Mockito](https://github.com/NagRock/ts-mockito) - mocking library
 
 Because tests are run on `.js` files, you need to run watcher at first, or build the project. You can do it by run `rush build:watch` or `rush build`
 ## 3.1 Unit tests

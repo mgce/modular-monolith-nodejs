@@ -8,7 +8,7 @@ import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
 import { MessageBroker, RedisMessageDispatcher } from "../messaging";
 import { RedisClient } from "../redis/redis.queue";
-import { auth } from "..";
+import { auth, checkSchedulerToken } from "..";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -44,6 +44,15 @@ export class ContainerBuilder {
   addCommon() {
     this.container.register({
       logger: asValue(createLogger()),
+    });
+
+    return this;
+  }
+
+  addSecurityTokens({ schedulerToken }: { schedulerToken: string }) {
+    this.container.register({
+      schedulerToken: asValue(schedulerToken),
+      checkSchedulerToken: asFunction(checkSchedulerToken),
     });
 
     return this;

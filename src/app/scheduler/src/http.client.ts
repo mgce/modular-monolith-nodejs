@@ -8,6 +8,9 @@ const httpClientInitializer = () => {
     const requestPath = `${config.apiUrl}/${urlPath}`;
     return fetch(requestPath, {
       method: "POST",
+      headers: {
+        "x-scheduler-token": config.schedulerToken,
+      },
     }).then(() => {
       // eslint-disable-next-line no-console
       console.log("[REQUEST]", new Date(), requestPath);
