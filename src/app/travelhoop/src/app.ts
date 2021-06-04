@@ -1,6 +1,5 @@
-import { AppModule, DbConnection } from "@travelhoop/infrastructure";
+import { AppModule, DbConnection, MiddlewareType } from "@travelhoop/infrastructure";
 import express, { Application } from "express";
-import { MiddlewareType } from "@travelhoop/abstract-core";
 import { RedisClient as Redis } from "redis";
 
 interface AppDependencies {

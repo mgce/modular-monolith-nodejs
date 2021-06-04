@@ -10,6 +10,6 @@ export * from "./messaging";
 
 export * from "./module";
 
-export * from "./middleware";
-
 export * from "./command";
+
+export * from "./express";
