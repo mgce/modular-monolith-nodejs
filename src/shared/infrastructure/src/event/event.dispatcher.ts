@@ -1,6 +1,6 @@
 import { Event, EventDispatcher, Logger, EventSubscriber } from "@travelhoop/abstract-core";
 
-export type Subscriber = (event: Event) => Promise<void>;
+type Subscriber = (event: Event) => Promise<void>;
 
 type Subscribers = { name: string; subscriber: Subscriber };
 

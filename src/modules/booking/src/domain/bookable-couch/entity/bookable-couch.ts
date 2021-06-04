@@ -12,6 +12,13 @@ import { CouchBooking } from "./couch-booking";
 import { BookingCancellationPolicy } from "../policy";
 import { CouchBookingCancelled } from "../event/couch-booking-cancelled.event";
 import { BookingsFinished } from "../event/bookings-finished.event";
+import {
+  AllCouchesAreReservedError,
+  BookingNotFoundError,
+  CannotBookCouchError,
+  CannotCancelBookingError,
+  BookingUnavailableError,
+} from "../error";
 
 export interface BookableCouchProps {
   id: AggregateId;
@@ -60,14 +67,14 @@ export class BookableCouch extends AggregateRoot {
     const couchBooking = this.bookings.getItems().find(booking => booking.id.equals(couchBookingId));
 
     if (!couchBooking || !(couchBooking instanceof CouchBooking)) {
-      throw new Error("Booking doesn't exists");
+      throw new BookingNotFoundError();
     }
 
     if (bookingCancellationPolicy.canCancel(couchBooking)) {
       this.bookings.remove(couchBooking);
       this.addEvent(new CouchBookingCancelled({ couchBooking, reason }));
     } else {
-      throw new Error("Cannot cancel booking");
+      throw new CannotCancelBookingError();
     }
   }
 
@@ -80,14 +87,14 @@ export class BookableCouch extends AggregateRoot {
 
   public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {
     if (this.hostId.equals(guestId)) {
-      throw new Error("You cannot book your couch");
+      throw new CannotBookCouchError();
     }
 
     const overlappingBookings = this.getOverlappingBookings(dateFrom, dateTo);
     const areBookingUnavailable = overlappingBookings.some(booking => booking instanceof UnavailableBooking);
 
     if (areBookingUnavailable) {
-      throw new Error("Between this date you cannot make a booking");
+      throw new BookingUnavailableError(dateFrom, dateTo);
     }
 
     const allCouchReserved = overlappingBookings
@@ -95,7 +102,7 @@ export class BookableCouch extends AggregateRoot {
       .some(booking => (booking as CouchBooking).quantity > this.quantity - requestedQuantity);
 
     if (allCouchReserved) {
-      throw new Error("All couches are reserved");
+      throw new AllCouchesAreReservedError();
     }
   }
 

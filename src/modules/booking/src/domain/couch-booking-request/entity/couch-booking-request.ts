@@ -1,5 +1,6 @@
 import { AggregateId, AggregateRoot } from "@travelhoop/shared-kernel";
 import { Guid } from "guid-typescript";
+import { CannotAcceptBookingError } from "../error";
 import { CouchBookingRequestCreated } from "../event/couch-booking-request-created.event";
 import { CouchBookingStatusChanged } from "../event/couch-booking-status-changed.event";
 import { RequestStatus } from "./request-status";
@@ -81,7 +82,7 @@ export class CouchBookingRequest extends AggregateRoot {
 
   private changeStatus(status: RequestStatus, rejectionReason?: string) {
     if (this.status !== RequestStatus.Pending) {
-      throw new Error(`Cannot accept this booking request because current state is ${this.status}`);
+      throw new CannotAcceptBookingError(this.status);
     }
 
     this.status = status;
