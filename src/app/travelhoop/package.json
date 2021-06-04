@@ -21,6 +21,7 @@
     "@travelhoop/user-module": "1.0.0",
     "@travelhoop/couch-module": "1.0.0",
     "@travelhoop/booking-module": "1.0.0",
+    "@travelhoop/review-module": "1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2",
     "awilix": "~4.3.3",
