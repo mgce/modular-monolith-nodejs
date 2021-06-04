@@ -1,14 +1,4 @@
-export interface Command<TPayload> {
-  payload: TPayload;
-}
-
-export interface CommandBus {
-  execute(command: Command<unknown>): Promise<void>;
-}
-
-export interface CommandHandler<T extends Command<unknown> = Command<unknown>, TResult = void> {
-  execute: (command: T) => Promise<TResult>;
-}
+import { Command, CommandBus, CommandHandler } from "@travelhoop/abstract-core";
 
 interface CommandHandlers {
   [key: string]: CommandHandler;

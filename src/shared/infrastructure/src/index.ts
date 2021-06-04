@@ -13,3 +13,5 @@ export * from "./module";
 export * from "./command";
 
 export * from "./express";
+
+export * from "./command";

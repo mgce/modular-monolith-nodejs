@@ -1,4 +1,4 @@
-import { CommandHandler } from "@travelhoop/infrastructure";
+import { CommandHandler } from "@travelhoop/abstract-core";
 import { DomainEventDispatcher } from "@travelhoop/shared-kernel";
 import { BookableCouchRepository, CouchBookingRequestRepository } from "../../../../domain";
 import { FinishBookingsCommand } from "./finish-bookings.command";

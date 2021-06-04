@@ -1,4 +1,4 @@
-import { CommandHandler } from "@travelhoop/infrastructure";
+import { CommandHandler } from "@travelhoop/abstract-core";
 import { CouchBookingRequestDomainService } from "../../../../domain";
 import { RequestCouchBookingCommand } from "./request-couch-booking.command";
 

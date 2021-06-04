@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { Command } from "@travelhoop/infrastructure";
+import { Command } from "@travelhoop/abstract-core";
 import { AggregateId } from "@travelhoop/shared-kernel";
 
 interface CancelBookingCommandPayload {
