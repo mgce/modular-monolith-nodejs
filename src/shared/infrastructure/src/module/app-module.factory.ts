@@ -1,4 +1,4 @@
-import { Event, EventDispatcher } from "@travelhoop/infrastructure-types";
+import { Event, EventDispatcher } from "@travelhoop/abstract-core";
 import { AwilixContainer } from "awilix";
 import { Application, Router } from "express";
 import { AppModule, UseDependencies } from "..";

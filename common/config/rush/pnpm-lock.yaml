@@ -2,11 +2,11 @@ dependencies:
   '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
   '@mikro-orm/migrations': 4.5.2_@mikro-orm+core@4.5.2
   '@mikro-orm/postgresql': 4.5.2_@mikro-orm+core@4.5.2
+  '@rush-temp/abstract-core': file:projects/abstract-core.tgz_d92aad7d255c240226982115d0ab5be6
   '@rush-temp/app': file:projects/app.tgz
   '@rush-temp/booking-module': file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/couch-module': file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/infrastructure': file:projects/infrastructure.tgz_d92aad7d255c240226982115d0ab5be6
-  '@rush-temp/infrastructure-types': file:projects/infrastructure-types.tgz_d92aad7d255c240226982115d0ab5be6
   '@rush-temp/review-module': file:projects/review-module.tgz_@mikro-orm+migrations@4.5.2
   '@rush-temp/scheduler': file:projects/scheduler.tgz
   '@rush-temp/shared-kernel': file:projects/shared-kernel.tgz_d92aad7d255c240226982115d0ab5be6
@@ -6797,6 +6797,31 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Ci1qN+i2H0XpY7syDQ0k5zKQ/DoxO0LzPg8PAR/X4Mpj6DqaeCoIYEEjDJwhArh3Fa7GWbQQVDZKeXYlSH4JMg==
+  file:projects/abstract-core.tgz_d92aad7d255c240226982115d0ab5be6:
+    dependencies:
+      '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
+      '@swc/cli': 0.1.36_@swc+core@1.2.51
+      '@swc/core': 1.2.51
+      '@types/express': 4.17.11
+      '@types/node': 14.14.37
+      '@types/redis': 2.8.28
+      awilix: 4.3.3
+      eslint: 7.23.0
+      express: 4.17.1
+      guid-typescript: 1.0.9
+      rimraf: 3.0.2
+      typescript: 4.2.3
+      winston: 3.3.3
+    dev: false
+    id: file:projects/abstract-core.tgz
+    name: '@rush-temp/abstract-core'
+    peerDependencies:
+      '@mikro-orm/migrations': '*'
+      '@mikro-orm/postgresql': '*'
+    resolution:
+      integrity: sha512-Vja/a3Z77KyDgv/iPg9++qxUWCZSyYLpDsA/Pr6sfJ3mr1+Sjml3IfzTB3Rl23esaY8czXpiwAaaH+j/16Caqw==
+      tarball: file:projects/abstract-core.tgz
+    version: 0.0.0
   file:projects/app.tgz:
     dependencies:
       '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
@@ -6825,7 +6850,7 @@ packages:
     dev: false
     name: '@rush-temp/app'
     resolution:
-      integrity: sha512-RZa0OOoIZyfw4v7OLbW2I/iAax4XuB3Gd0yXToT+ZH3iwBI2D01LNpmo4H+lnCwAi6T9xWo2D34XzBbYIxjQOw==
+      integrity: sha512-rUqr5MfI2Bp1CFuTLDywJQD6hQtL90/HaRNYtdoNKFlfVIanIdQpXb6ae5RxCNjH17R5PGuiJ4VgezGKBhrbNA==
       tarball: file:projects/app.tgz
     version: 0.0.0
   file:projects/booking-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6860,7 +6885,7 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-qJuNZVoOnvBUlbv1NxSE4X0PIECR1SK1s+a4zMB2+R8kuOkKYZ1drS4uwfFSSzfHkSEnXdHTl1XnE7/fbDjNSw==
+      integrity: sha512-JxV64dGLPbw1alr64+py0BY1Y+PmQuj1iCpsG5hulEbDAEATOcISy2RS4v46/gKRszKTDKLHzC9AhZlnMH3I3A==
       tarball: file:projects/booking-module.tgz
     version: 0.0.0
   file:projects/couch-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6888,33 +6913,8 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-iBMaZcrKuneDIAnU1j1YhNSv6xZCTLsFCnCo0sUcpmPyEdYoCL7EPsFR/uwo8GDKnNZNqLG3c+rbTWaSQT15QA==
+      integrity: sha512-uWpFf0POa1E3OW+h3eGe7Ic+M1bhynOiTXPhTm5/aERC8zq21xdO8bLmBro0qyGwAtM/nZIesg4ztejhhduPlA==
       tarball: file:projects/couch-module.tgz
-    version: 0.0.0
-  file:projects/infrastructure-types.tgz_d92aad7d255c240226982115d0ab5be6:
-    dependencies:
-      '@mikro-orm/core': 4.5.2_d92aad7d255c240226982115d0ab5be6
-      '@swc/cli': 0.1.36_@swc+core@1.2.51
-      '@swc/core': 1.2.51
-      '@types/express': 4.17.11
-      '@types/node': 14.14.37
-      '@types/redis': 2.8.28
-      awilix: 4.3.3
-      eslint: 7.23.0
-      express: 4.17.1
-      guid-typescript: 1.0.9
-      rimraf: 3.0.2
-      typescript: 4.2.3
-      winston: 3.3.3
-    dev: false
-    id: file:projects/infrastructure-types.tgz
-    name: '@rush-temp/infrastructure-types'
-    peerDependencies:
-      '@mikro-orm/migrations': '*'
-      '@mikro-orm/postgresql': '*'
-    resolution:
-      integrity: sha512-91zsb3+1RaW21GknW9RAIg1b52H5iMtvjR9mAoIuwQovF4WsU9N/FMJN1IAWRe+sPgCE66LIIG4Y3G0DSbAiIg==
-      tarball: file:projects/infrastructure-types.tgz
     version: 0.0.0
   file:projects/infrastructure.tgz_d92aad7d255c240226982115d0ab5be6:
     dependencies:
@@ -6947,7 +6947,7 @@ packages:
       '@mikro-orm/migrations': '*'
       '@mikro-orm/postgresql': '*'
     resolution:
-      integrity: sha512-UYChgiLQxBuZv8sqEnMWy+172HvCe0HU3nh4+oaXFLSEmXkKT4DAfOcqdsmjZqrnAkhDEJSIilTKExsiSt9vrg==
+      integrity: sha512-c8CfnOL5jKdxntwUgj4s1kTJNBt2DI+wqPs+xG4ROBhI0JV2IcO7M3QXGB9+Fi8IMb6ZubVMDYgDcyPRBxK5zg==
       tarball: file:projects/infrastructure.tgz
     version: 0.0.0
   file:projects/review-module.tgz_@mikro-orm+migrations@4.5.2:
@@ -6975,7 +6975,7 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-60a7wS1sPU06W0ppMV0P2SmnsnpLVrrQFzHYk/rk7FkjV5rUMjJavFw+nPpuc3bgmJL1lWdITigtIJ6g/q8JGA==
+      integrity: sha512-mj9k9ZZlWcAKH6kra7JfF15Mm0/EArCdtdslrRtfoPa4WwOZN7US8PseNDSs0URA24QdwTxi1xzPWmaQ8kv1TQ==
       tarball: file:projects/review-module.tgz
     version: 0.0.0
   file:projects/scheduler.tgz:
@@ -6993,7 +6993,7 @@ packages:
     dev: false
     name: '@rush-temp/scheduler'
     resolution:
-      integrity: sha512-XN1EtHcMLUv7DtMhzynKGIlfQay6Xt9SAkaxuvs1tbazakmmEqLo2iv5MaL399+WUWOq8BJsfuWYcIxcT/AgXg==
+      integrity: sha512-gz+b2kInpEzN68BO+sfKcL3McnZjzmUry/K1V4i+t2zaGA4V1A1cKtVWuDYM+uuO2TyFbfxzsEd5yGLbH0EquQ==
       tarball: file:projects/scheduler.tgz
     version: 0.0.0
   file:projects/shared-kernel.tgz_d92aad7d255c240226982115d0ab5be6:
@@ -7070,7 +7070,7 @@ packages:
     peerDependencies:
       '@mikro-orm/migrations': '*'
     resolution:
-      integrity: sha512-2recuLAsZdVKDThipq6iZi4h7jHYb3ePjme3Z5eLDNNychIXje61m1aAe7cPhGzOZD9NPLXmfdoTCBi1pq/QFA==
+      integrity: sha512-E9T2+Q0+tiAr9WS+ckeiKBIkdYkDAcmt4jShpRpM37sST+kj3XONwwreZg3PwtGXaT9WpJoO4XRO8VbSHTwbdQ==
       tarball: file:projects/user-module.tgz
     version: 0.0.0
 registry: ''
@@ -7078,11 +7078,11 @@ specifiers:
   '@mikro-orm/core': ~4.5.2
   '@mikro-orm/migrations': ~4.5.2
   '@mikro-orm/postgresql': ~4.5.2
+  '@rush-temp/abstract-core': file:./projects/abstract-core.tgz
   '@rush-temp/app': file:./projects/app.tgz
   '@rush-temp/booking-module': file:./projects/booking-module.tgz
   '@rush-temp/couch-module': file:./projects/couch-module.tgz
   '@rush-temp/infrastructure': file:./projects/infrastructure.tgz
-  '@rush-temp/infrastructure-types': file:./projects/infrastructure-types.tgz
   '@rush-temp/review-module': file:./projects/review-module.tgz
   '@rush-temp/scheduler': file:./projects/scheduler.tgz
   '@rush-temp/shared-kernel': file:./projects/shared-kernel.tgz

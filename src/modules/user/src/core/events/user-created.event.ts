@@ -1,4 +1,4 @@
-import { Event } from "@travelhoop/infrastructure-types";
+import { Event } from "@travelhoop/abstract-core";
 import { Guid } from "guid-typescript";
 
 interface UserCreatedPayload {

@@ -1,4 +1,4 @@
-import { MiddlewareType } from "@travelhoop/infrastructure-types";
+import { MiddlewareType } from "@travelhoop/abstract-core";
 import express, { Router } from "express";
 import { bookingReviewApi } from "./booking-review.router";
 

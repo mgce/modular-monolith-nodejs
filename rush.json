@@ -68,8 +68,8 @@
       "reviewCategory": "tools"
     },
     {
-      "packageName": "@travelhoop/infrastructure-types",
-      "projectFolder": "src/shared/infrastructure-types",
+      "packageName": "@travelhoop/abstract-core",
+      "projectFolder": "src/shared/abstract-core",
       "reviewCategory": "tools"
     }
   ]

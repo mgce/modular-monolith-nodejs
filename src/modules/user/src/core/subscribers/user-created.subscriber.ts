@@ -1,4 +1,4 @@
-import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/infrastructure-types";
+import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/abstract-core";
 import { Profile } from "../entities/profile";
 import { UserCreated } from "../events/user-created.event";
 import { ProfileRepository } from "../repositories/profile.repository";

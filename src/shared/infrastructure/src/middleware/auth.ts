@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { Logger, AuthenticatedUser } from "@travelhoop/infrastructure-types";
+import { Logger, AuthenticatedUser } from "@travelhoop/abstract-core";
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 

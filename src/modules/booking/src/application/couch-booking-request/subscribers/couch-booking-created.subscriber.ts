@@ -1,4 +1,4 @@
-import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/infrastructure-types";
+import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/abstract-core";
 import { CouchBookingCreated, CouchBookingRequestRepository } from "../../../domain";
 
 interface CouchBookingCreatedSubscriberDependencies {

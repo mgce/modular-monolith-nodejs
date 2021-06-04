@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Logger } from "@travelhoop/infrastructure-types";
+import { Logger } from "@travelhoop/abstract-core";
 import { createBackgroundMessageDispatcher, DbConnection } from "@travelhoop/infrastructure";
 import { Server } from "http";
 import { loadEnvs } from "@travelhoop/infrastructure";

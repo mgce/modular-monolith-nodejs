@@ -1,4 +1,4 @@
-import { AuthenticatedUser } from "@travelhoop/infrastructure-types";
+import { AuthenticatedUser } from "@travelhoop/abstract-core";
 import { Guid } from "guid-typescript";
 import { sign } from "jsonwebtoken";
 import { addMinutes } from "date-fns";

@@ -1,4 +1,4 @@
-import { Logger } from "@travelhoop/infrastructure-types";
+import { Logger } from "@travelhoop/abstract-core";
 import { NextFunction, Request, Response } from "express";
 
 interface SchedulerTokenDependencies {

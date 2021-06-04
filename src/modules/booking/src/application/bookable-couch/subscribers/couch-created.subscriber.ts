@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/infrastructure-types";
+import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/abstract-core";
 import { CouchCreated } from "../events/couch-created.event";
 import { BookableCouch, BookableCouchRepository } from "../../../domain";
 

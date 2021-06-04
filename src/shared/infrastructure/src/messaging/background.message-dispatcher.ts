@@ -1,6 +1,6 @@
 import { RedisClient as Redis } from "redis";
 import RSMQWorker from "rsmq-worker";
-import { Logger } from "@travelhoop/infrastructure-types";
+import { Logger } from "@travelhoop/abstract-core";
 import { AppModule } from "..";
 
 interface BacgroundMessageDispatcher {

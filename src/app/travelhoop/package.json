@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@travelhoop/infrastructure-types": "1.0.0",
+    "@travelhoop/abstract-core": "1.0.0",
     "@travelhoop/infrastructure": "1.0.0",
     "@travelhoop/user-module": "1.0.0",
     "@travelhoop/couch-module": "1.0.0",

@@ -1,4 +1,4 @@
-import { QueueClient } from "@travelhoop/infrastructure-types";
+import { QueueClient } from "@travelhoop/abstract-core";
 import { RedisClient as Redis } from "redis";
 import RedisSMQ, { QueueMessage } from "rsmq";
 

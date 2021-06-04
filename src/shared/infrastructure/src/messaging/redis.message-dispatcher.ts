@@ -1,4 +1,4 @@
-import { QueueClient, MessageDispatcher } from "@travelhoop/infrastructure-types";
+import { QueueClient, MessageDispatcher } from "@travelhoop/abstract-core";
 
 interface RedisMessageBrokerDependencies {
   queueClient: QueueClient;

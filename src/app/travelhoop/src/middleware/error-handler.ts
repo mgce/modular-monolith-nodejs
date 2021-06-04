@@ -1,4 +1,4 @@
-import { Logger } from "@travelhoop/infrastructure-types";
+import { Logger } from "@travelhoop/abstract-core";
 import { TravelhoopError } from "@travelhoop/infrastructure";
 import { Request, Response, NextFunction } from "express";
 
@@ -14,27 +14,24 @@ const handleClassValidator = (err: ValidationError[]) => {
   return err;
 };
 
-export const errorHandler = ({ logger }: ErrorHandlerDependencies) => (
-  err: Error,
-  _req: Request,
-  res: Response,
-  _next: NextFunction,
-) => {
-  logger.error(err.toString());
+export const errorHandler =
+  ({ logger }: ErrorHandlerDependencies) =>
+  (err: Error, _req: Request, res: Response, _next: NextFunction) => {
+    logger.error(err.toString());
 
-  if (Array.isArray(err)) {
-    return res.status(400).json(handleClassValidator(err));
-  }
+    if (Array.isArray(err)) {
+      return res.status(400).json(handleClassValidator(err));
+    }
 
-  if (err instanceof TravelhoopError) {
-    return res.status(err.statusCode).json({
+    if (err instanceof TravelhoopError) {
+      return res.status(err.statusCode).json({
+        error: err.message,
+        stack: err.stack,
+      });
+    }
+
+    return res.status(500).json({
       error: err.message,
       stack: err.stack,
     });
-  }
-
-  return res.status(500).json({
-    error: err.message,
-    stack: err.stack,
-  });
-};
+  };

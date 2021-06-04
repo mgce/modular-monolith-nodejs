@@ -1,4 +1,4 @@
-import { Event } from "@travelhoop/infrastructure-types";
+import { Event } from "@travelhoop/abstract-core";
 
 interface CouchCreatedPayload {
   id: string;

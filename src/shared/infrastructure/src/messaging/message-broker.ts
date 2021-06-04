@@ -1,4 +1,4 @@
-import { MessageDispatcher } from "@travelhoop/infrastructure-types";
+import { MessageDispatcher } from "@travelhoop/abstract-core";
 
 interface MessageBrokerDependencies {
   messageDispatcher: MessageDispatcher;

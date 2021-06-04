@@ -1,7 +1,7 @@
 import { Guid } from "guid-typescript";
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
-import { Request, Response } from "@travelhoop/infrastructure-types";
+import { Request, Response } from "@travelhoop/abstract-core";
 import asyncHandler from "express-async-handler";
 import { UpdateCouchDto } from "../../core/dto/update-couch.dto";
 import { CreateCouchDto } from "../../core/dto/create-couch.dto";

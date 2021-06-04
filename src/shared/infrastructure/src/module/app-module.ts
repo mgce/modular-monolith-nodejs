@@ -1,7 +1,7 @@
 import { Application } from "express";
 import { RedisClient as Redis } from "redis";
 import { DbConnection } from "..";
-import { Event } from "@travelhoop/infrastructure-types";
+import { Event } from "@travelhoop/abstract-core";
 
 export interface UseDependencies {
   dbConnection: DbConnection;

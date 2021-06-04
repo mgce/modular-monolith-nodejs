@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { MiddlewareType } from "@travelhoop/infrastructure-types";
+import { MiddlewareType } from "@travelhoop/abstract-core";
 import { userApi } from "./user.router";
 
 export interface RoutingDependencies {

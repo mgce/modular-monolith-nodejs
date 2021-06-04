@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@travelhoop/infrastructure-types": "1.0.0",
+    "@travelhoop/abstract-core": "1.0.0",
     "@travelhoop/infrastructure": "1.0.0",
     "express": "~4.17.1",
     "rimraf": "~3.0.2",

@@ -1,4 +1,4 @@
-import { Event, EventDispatcher, Logger, EventSubscriber } from "@travelhoop/infrastructure-types";
+import { Event, EventDispatcher, Logger, EventSubscriber } from "@travelhoop/abstract-core";
 
 export type Subscriber = (event: Event) => Promise<void>;
 
