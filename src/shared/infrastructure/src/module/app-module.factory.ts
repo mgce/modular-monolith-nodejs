@@ -1,6 +1,7 @@
-import { AppModule, Event, EventDispatcher, UseDependencies } from "@travelhoop/infrastructure-types";
+import { Event, EventDispatcher } from "@travelhoop/infrastructure-types";
 import { AwilixContainer } from "awilix";
 import { Application, Router } from "express";
+import { AppModule, UseDependencies } from "..";
 import { scopePerRequest } from "../container";
 
 export interface StandardCreateContainerDependencies extends UseDependencies {}

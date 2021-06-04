@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { DbConnection, Logger } from "@travelhoop/infrastructure-types";
-import { createBackgroundMessageDispatcher } from "@travelhoop/infrastructure";
+import { Logger } from "@travelhoop/infrastructure-types";
+import { createBackgroundMessageDispatcher, DbConnection } from "@travelhoop/infrastructure";
 import { Server } from "http";
 import { loadEnvs } from "@travelhoop/infrastructure";
 import { createClient } from "redis";

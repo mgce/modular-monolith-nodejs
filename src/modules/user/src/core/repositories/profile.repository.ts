@@ -1,4 +1,4 @@
-import { DbConnection } from "@travelhoop/infrastructure-types";
+import { DbConnection } from "@travelhoop/infrastructure";
 import { Profile } from "../entities/profile";
 
 interface ProfileRepositoryDependencies {

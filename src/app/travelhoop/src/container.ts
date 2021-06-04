@@ -1,8 +1,7 @@
 import { asFunction, asValue, createContainer } from "awilix";
-import { createLogger, registerAsArray } from "@travelhoop/infrastructure";
+import { createLogger, registerAsArray, AppModule } from "@travelhoop/infrastructure";
 import { Application } from "express";
 import * as http from "http";
-import { AppModule } from "@travelhoop/infrastructure-types";
 import { MikroORM } from "@mikro-orm/core";
 import { RedisClient as Redis } from "redis";
 import { createApp } from "./app";

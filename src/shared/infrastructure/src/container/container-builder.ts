@@ -1,6 +1,5 @@
 import { asFunction, asValue, asClass, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
-import { DbConnection } from "@travelhoop/infrastructure-types";
 import { RedisClient as Redis } from "redis";
 import { CommandDispatcher } from "../command/command-bus";
 import { InMemoryEventDispatcher } from "../event/event.dispatcher";
@@ -8,7 +7,7 @@ import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
 import { MessageBroker, RedisMessageDispatcher } from "../messaging";
 import { RedisClient } from "../redis/redis.queue";
-import { auth, checkSchedulerToken } from "..";
+import { auth, checkSchedulerToken, DbConnection } from "..";
 
 export class ContainerBuilder {
   private container: AwilixContainer;

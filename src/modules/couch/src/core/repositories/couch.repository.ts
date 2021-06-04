@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { DbConnection } from "@travelhoop/infrastructure-types";
+import { DbConnection } from "@travelhoop/infrastructure";
 import { Couch } from "../entities/couch";
 import { CouchNotFoundError } from "../error/couch-not-found.error";
 

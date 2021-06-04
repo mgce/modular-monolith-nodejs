@@ -2,7 +2,7 @@
 /* eslint-disable import/no-dynamic-require */
 import { join } from "path";
 import { readdirSync } from "fs";
-import { AppModule } from "@travelhoop/infrastructure-types";
+import { AppModule } from "@travelhoop/infrastructure";
 
 export const loadModules = (): AppModule[] => {
   const modulePath = join(__dirname, "../node_modules/@travelhoop");

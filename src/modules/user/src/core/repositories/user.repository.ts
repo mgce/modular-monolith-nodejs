@@ -1,4 +1,4 @@
-import { DbConnection } from "@travelhoop/infrastructure-types";
+import { DbConnection } from "@travelhoop/infrastructure";
 import { Guid } from "guid-typescript";
 import { User } from "../entities/user";
 import { UserNotFoundError } from "../error/user-not-found.error";

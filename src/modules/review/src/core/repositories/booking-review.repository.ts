@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { DbConnection } from "@travelhoop/infrastructure-types";
+import { DbConnection } from "@travelhoop/infrastructure";
 import { BookingReview } from "../entities/booking-review";
 import { BookingReviewNotFoundError } from "../error/booking-review-not-found.error";
 
