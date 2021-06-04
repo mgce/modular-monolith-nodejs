@@ -1,5 +1,4 @@
-import { Logger } from "@travelhoop/abstract-core";
-import { TravelhoopError } from "@travelhoop/infrastructure";
+import { Logger, TravelhoopError } from "@travelhoop/abstract-core";
 import { Request, Response, NextFunction } from "express";
 
 interface ErrorHandlerDependencies {

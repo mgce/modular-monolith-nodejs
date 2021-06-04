@@ -12,6 +12,4 @@ export * from "./module";
 
 export * from "./middleware";
 
-export * from "./error";
-
 export * from "./command";

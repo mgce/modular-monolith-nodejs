@@ -11,3 +11,5 @@ export * from "./middleware";
 export * from "./auth";
 
 export * from "./express";
+
+export * from "./error";

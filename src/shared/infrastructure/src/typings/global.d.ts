@@ -1,6 +1,6 @@
+import { AuthenticatedUser } from "@travelhoop/abstract-core";
 import { AwilixContainer } from "awilix";
-import { AuthenticatedUser } from "../auth/user";
-import { DbConnection } from "../database/db-connection";
+import { DbConnection } from "..";
 
 declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
