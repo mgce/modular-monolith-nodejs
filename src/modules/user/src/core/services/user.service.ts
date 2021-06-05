@@ -47,7 +47,7 @@ export class UserService {
 
     await this.deps.userRepository.add(user);
 
-    await this.deps.messageBroker.publish(new UserCreated({ id: userId }));
+    await this.deps.messageBroker.publish(new UserCreated({ id: userId.toString() }));
   }
 
   async update(dto: UpdateUserDto) {

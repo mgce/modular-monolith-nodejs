@@ -6,6 +6,7 @@ import { CommandDispatcher } from "@travelhoop/infrastructure";
 import { FinishBookingsCommand } from "../../application/bookable-couch/handlers/finish-bookings/finish-bookings.command";
 import { CreateBookingCommand } from "../../application/bookable-couch/handlers/create-booking/create-booking.command";
 import { RequestCouchBookingCommand } from "../../application/couch-booking-request/handlers/request-couch-booking/request-couch-booking.command";
+import { ArchiveBookableCouchCommand } from "../../application/bookable-couch/handlers/archive-bookable-couch/archive-bookable-couch.command";
 
 interface BookableCouchApiDependencies {
   commandDispatcher: CommandDispatcher;
@@ -29,6 +30,11 @@ const api = ({ commandDispatcher }: BookableCouchApiDependencies) => ({
   }),
   finishBookings: asyncHandler(async (_req: Request, res: Response) => {
     const command = new FinishBookingsCommand({});
+    res.json(await commandDispatcher.execute(command));
+  }),
+  archive: asyncHandler(async (req: Request, res: Response) => {
+    const command = new ArchiveBookableCouchCommand({ ...req.body });
+    await validateOrReject(command);
     res.json(await commandDispatcher.execute(command));
   }),
 });

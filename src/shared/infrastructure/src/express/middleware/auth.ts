@@ -17,14 +17,18 @@ export const auth =
       throw new Error("Invalid token");
     }
 
-    const parsedToken = verify(token, secretKey) as any;
-    const id = Guid.parse(parsedToken.id.value);
+    try {
+      const parsedToken = verify(token, secretKey) as any;
+      const id = Guid.parse(parsedToken.id.value);
 
-    // eslint-disable-next-line no-param-reassign
-    req.user = {
-      ...parsedToken,
-      id,
-    };
+      // eslint-disable-next-line no-param-reassign
+      req.user = {
+        ...parsedToken,
+        id,
+      };
+    } catch (err) {
+      throw new Error("Invalid token");
+    }
 
     next();
   };

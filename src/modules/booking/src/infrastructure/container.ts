@@ -1,6 +1,7 @@
 import { ContainerBuilder, StandardCreateContainerDependencies } from "@travelhoop/infrastructure";
 import { asClass, AwilixContainer } from "awilix";
 import { createRouter } from "../api/routes/router";
+import { ArchiveBookableCouchCommandHandler } from "../application/bookable-couch/handlers/archive-bookable-couch/archive-bookable-couch.handler";
 import { CancelBookingCommandHandler } from "../application/bookable-couch/handlers/cancel-booking/cancel-booking.handler";
 import { CreateBookingCommandHandler } from "../application/bookable-couch/handlers/create-booking/create-booking.handler";
 import { FinishBookingsCommandHandler } from "../application/bookable-couch/handlers/finish-bookings/finish-bookings.handler";
@@ -36,6 +37,7 @@ export const createContainer = ({ dbConnection, redis }: StandardCreateContainer
         CancelBookingCommandHandler,
         CreateBookingCommandHandler,
         FinishBookingsCommandHandler,
+        ArchiveBookableCouchCommandHandler,
       ],
     })
     .addEventSubscribers({

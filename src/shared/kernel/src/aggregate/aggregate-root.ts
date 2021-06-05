@@ -1,6 +1,13 @@
 import { AggregateId } from "./aggregate-id";
 import { DomainEvent } from "../domain-event";
 
+export interface AggregateRootProps<T> {
+  id: T;
+  version: number;
+  domainEvents: DomainEvent<unknown>[];
+  versionIncremented: boolean;
+}
+
 export class AggregateRoot<T = AggregateId> {
   public id: T;
 

@@ -1,8 +1,7 @@
 import { Event } from "@travelhoop/abstract-core";
-import { Guid } from "guid-typescript";
 
 interface UserCreatedPayload {
-  id: Guid;
+  id: string;
 }
 
 export class UserCreated implements Event {

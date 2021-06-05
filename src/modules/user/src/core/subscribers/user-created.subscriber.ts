@@ -1,3 +1,4 @@
+import { Guid } from "guid-typescript";
 import { EventSubscriber, EventSubscribersMeta } from "@travelhoop/abstract-core";
 import { Profile } from "../entities/profile";
 import { UserCreated } from "../events/user-created.event";
@@ -15,6 +16,10 @@ export class UserCreatedSubscriber implements EventSubscriber {
   }
 
   async onUserCreated({ payload: { id } }: UserCreated) {
-    return this.deps.profileRepository.add(Profile.create({ id }));
+    const profileId = Guid.parse(id);
+    if (await this.deps.profileRepository.find(profileId)) {
+      return;
+    }
+    return this.deps.profileRepository.add(Profile.create({ id: profileId }));
   }
 }

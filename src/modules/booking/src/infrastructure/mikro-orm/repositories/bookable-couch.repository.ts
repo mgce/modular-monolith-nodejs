@@ -5,19 +5,24 @@ import { bookableCouchEntitySchema } from "../entity-schemas/bookable-couch.enti
 
 export class MikroOrmBookableCouchRepository
   extends MikroOrmRepository<BookableCouch, BookableCouchProps>
-  implements BookableCouchRepository {
+  implements BookableCouchRepository
+{
   constructor({ dbConnection }: MikroOrmRepositoryDependencies) {
     super({ dbConnection, entitySchema: bookableCouchEntitySchema });
   }
 
   findWithFinishedBookings() {
-    return (this.repo.find({ bookings: { $ne: null } }, { populate: ["bookings"] }) as unknown) as Promise<
+    return this.repo.find({ bookings: { $ne: null } }, { populate: ["bookings"] }) as unknown as Promise<
       BookableCouch[]
     >;
   }
 
+  async find(id: AggregateId) {
+    return this.repo.findOne({ id }) as unknown as Promise<BookableCouch | null>;
+  }
+
   async get(id: AggregateId) {
-    return (this.repo.findOneOrFail({ id }, ["bookings"]) as unknown) as BookableCouch;
+    return this.repo.findOneOrFail({ id }, ["bookings"]) as unknown as BookableCouch;
   }
 
   async add(bookableCouch: BookableCouch) {

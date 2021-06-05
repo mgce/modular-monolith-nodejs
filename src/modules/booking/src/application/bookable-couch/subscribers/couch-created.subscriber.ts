@@ -15,8 +15,10 @@ export class CouchCreatedSubscriber implements EventSubscriber {
   }
 
   async onCouchCreated({ payload: { id, hostId, quantity } }: CouchCreated) {
-    return this.deps.bookableCouchRepository.add(
-      BookableCouch.create({ id: Guid.parse(id), hostId: Guid.parse(hostId), quantity }),
-    );
+    const bookableCouch = BookableCouch.create({ id: Guid.parse(id), hostId: Guid.parse(hostId), quantity });
+    if (await this.deps.bookableCouchRepository.find(bookableCouch.id)) {
+      return;
+    }
+    return this.deps.bookableCouchRepository.add(bookableCouch);
   }
 }

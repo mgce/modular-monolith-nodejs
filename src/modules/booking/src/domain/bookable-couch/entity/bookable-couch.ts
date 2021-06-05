@@ -18,13 +18,17 @@ import {
   CannotBookCouchError,
   CannotCancelBookingError,
   BookingUnavailableError,
+  CannotArchiveCouchError,
 } from "../error";
+import { BookableCouchState } from "../enum";
+import { BookableCouchArchived } from "../event";
 
 export interface BookableCouchProps {
   id: AggregateId;
   hostId: AggregateId;
   quantity: number;
   bookings: Booking[];
+  state: BookableCouchState;
 }
 
 interface CreateBookableCouchProps {
@@ -40,6 +44,8 @@ export class BookableCouch extends AggregateRoot {
 
   private bookings = new Collection<Booking>(this);
 
+  private state: BookableCouchState;
+
   static create(props: CreateBookableCouchProps) {
     return new BookableCouch(props);
   }
@@ -49,6 +55,7 @@ export class BookableCouch extends AggregateRoot {
     this.id = AggregateId.create(id);
     this.quantity = quantity;
     this.hostId = hostId;
+    this.state = BookableCouchState.Active;
   }
 
   createBooking(couchBookingRequest: CouchBookingRequestProps) {
@@ -85,8 +92,17 @@ export class BookableCouch extends AggregateRoot {
     this.addEvent(new BookingsFinished({ bookings: bookingsToFinish }));
   }
 
-  public canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {
-    if (this.hostId.equals(guestId)) {
+  archive() {
+    if (this.state === BookableCouchState.Archived || this.bookings.length > 0) {
+      throw new CannotArchiveCouchError();
+    }
+
+    this.state = BookableCouchState.Archived;
+    this.addEvent(new BookableCouchArchived({ bookableCouchId: this.id }));
+  }
+
+  canBook({ dateFrom, dateTo, quantity: requestedQuantity, guestId }: Omit<CreateCouchBookingRequest, "id">) {
+    if (this.hostId.equals(guestId) || this.state !== BookableCouchState.Active) {
       throw new CannotBookCouchError();
     }
 

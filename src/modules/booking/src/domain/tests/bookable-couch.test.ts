@@ -4,6 +4,7 @@ import { Guid } from "guid-typescript";
 import "mocha";
 import {
   BookableCouch,
+  BookableCouchArchived,
   CouchBookingCancellationPolicy,
   CouchBookingCancelled,
   CouchBookingCreated,
@@ -41,6 +42,18 @@ describe("Aggregate - Bookable couch", () => {
       });
 
       bookableCouch.createBooking(createCouchBookingRequest().toDto());
+
+      expect(() => bookableCouch.createBooking(createCouchBookingRequest().toDto())).to.throw();
+    });
+
+    it("cannot book if couch is archived", () => {
+      const bookableCouch = BookableCouch.create({
+        id: Guid.create(),
+        hostId: Guid.create(),
+        quantity: 2,
+      });
+
+      bookableCouch.archive();
 
       expect(() => bookableCouch.createBooking(createCouchBookingRequest().toDto())).to.throw();
     });
@@ -100,6 +113,53 @@ describe("Aggregate - Bookable couch", () => {
           new CouchBookingCancellationPolicy({ maxDaysBeforeCancellation: 1 }),
         ),
       ).to.throw();
+    });
+  });
+
+  context("Archive couch", () => {
+    it("archive couch", () => {
+      const bookableCouch = BookableCouch.create({
+        id: Guid.create(),
+        hostId: Guid.create(),
+        quantity: 2,
+      });
+
+      bookableCouch.clearEvents();
+
+      bookableCouch.archive();
+
+      const { events } = bookableCouch;
+
+      expect(events).length(1);
+      expect(events[0]).instanceOf(BookableCouchArchived);
+
+      const { payload } = events[0] as BookableCouchArchived;
+
+      expect(payload.bookableCouchId).to.be.equal(bookableCouch.id);
+    });
+    it("throw error when couch is already archived", () => {
+      const bookableCouch = BookableCouch.create({
+        id: Guid.create(),
+        hostId: Guid.create(),
+        quantity: 2,
+      });
+
+      bookableCouch.archive();
+
+      expect(() => bookableCouch.archive()).to.throw();
+    });
+    it("throw error when couch has active bookings", () => {
+      const bookableCouch = BookableCouch.create({
+        id: Guid.create(),
+        hostId: Guid.create(),
+        quantity: 2,
+      });
+
+      const bookingRequest = createCouchBookingRequest();
+
+      bookableCouch.createBooking(bookingRequest.toDto());
+
+      expect(() => bookableCouch.archive()).to.throw();
     });
   });
 });

@@ -15,6 +15,7 @@ export const createRouter = ({
   router.post("/request-booking", auth, bookableCouchApi("requestCouchBooking"));
   router.post("/create-booking", auth, bookableCouchApi("createBooking"));
   router.post("/finish-bookings", auth, bookableCouchApi("finishBookings"));
+  router.post("/archive", auth, bookableCouchApi("archive"));
   router.post("/reject-booking-request", checkSchedulerToken, couchBookingRequestApi("rejectRequest"));
 
   return router;
