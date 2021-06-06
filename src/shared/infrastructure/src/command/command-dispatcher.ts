@@ -1,10 +1,10 @@
-import { Command, CommandBus, CommandHandler } from "@travelhoop/abstract-core";
+import { Command, CommandDispatcher, CommandHandler } from "@travelhoop/abstract-core";
 
 interface CommandHandlers {
   [key: string]: CommandHandler;
 }
 
-export class CommandDispatcher implements CommandBus {
+export class InMemoryCommandDispatcher implements CommandDispatcher {
   private availableHandlers: CommandHandlers;
 
   constructor(commandHandlers: CommandHandler[]) {

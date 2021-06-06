@@ -1,13 +1,15 @@
 import { asFunction, asValue, asClass, AwilixContainer, createContainer, Resolver } from "awilix";
 import { Router } from "express";
 import { RedisClient as Redis } from "redis";
-import { CommandDispatcher } from "../command/command-bus";
+import { InMemoryCommandDispatcher } from "../command/command-dispatcher";
 import { InMemoryEventDispatcher } from "../event/event.dispatcher";
 import { registerAsArray } from "./as-array";
 import { createLogger } from "../logger";
 import { MessageBroker, RedisMessageDispatcher } from "../messaging";
 import { RedisClient } from "../redis/redis.queue";
 import { auth, checkSchedulerToken, DbConnection } from "..";
+import { registerWithDecorator } from "./with-decorator";
+import { TransactionalCommandDispatcherDecorator } from "../mikro-orm/decorators/transactional-command-dispatcher.decorator";
 
 export class ContainerBuilder {
   private container: AwilixContainer;
@@ -68,7 +70,9 @@ export class ContainerBuilder {
 
   addCommandHandlers({ commandHandlers }: { commandHandlers: any[] }) {
     this.container.register({
-      commandDispatcher: asClass(CommandDispatcher).classic(),
+      commandDispatcher: asClass(TransactionalCommandDispatcherDecorator, {
+        injector: () => ({ commandDispatcher: asClass(InMemoryCommandDispatcher).classic().resolve(this.container) }),
+      }),
     });
 
     if (commandHandlers) {

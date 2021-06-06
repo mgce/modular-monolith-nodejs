@@ -67,6 +67,8 @@ npm run start-dev
   - [2.6 Scheduler](#26-scheduler)
 - [3. Tests](#3-tests)
   - [3.1 Unit tests](#31-unit-tests)
+  - [4 Tips&Tricks](#4-tipstricks)
+    - [Awilix container](#awilix-container)
 
 # 1. Domain
 
@@ -287,3 +289,46 @@ it("accept booking request", () => {
   expect(payload.rejectionReason).to.be.undefined!;
 });
 ```
+## 4 Tips&Tricks
+
+### Awilix container
+
+**Registering class with decorators** - with an awilix, you can easily decarate your class. They provide a simple API to inject selected class on registration level. E.g. we have an A class, which implements `SomeInterface` 
+
+```ts
+interface SomeInterface{
+  execute: () => void
+}
+```
+
+```ts
+class AClass implements SomeInterface{
+  execute(){
+    // do something
+  }
+}
+```
+
+and we want to decarate it by logging decorator like below:
+
+```ts
+class LoggingDecorator implements SomeInterface{
+  constructor(private deps:{aClass: AClass}){};
+
+  execute(){
+    console.log("Logging the action...")
+    this.deps.aClass.execute();
+    console.log("Finish the logging")
+  }
+}
+```
+
+To be able to register a decorated class under `aClass` key, we need to do this:
+```ts
+this.container.register({
+  aClass: asClass(LoggingDecorator, {
+    injector: () => ({ aClass: asClass(AClass).resolve(this.container) }),
+  }),
+});
+```
+We are registering our decorator under `aClass` key. But using [local injections](https://github.com/jeffijoe/awilix#per-module-local-injections) we inject it resolved aClass under `aClass` key in our decorator. In this simple way we are able to easly decorate our classes.
