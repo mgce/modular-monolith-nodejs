@@ -1,5 +1,5 @@
 import { asFunction, asValue, createContainer } from "awilix";
-import { createLogger, registerAsArray, AppModule, errorHandler } from "@travelhoop/infrastructure";
+import { createLogger, registerAsArray, AppModule, errorHandler, requestContext } from "@travelhoop/infrastructure";
 import { Application } from "express";
 import * as http from "http";
 import { MikroORM } from "@mikro-orm/core";
@@ -28,6 +28,7 @@ export const setupContainer = async ({ appConfig, appModules, dbConfig, redis }:
     modules: registerAsArray<any>(appModules.map(appModule => asValue(appModule))),
     dbConnection: asValue(dbConnection),
     redis: asValue(redis),
+    requestContext: asFunction(requestContext),
   });
 
   container.register({
