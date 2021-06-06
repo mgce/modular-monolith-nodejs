@@ -1,12 +1,11 @@
 import { asFunction, asValue, createContainer } from "awilix";
-import { createLogger, registerAsArray, AppModule } from "@travelhoop/infrastructure";
+import { createLogger, registerAsArray, AppModule, errorHandler } from "@travelhoop/infrastructure";
 import { Application } from "express";
 import * as http from "http";
 import { MikroORM } from "@mikro-orm/core";
 import { RedisClient as Redis } from "redis";
 import { createApp } from "./app";
 import { AppConfig } from "./config/config";
-import { errorHandler } from "./middleware/error-handler";
 import { DbConfig } from "./config/db-config";
 
 interface ContainerDependencies {
