@@ -8,7 +8,6 @@ import { createLogger } from "../logger";
 import { MessageBroker, RedisMessageDispatcher } from "../messaging";
 import { RedisClient } from "../redis/redis.queue";
 import { auth, checkSchedulerToken, DbConnection } from "..";
-import { registerWithDecorator } from "./with-decorator";
 import { TransactionalCommandDispatcherDecorator } from "../mikro-orm/decorators/transactional-command-dispatcher.decorator";
 
 export class ContainerBuilder {

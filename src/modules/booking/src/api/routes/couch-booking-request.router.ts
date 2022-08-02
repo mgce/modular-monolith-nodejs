@@ -1,4 +1,5 @@
-import { CommandDispatcher, Request, Response } from "@travelhoop/infrastructure";
+import { CommandDispatcher } from "@travelhoop/abstract-core";
+import { Request, Response } from "@travelhoop/infrastructure";
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import asyncHandler from "express-async-handler";

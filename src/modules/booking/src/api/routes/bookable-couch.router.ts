@@ -1,8 +1,8 @@
-import { Request, Response } from "@travelhoop/infrastructure";
+import { Request, Response } from "@travelhoop/infrastructure"
 import { makeInvoker } from "awilix-express";
 import { validateOrReject } from "class-validator";
 import asyncHandler from "express-async-handler";
-import { CommandDispatcher } from "@travelhoop/infrastructure";
+import { CommandDispatcher } from "@travelhoop/abstract-core";
 import { FinishBookingsCommand } from "../../application/bookable-couch/handlers/finish-bookings/finish-bookings.command";
 import { CreateBookingCommand } from "../../application/bookable-couch/handlers/create-booking/create-booking.command";
 import { RequestCouchBookingCommand } from "../../application/couch-booking-request/handlers/request-couch-booking/request-couch-booking.command";
