@@ -5,7 +5,7 @@
   "pnpmVersion": "5.15.2",
   "pnpmOptions": {
   },
-  "nodeSupportedVersionRange": ">=12.13.0 <13.0.0 || >=14.15.0 <15.0.0",
+  "nodeSupportedVersionRange": ">=16",
   "projectFolderMinDepth": 2,
   "projectFolderMaxDepth": 3,
   "gitPolicy": {},

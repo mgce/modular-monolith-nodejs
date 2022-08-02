@@ -1,4 +1,4 @@
-FROM node:14.15.1-alpine3.10 as builder
+FROM node:16.16.0-alpine3.15 as builder
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ COPY ./tools ./tools
 COPY ./common ./common
 COPY ./rush.json .
 
-RUN rush install
+RUN rush update
 RUN rush build
 RUN rush deploy --project @travelhoop/app
 

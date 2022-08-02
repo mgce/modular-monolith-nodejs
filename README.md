@@ -9,7 +9,7 @@ In this file, as well as in the ADR, you will find implementation details as wel
 
 Project under the hood, to manage monorepo use [Rush](https://rushjs.io/). For this reason, this library must be installed globally. This can be done through the following command:
 ```
-npm install rush -g
+npm install @microsoft/rush -g
 ```
 Then you need to install node modules in all packages by
 ```
@@ -25,7 +25,7 @@ cp src/app/travelhoop/.env.dist src/app/travelhoop/.env
 ```
 For the application to work properly, we need to fire up an instance of postgres and redis. We can do this through the `docker-compose.yaml` file which contains their definitions.
 ```
-docker-compose up
+docker-compose up -d
 ```
 To locally run the project, we need to use two additional commands. The first one is used to fire the swe transpiler to keep the project monitored and rebuilt. The second one allows us to fire the server locally. What is important, the second command must be run from `src/app/travelhoop` directory. It is a good idea to run these two commands in separate terminal windows.
 ```
